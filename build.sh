@@ -12,6 +12,7 @@ git clone https://github.com/smiley9000/vendor_samsung_a05m vendor/samsung/a05m
 git clone https://github.com/smiley9000/android_frameworks_av frameworks/av
 git clone https://github.com/smiley9000/android_packages_modules_Bluetooth packages/modules/Bluetooth
 git clone https://github.com/smiley9000/android_device_lineage_sepolicy device/lineage/sepolicy
+git clone https://github.com/smiley9000/hm vendor/lineage-priv/keys
 git clone https://github.com/Roynas-Android-Playground/hardware_samsung-extra_interfaces -b lineage-21 hardware/samsung_ext
 git clone https://github.com/LineageOS/android_device_mediatek_sepolicy_vndr device/mediatek/sepolicy_vndr
 
