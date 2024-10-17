@@ -18,4 +18,4 @@ git clone https://github.com/LineageOS/android_device_mediatek_sepolicy_vndr dev
 
 source build/envsetup.sh
 lunch lineage_a05m-ap2a-userdebug
-make
+make bacon 
