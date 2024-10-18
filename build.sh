@@ -11,7 +11,7 @@ sudo apt update
 sudo apt install -y dos2unix
 git clone https://github.com/smiley9000/android_device_samsung_a05m device/samsung/a05m
 git clone https://github.com/smiley9000/vendor_samsung_a05m vendor/samsung/a05m
-git clone https://github.com/smiley9000/android_frameworks_av frameworks/av
+git clone https://github.com/smiley9000/android_frameworks_av_rr frameworks/av
 git clone https://github.com/smiley9000/android_packages_modules_Bluetooth packages/modules/Bluetooth
 git clone https://github.com/smiley9000/android_device_lineage_sepolicy device/lineage/sepolicy
 git clone https://github.com/smiley9000/hm vendor/lineage-priv/keys
