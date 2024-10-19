@@ -4,7 +4,7 @@ rm -rf device/samsung
 rm -rf device/samsung/a05m
 rm -rf vendor/samsung/a05m
 #rm -rf frameworks/av
-#rm -rf device/lineage/sepolicy
+rm -rf device/lineage/sepolicy
 #rm -rf packages/modules/Bluetooth
 rm -rf device/mediatek/sepolicy_vndr
 rm -rf system/sepolicy
