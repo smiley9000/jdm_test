@@ -23,7 +23,7 @@ git clone https://github.com/smiley9000/android_device_rising_sepolicy device/li
 
 git clone https://github.com/Roynas-Android-Playground/hardware_samsung-extra_interfaces -b lineage-21 hardware/samsung_ext
 git clone https://github.com/LineageOS/android_device_mediatek_sepolicy_vndr device/mediatek/sepolicy_vndr
-git clone https://github.com/LineageOS/android_system_sepolicy_rr system/sepolicy
+git clone https://github.com/smiley9000/android_system_sepolicy_rr system/sepolicy
 
 dos2unix device/samsung/a05m/sepolicy/private/lpm.te
 source build/envsetup.sh
