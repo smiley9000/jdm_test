@@ -125,7 +125,7 @@ dos2unix device/samsung/a05m/sepolicy/private/lpm.te
 #start build
 source build/envsetup.sh
 lunch everest_a05m-userdebug
-lunch lineage_a05m-user
-make bacon 
+mka everest -j$(nproc --all)
+
 
 
