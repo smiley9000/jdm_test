@@ -103,15 +103,15 @@ sudo apt install -y dos2unix
 rm -rf device/samsung
 rm -rf device/samsung/a05m
 rm -rf vendor/samsung/a05m
-rm -rf device/mediatek/sepolicy_vndr
+#rm -rf device/mediatek/sepolicy_vndr
 rm -rf hardware/samsung_ext
 
 #clone trees
-git clone https://github.com/smiley9000/android_device_samsung_a05m -b evo_x device/samsung/a05m
+git clone https://github.com/smiley9000/android_device_samsung_a05m -b drp-14 device/samsung/a05m
 git clone https://github.com/smiley9000/vendor_samsung_a05m vendor/samsung/a05m
 git clone https://github.com/smiley9000/hm vendor/lineage-priv/keys
 git clone https://github.com/Roynas-Android-Playground/hardware_samsung-extra_interfaces -b lineage-21 hardware/samsung_ext
-git clone https://github.com/LineageOS/android_device_mediatek_sepolicy_vndr device/mediatek/sepolicy_vndr
+#git clone https://github.com/LineageOS/android_device_mediatek_sepolicy_vndr device/mediatek/sepolicy_vndr
 git clone https://github.com/crdroidandroid/android_prebuilts_clang_host_linux-x86_clang-6443078 prebuilts/clang/host/linux-x86/clang-r383902
 git clone https://gitlab.com/manjulahemamali/a05m kernel/samsung/a05m
 #dos2unix
@@ -119,5 +119,5 @@ dos2unix device/samsung/a05m/sepolicy/private/lpm.te
 
 #build
 source build/envsetup.sh
-lunch lineage_a05m-ap2a-userdebug
+lunch derp_a05m-userdebug
 make bacon 
