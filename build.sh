@@ -70,30 +70,30 @@ echo "------------------------------------------------"
 
 #sysbta patch
 
-wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/frame-1.patch 
-wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/frame-2.patch
-wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/bt.patch
+# wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/frame-1.patch 
+# wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/frame-2.patch
+# wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/bt.patch
 
-echo "------------------------------------------------"
-echo " Patching sysbta"
-echo "------------------------------------------------"
+# echo "------------------------------------------------"
+# echo " Patching sysbta"
+# echo "------------------------------------------------"
 
-echo "------------------------------------------------"
-echo " Bluetooth Module"
-echo "------------------------------------------------"
+# echo "------------------------------------------------"
+# echo " Bluetooth Module"
+# echo "------------------------------------------------"
 
-git apply bt.patch
-echo "------------------------------------------------"
-echo " Frameworks AV 1"
-echo "------------------------------------------------"
-git apply frame-1.patch
-echo "------------------------------------------------"
-echo " Frameworks AV 2"
-echo "------------------------------------------------"
-git apply frame-2.patch
-echo "------------------------------------------------"
-echo "SYSBTA Patching Done"
-echo "------------------------------------------------"
+# git apply bt.patch
+# echo "------------------------------------------------"
+# echo " Frameworks AV 1"
+# echo "------------------------------------------------"
+# git apply frame-1.patch
+# echo "------------------------------------------------"
+# echo " Frameworks AV 2"
+# echo "------------------------------------------------"
+# git apply frame-2.patch
+# echo "------------------------------------------------"
+# echo "SYSBTA Patching Done"
+# echo "------------------------------------------------"
 
 #dos2unix
 sudo apt update
