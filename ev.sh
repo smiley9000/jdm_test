@@ -3,7 +3,8 @@
 rm -rf .repo/local_manifests/
 
 # repo init rom
-repo init -u https://github.com/ProjectEverest/manifest -b 14 --git-lfs
+repo init -u https://github.com/crdroidandroid/android.git -b 14.0 --git-lfs
+
 echo "--------------------------------------"
 echo "Repo init success"
 echo "--------------------------------------"
@@ -128,7 +129,8 @@ dos2unix device/samsung/a05m/sepolicy/private/lpm.te
 #start build
 source build/envsetup.sh
 lunch lineage_a05m-userdebug
-mka everest -j$(nproc --all)
+lunch lineage_a05m-userdebug
+make bacon -j$(nproc --all)
 
 
 
