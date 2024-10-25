@@ -1,4 +1,4 @@
-#!/bin/bash
+use#!/bin/bash
 
 rm -rf .repo/local_manifests/
 
@@ -129,7 +129,7 @@ dos2unix device/samsung/a05m/sepolicy/private/lpm.te
 #start build
 source build/envsetup.sh
 lunch lineage_a05m-userdebug
-lunch lineage_a05m-userdebug
+lunch lineage_a05m-ap2a-userdebug
 make bacon -j$(nproc --all)
 
 
