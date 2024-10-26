@@ -1,4 +1,4 @@
-use#!/bin/bash
+#!/bin/bash
 
 rm -rf .repo/local_manifests/
 
