@@ -95,15 +95,10 @@ wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/bt.patch
  echo "SYSBTA Patching Done"
  echo "------------------------------------------------"
 
-#dos2unix
-sudo apt update
-sudo apt install -y dos2unix
-
 #remove trees
 rm -rf device/samsung
 rm -rf device/samsung/a05m
 rm -rf vendor/samsung/a05m
-rm -rf device/mediatek/sepolicy_vndr
 rm -rf hardware/samsung_ext
 
 echo "------------------------------------------------"
@@ -111,6 +106,7 @@ echo "Clonning Trees"
 echo "------------------------------------------------"
 
 #clone trees
+git clone https://github.com/smiley9000/android_vendor_samsung_wing-camera vendor/samsung.wing-camera 
 git clone https://github.com/smiley9000/android_device_samsung_a05m  device/samsung/a05m
 git clone https://github.com/smiley9000/vendor_samsung_a05m vendor/samsung/a05m
 git clone https://github.com/smiley9000/hm vendor/lineage-priv/keys
@@ -119,7 +115,6 @@ git clone https://github.com/LineageOS/android_device_mediatek_sepolicy_vndr dev
 git clone https://github.com/crdroidandroid/android_prebuilts_clang_host_linux-x86_clang-6443078 prebuilts/clang/host/linux-x86/clang-r383902
 git clone https://gitlab.com/manjulahemamali/a05m kernel/samsung/a05m
 #dos2unix
-dos2unix device/samsung/a05m/sepolicy/private/lpm.te
 
  echo "------------------------------------------------"
  echo "Done"
