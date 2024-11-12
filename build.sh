@@ -106,7 +106,6 @@ echo "Clonning Trees"
 echo "------------------------------------------------"
 
 #clone trees
-git clone https://github.com/smiley9000/android_vendor_samsung_wing-camera vendor/samsung.wing-camera 
 git clone https://github.com/smiley9000/android_device_samsung_a05m  device/samsung/a05m
 git clone https://github.com/smiley9000/vendor_samsung_a05m vendor/samsung/a05m
 git clone https://github.com/smiley9000/hm vendor/lineage-priv/keys
