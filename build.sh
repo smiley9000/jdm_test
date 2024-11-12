@@ -115,7 +115,12 @@ git clone https://github.com/crdroidandroid/android_prebuilts_clang_host_linux-x
 git clone https://gitlab.com/manjulahemamali/a05m kernel/samsung/a05m
 #dos2unix
 
+
  echo "------------------------------------------------"
  echo "Done"
  echo "------------------------------------------------"
+
+. build/envsetup.sh
+ lunch lineage_a05m-ap2a-userdebug
+ make bacon -j$(nproc --all)
 
