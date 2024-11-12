@@ -73,6 +73,7 @@ echo "------------------------------------------------"
 wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/frame-1.patch 
 wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/frame-2.patch
 wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/bt.patch
+wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/sms.patch
 
  echo "------------------------------------------------"
  echo " Patching sysbta"
@@ -94,7 +95,11 @@ wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/bt.patch
  echo "------------------------------------------------"
  echo "SYSBTA Patching Done"
  echo "------------------------------------------------"
-
+ echo "------------------------------------------------"
+ echo " SMSC Patch"
+ echo "------------------------------------------------"
+ git apply sms.patch
+ 
 #remove trees
 rm -rf device/samsung
 rm -rf device/samsung/a05m
