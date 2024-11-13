@@ -131,8 +131,8 @@ git clone https://gitlab.com/manjulahemamali/a05m kernel/samsung/a05m
  echo "------------------------------------------------"
 
 . build/envsetup.sh
+ lunch lineage_a05m-userdebug
  lunch lineage_a05m-ap2a-userdebug
  lunch lineage_a05m-ap3a-userdebug
- lunch lineage_a05m-userdebug
  make bacon -j$(nproc --all)
 
