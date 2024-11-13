@@ -2,6 +2,11 @@
 
 #selinux patch
 
+#repo-sync
+rm -rf .repo/local_manifests/
+repo init -u https://github.com/LineageOS/android.git -b lineage-22.0 --git-lfs
+/opt/crave/resync.sh
+
 echo "------------------------------------------------"
 echo " We dont need selinux from Ram boost,iso,udf,aux "
 echo "------------------------------------------------"
@@ -83,22 +88,22 @@ wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/sms.patch
  echo " Bluetooth Module"
  echo "------------------------------------------------"
 
- git apply bt.patch
+ git apply bt-15.patch
  echo "------------------------------------------------"
  echo " Frameworks AV 1"
  echo "------------------------------------------------"
- git apply frame-1.patch
+ git apply frame-1-15.patch
  echo "------------------------------------------------"
  echo " Frameworks AV 2"
  echo "------------------------------------------------"
- git apply frame-2.patch
+ git apply frame-2-15.patch
  echo "------------------------------------------------"
  echo "SYSBTA Patching Done"
  echo "------------------------------------------------"
  echo "------------------------------------------------"
  echo " SMSC Patch"
  echo "------------------------------------------------"
- git apply sms.patch
+ git apply sms-15.patch
  
 #remove trees
 rm -rf device/samsung
@@ -127,5 +132,7 @@ git clone https://gitlab.com/manjulahemamali/a05m kernel/samsung/a05m
 
 . build/envsetup.sh
  lunch lineage_a05m-ap2a-userdebug
+ lunch lineage_a05m-ap3a-userdebug
+ lunch lineage_a05m-userdebug
  make bacon -j$(nproc --all)
 
