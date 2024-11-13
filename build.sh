@@ -75,10 +75,11 @@ echo "------------------------------------------------"
 
 #sysbta patch
 
-wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/frame-1.patch 
-wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/frame-2.patch
-wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/bt.patch
-wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/sms.patch
+wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/frame-1-15.patch 
+wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/frame-2-15.patch
+wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/bt-15.patch
+wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/sms-15.patch
+wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/a15_cp.patch
 
  echo "------------------------------------------------"
  echo " Patching sysbta"
@@ -104,6 +105,10 @@ wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/sms.patch
  echo " SMSC Patch"
  echo "------------------------------------------------"
  git apply sms-15.patch
+ echo "------------------------------------------------"
+ echo " compaction_proactivenes Patch"
+ echo "------------------------------------------------"
+ git apply a15_cp.patch
  
 #remove trees
 rm -rf device/samsung
