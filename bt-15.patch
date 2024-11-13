@@ -77,7 +77,7 @@ index 9b92319..643507e 100644
  
   private:
    IBluetoothTransportInstance* transport_;
-diff --git a/system/audio_hal_interface/hal_version_manager.cc b/system/audio_hal_interface/hal_version_manager.cc
+diff --git a/packages/modules/Bluetooth/system/audio_hal_interface/hal_version_manager.cc b/packages/modules/Bluetooth/system/audio_hal_interface/hal_version_manager.cc
 index c4e01bc..55ef87b 100644
 --- a/packages/modules/Bluetooth/system/audio_hal_interface/hal_version_manager.cc
 +++ b/packages/modules/Bluetooth/system/audio_hal_interface/hal_version_manager.cc
