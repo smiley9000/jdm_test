@@ -2,11 +2,6 @@
 
 #selinux patch
 
-#repo-sync
-rm -rf .repo/local_manifests/
-repo init -u https://github.com/LineageOS/android.git -b lineage-22.0 --git-lfs
-/opt/crave/resync.sh
-
 echo "------------------------------------------------"
 echo " We dont need selinux from Ram boost,iso,udf,aux "
 echo "------------------------------------------------"
@@ -75,11 +70,11 @@ echo "------------------------------------------------"
 
 #sysbta patch
 
-wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/frame-1-15.patch 
-wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/frame-2-15.patch
-wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/bt-15.patch
-wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/sms-15.patch
-wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/a15_cp.patch
+#wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/frame-1-15.patch 
+#wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/frame-2-15.patch
+#wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/bt-15.patch
+#wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/sms-15.patch
+#wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/a15_cp.patch
 
  echo "------------------------------------------------"
  echo " Patching sysbta"
@@ -89,26 +84,26 @@ wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/a15_cp.patch
  echo " Bluetooth Module"
  echo "------------------------------------------------"
 
- git apply bt-15.patch
+ #git apply bt-15.patch
  echo "------------------------------------------------"
  echo " Frameworks AV 1"
  echo "------------------------------------------------"
- git apply frame-1-15.patch
+# git apply frame-1-15.patch
  echo "------------------------------------------------"
  echo " Frameworks AV 2"
  echo "------------------------------------------------"
- git apply frame-2-15.patch
+# git apply frame-2-15.patch
  echo "------------------------------------------------"
  echo "SYSBTA Patching Done"
  echo "------------------------------------------------"
  echo "------------------------------------------------"
  echo " SMSC Patch"
  echo "------------------------------------------------"
- git apply sms-15.patch
+# git apply sms-15.patch
  echo "------------------------------------------------"
  echo " compaction_proactivenes Patch"
  echo "------------------------------------------------"
- git apply a15_cp.patch
+ #git apply a15_cp.patch
  
 #remove trees
 rm -rf device/samsung
