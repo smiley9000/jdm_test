@@ -2,7 +2,8 @@
 
 rm -rf .repo/local_manifests/
 
-repo init -u https://github.com/RisingTechOSS/android -b fifteen --git-lfs
+repo init -u https://github.com/Evolution-X/manifest -b vic --git-lfs
+
 # build
 /opt/crave/resync.sh
 
@@ -109,7 +110,6 @@ wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/a15_cp.patch
  echo "------------------------------------------------"
  echo " compaction_proactivenes Patch"
  echo "------------------------------------------------"
- git apply a15_cp.patch
  
 #remove trees
 rm -rf device/samsung
@@ -122,7 +122,7 @@ echo "Clonning Trees"
 echo "------------------------------------------------"
 
 #clone trees
-git clone https://github.com/smiley9000/android_device_samsung_a05m -b rr  device/samsung/a05m
+git clone https://github.com/smiley9000/android_device_samsung_a05m device/samsung/a05m
 git clone https://github.com/smiley9000/vendor_samsung_a05m vendor/samsung/a05m
 git clone https://github.com/smiley9000/hm vendor/lineage-priv/keys
 git clone https://github.com/Roynas-Android-Playground/hardware_samsung-extra_interfaces -b lineage-21 hardware/samsung_ext
@@ -137,8 +137,7 @@ git clone https://gitlab.com/manjulahemamali/a05m kernel/samsung/a05m
  echo "------------------------------------------------"
 
 . build/envsetup.sh
- lunch lineage_a05m-userdebug
- lunch lineage_a05m-ap2a-userdebug
  lunch lineage_a05m-ap3a-userdebug
- make bacon -j$(nproc --all)
+ m evolution
+
 
