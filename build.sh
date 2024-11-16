@@ -1,5 +1,11 @@
 #!/bin/bash
 
+rm -rf .repo/local_manifests/
+
+repo init -u https://github.com/RisingTechOSS/android -b fifteen --git-lfs
+# build
+/opt/crave/resync.sh
+
 #selinux patch
 
 echo "------------------------------------------------"
@@ -70,11 +76,11 @@ echo "------------------------------------------------"
 
 #sysbta patch
 
-#wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/frame-1-15.patch 
-#wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/frame-2-15.patch
-#wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/bt-15.patch
-#wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/sms-15.patch
-#wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/a15_cp.patch
+wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/frame-1-15.patch 
+wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/frame-2-15.patch
+wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/bt-15.patch
+wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/sms-15.patch
+wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/a15_cp.patch
 
  echo "------------------------------------------------"
  echo " Patching sysbta"
@@ -84,26 +90,26 @@ echo "------------------------------------------------"
  echo " Bluetooth Module"
  echo "------------------------------------------------"
 
- #git apply bt-15.patch
+ git apply bt-15.patch
  echo "------------------------------------------------"
  echo " Frameworks AV 1"
  echo "------------------------------------------------"
-# git apply frame-1-15.patch
+ git apply frame-1-15.patch
  echo "------------------------------------------------"
  echo " Frameworks AV 2"
  echo "------------------------------------------------"
-# git apply frame-2-15.patch
+ git apply frame-2-15.patch
  echo "------------------------------------------------"
  echo "SYSBTA Patching Done"
  echo "------------------------------------------------"
  echo "------------------------------------------------"
  echo " SMSC Patch"
  echo "------------------------------------------------"
-# git apply sms-15.patch
+ git apply sms-15.patch
  echo "------------------------------------------------"
  echo " compaction_proactivenes Patch"
  echo "------------------------------------------------"
- #git apply a15_cp.patch
+ git apply a15_cp.patch
  
 #remove trees
 rm -rf device/samsung
@@ -116,7 +122,7 @@ echo "Clonning Trees"
 echo "------------------------------------------------"
 
 #clone trees
-git clone https://github.com/smiley9000/android_device_samsung_a05m  device/samsung/a05m
+git clone https://github.com/smiley9000/android_device_samsung_a05m -b rr  device/samsung/a05m
 git clone https://github.com/smiley9000/vendor_samsung_a05m vendor/samsung/a05m
 git clone https://github.com/smiley9000/hm vendor/lineage-priv/keys
 git clone https://github.com/Roynas-Android-Playground/hardware_samsung-extra_interfaces -b lineage-21 hardware/samsung_ext
