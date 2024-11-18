@@ -1,13 +1,19 @@
 #!/bin/bash
-. build/envsetup.sh
-make clean
-rm -rf out/*
+
 rm -rf .repo/local_manifests/
 
-repo init -u https://github.com/LineageOS/android.git -b lineage-21.0 --git-lfs
+# repo init rom
+repo init --depth=1 --no-repo-verify -u https://github.com/Los-Ext/manifest.git -b lineage-21.0 --git-lfs -g default,-mips,-darwin,-notdefault
+
+echo "--------------------------------------"
+echo "Repo init success"
+echo "--------------------------------------"
 
 # build
 /opt/crave/resync.sh
+echo "--------------------------------------"
+echo "Sync success"
+echo "--------------------------------------"
 
 #selinux patch
 
@@ -82,64 +88,48 @@ echo "------------------------------------------------"
 wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/frame-1.patch 
 wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/frame-2.patch
 wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/bt.patch
-wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/sms.patch
-wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/a15_cp.patch
 
- echo "------------------------------------------------"
- echo " Patching sysbta"
- echo "------------------------------------------------"
+echo "------------------------------------------------"
+echo " Patching sysbta"
+echo "------------------------------------------------"
 
- echo "------------------------------------------------"
- echo " Bluetooth Module"
- echo "------------------------------------------------"
+echo "------------------------------------------------"
+echo " Bluetooth Module"
+echo "------------------------------------------------"
 
- git apply bt.patch
- echo "------------------------------------------------"
- echo " Frameworks AV 1"
- echo "------------------------------------------------"
- git apply frame-1.patch
- echo "------------------------------------------------"
- echo " Frameworks AV 2"
- echo "------------------------------------------------"
- git apply frame-2.patch
- echo "------------------------------------------------"
- echo "SYSBTA Patching Done"
- echo "------------------------------------------------"
- echo "------------------------------------------------"
- echo " SMSC Patch"
- echo "------------------------------------------------"
- git apply sms.patch
- echo "------------------------------------------------"
- echo " compaction_proactivenes Patch"
- echo "------------------------------------------------"
- 
+git apply bt.patch
+echo "------------------------------------------------"
+echo " Frameworks AV 1"
+echo "------------------------------------------------"
+git apply frame-1.patch
+echo "------------------------------------------------"
+echo " Frameworks AV 2"
+echo "------------------------------------------------"
+git apply frame-2.patch
+echo "------------------------------------------------"
+echo "SYSBTA Patching Done"
+echo "------------------------------------------------"
+
 #remove trees
-rm -rf device/samsung
 rm -rf device/samsung/a05m
 rm -rf vendor/samsung/a05m
-rm -rf hardware/samsung_ext
 
-echo "------------------------------------------------"
-echo "Clonning Trees"
-echo "------------------------------------------------"
-
-#clone trees
-git clone https://github.com/Moonlight7728/device_samsung_a34x device/samsung/a34x
-git clone https://github.com/Moonlight7728/android_vendor_samsung_a34x vendor/samsung/a34x
-#git clone https://github.com/smiley9000/hm vendor/lineage-priv/keys
+#clone
+git clone https://github.com/smiley9000/android_device_samsung_a05m -b afterlife device/samsung/a05m
+git clone https://github.com/smiley9000/vendor_samsung_a05m vendor/samsung/a05m
+git clone https://github.com/smiley9000/hm vendor/lineage-priv/keys
 git clone https://github.com/Roynas-Android-Playground/hardware_samsung-extra_interfaces -b lineage-21 hardware/samsung_ext
 git clone https://github.com/LineageOS/android_device_mediatek_sepolicy_vndr device/mediatek/sepolicy_vndr
 git clone https://github.com/crdroidandroid/android_prebuilts_clang_host_linux-x86_clang-6443078 prebuilts/clang/host/linux-x86/clang-r383902
-git clone https://github.com/Fede2782/android_kernel_samsung_a34x kernel/samsung/a34x
-#dos2unix
+git clone https://gitlab.com/manjulahemamali/a05m kernel/samsung/a05m
 
+#convert to unix
+dos2unix device/samsung/a05m/sepolicy/private/lpm.te
 
- echo "------------------------------------------------"
- echo "Done"
- echo "------------------------------------------------"
-
-. build/envsetup.sh
- lunch lineage_a34x-ap2a-userdebug
- make bacon
+#start build
+source build/envsetup.sh
+lunch lineage_a05m-userdebug
+lunch lineage_a05m-ap2a-userdebug
+make bacon -j$(nproc --all)
 
 
