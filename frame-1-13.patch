@@ -13,7 +13,7 @@ Change-Id: I279fff541a531f922f3fa55b8f14d00237db59ff
  .../managerdefinitions/src/Serializer.cpp     | 25 +++++++++++++++++++
  1 file changed, 25 insertions(+)
 
-diff --git a/frameworks/av/services/audiopolicy/common/managerdefinitions/src/Serializer.cpp a/frameworks/av/services/audiopolicy/common/managerdefinitions/src/Serializer.cpp
+diff --git a/frameworks/av/services/audiopolicy/common/managerdefinitions/src/Serializer.cpp b/frameworks/av/services/audiopolicy/common/managerdefinitions/src/Serializer.cpp
 index 2f0ce75e47..b35d34a599 100644
 --- a/frameworks/av/services/audiopolicy/common/managerdefinitions/src/Serializer.cpp
 +++ b/frameworks/av/services/audiopolicy/common/managerdefinitions/src/Serializer.cpp
