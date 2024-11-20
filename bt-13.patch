@@ -12,7 +12,7 @@ Change-Id: I59973e6ec84c5923be8a7c67b36b2e237f000860
  system/audio_hal_interface/hal_version_manager.cc        | 9 ++++++++-
  3 files changed, 18 insertions(+), 4 deletions(-)
 
-diff --git a/packages/modules/Bluetooth/system/audio_hal_interface/aidl/client_interface_aidl.cc b/system/audio_hal_interface/aidl/client_interface_aidl.cc
+diff --git a/packages/modules/Bluetooth/system/audio_hal_interface/aidl/client_interface_aidl.cc b/packages/modules/Bluetooth/system/audio_hal_interface/aidl/client_interface_aidl.cc
 index 9af28031f7..5a9dbbccad 100644
 --- a/packages/modules/Bluetooth/system/audio_hal_interface/aidl/client_interface_aidl.cc
 +++ b/packages/modules/Bluetooth/system/audio_hal_interface/aidl/client_interface_aidl.cc
