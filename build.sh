@@ -1,5 +1,18 @@
 #!/bin/bash
+rm -rf .repo/local_manifests/
 
+# repo init rom
+repo init --depth=1 -u https://github.com/AfterlifeOS/android_manifest.git -b 14 --git-lfs
+
+echo "--------------------------------------"
+echo "Repo init success"
+echo "--------------------------------------"
+
+# build
+/opt/crave/resync.sh
+echo "--------------------------------------"
+echo "Sync success"
+echo "--------------------------------------"
 #selinux patch
 
 echo "------------------------------------------------"
@@ -70,10 +83,10 @@ echo "------------------------------------------------"
 
 #sysbta patch
 
-wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/frame-1-13.patch 
-wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/frame-2-13.patch
-wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/bt-13.patch
-wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/sms-13.patch
+wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/frame-1.patch 
+wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/frame-2.patch
+wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/bt.patch
+wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/sms.patch
 
 echo "------------------------------------------------"
 echo " Patching sysbta"
@@ -83,18 +96,19 @@ echo "------------------------------------------------"
 echo " Bluetooth Module"
 echo "------------------------------------------------"
 
-git apply bt-13.patch
+git apply bt.patch
 echo "------------------------------------------------"
 echo " Frameworks AV 1"
 echo "------------------------------------------------"
-git apply frame-1-13.patch
+git apply frame-1.patch
 echo "------------------------------------------------"
 echo " Frameworks AV 2"
 echo "------------------------------------------------"
-git apply frame-2-13.patch
+git apply frame-2.patch
 echo "------------------------------------------------"
 echo "SYSBTA Patching Done"
 echo "------------------------------------------------"
+git apply sms.patch
 
 #remove trees
 rm -rf device/samsung/a05m
@@ -102,7 +116,7 @@ rm -rf vendor/samsung/a05m
 rm -rf frameworks/opt/telephony
 
 #clone
-git clone https://github.com/smiley9000/android_device_samsung_a05m -b los-20 device/samsung/a05m
+git clone https://github.com/smiley9000/android_device_samsung_a05m -b aft device/samsung/a05m
 git clone https://github.com/smiley9000/vendor_samsung_a05m vendor/samsung/a05m
 git clone https://github.com/smiley9000/hm vendor/lineage-priv/keys
 git clone https://github.com/Roynas-Android-Playground/hardware_samsung-extra_interfaces -b lineage-21 hardware/samsung_ext
