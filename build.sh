@@ -95,11 +95,11 @@ git apply frame-2-13.patch
 echo "------------------------------------------------"
 echo "SYSBTA Patching Done"
 echo "------------------------------------------------"
-git apply sms.patch
 
 #remove trees
 rm -rf device/samsung/a05m
 rm -rf vendor/samsung/a05m
+rm -rf frameworks/opt/telephony
 
 #clone
 git clone https://github.com/smiley9000/android_device_samsung_a05m -b los-20 device/samsung/a05m
@@ -109,12 +109,10 @@ git clone https://github.com/Roynas-Android-Playground/hardware_samsung-extra_in
 git clone https://github.com/LineageOS/android_device_mediatek_sepolicy_vndr device/mediatek/sepolicy_vndr
 git clone https://github.com/crdroidandroid/android_prebuilts_clang_host_linux-x86_clang-6443078 prebuilts/clang/host/linux-x86/clang-r383902
 git clone https://gitlab.com/manjulahemamali/a05m kernel/samsung/a05m
+git clone https://github.com/smiley9000/android_frameworks_opt_telephony -b lineage-20.0 frameworks/opt/telephony
 
 #start build
 source build/envsetup.sh
-lunch lineage_a05m-userdebug
-lunch lineage_a05m-ap2a-userdebug
-lunch lineage_a05m-ap3a-userdebug
 lunch lineage_a05m-userdebug
 
 make bacon
