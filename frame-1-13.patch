@@ -15,8 +15,8 @@ Change-Id: I279fff541a531f922f3fa55b8f14d00237db59ff
 
 diff --git frameworks/av/services/audiopolicy/common/managerdefinitions/src/Serializer.cpp frameworks/av/services/audiopolicy/common/managerdefinitions/src/Serializer.cpp
 index 2f0ce75e47..b35d34a599 100644
---- frameworks/av/services/audiopolicy/common/managerdefinitions/src/Serializer.cpp
-+++ frameworks/av/services/audiopolicy/common/managerdefinitions/src/Serializer.cpp
+--- a/frameworks/av/services/audiopolicy/common/managerdefinitions/src/Serializer.cpp
++++ b/frameworks/av/services/audiopolicy/common/managerdefinitions/src/Serializer.cpp
 @@ -25,6 +25,7 @@
  #include <libxml/parser.h>
  #include <libxml/xinclude.h>
