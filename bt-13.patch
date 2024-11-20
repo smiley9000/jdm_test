@@ -12,10 +12,10 @@ Change-Id: I59973e6ec84c5923be8a7c67b36b2e237f000860
  system/audio_hal_interface/hal_version_manager.cc        | 9 ++++++++-
  3 files changed, 18 insertions(+), 4 deletions(-)
 
-diff --git packages/modules/Bluetooth/system/audio_hal_interface/aidl/client_interface_aidl.cc packages/modules/Bluetooth/system/audio_hal_interface/aidl/client_interface_aidl.cc
+diff --git a/packages/modules/Bluetooth/system/audio_hal_interface/aidl/client_interface_aidl.cc b/system/audio_hal_interface/aidl/client_interface_aidl.cc
 index 9af28031f7..5a9dbbccad 100644
---- packages/modules/Bluetooth/system/audio_hal_interface/aidl/client_interface_aidl.cc
-+++ packages/modules/Bluetooth/system/audio_hal_interface/aidl/client_interface_aidl.cc
+--- a/packages/modules/Bluetooth/system/audio_hal_interface/aidl/client_interface_aidl.cc
++++ b/packages/modules/Bluetooth/system/audio_hal_interface/aidl/client_interface_aidl.cc
 @@ -56,7 +56,7 @@ BluetoothAudioClientInterface::BluetoothAudioClientInterface(
  
  bool BluetoothAudioClientInterface::is_aidl_available() {
@@ -43,10 +43,10 @@ index 9af28031f7..5a9dbbccad 100644
  
    if (provider_factory == nullptr) {
      LOG(ERROR) << __func__ << ", can't get capability from unknown factory";
-diff --git packages/modules/Bluetooth/system/audio_hal_interface/aidl/client_interface_aidl.h packages/modules/Bluetooth/system/audio_hal_interface/aidl/client_interface_aidl.h
+diff --git a/packages/modules/Bluetooth/system/audio_hal_interface/aidl/client_interface_aidl.h b/packages/modules/Bluetooth/system/audio_hal_interface/aidl/client_interface_aidl.h
 index 17abefe8fe..07dd11266f 100644
---- packages/modules/Bluetooth/system/audio_hal_interface/aidl/client_interface_aidl.h
-+++ packages/modules/Bluetooth/system/audio_hal_interface/aidl/client_interface_aidl.h
+--- a/packages/modules/Bluetooth/system/audio_hal_interface/aidl/client_interface_aidl.h
++++ b/packages/modules/Bluetooth/system/audio_hal_interface/aidl/client_interface_aidl.h
 @@ -28,6 +28,7 @@
  #include "bluetooth_audio_port_impl.h"
  #include "common/message_loop_thread.h"
@@ -68,10 +68,10 @@ index 17abefe8fe..07dd11266f 100644
  
   private:
    IBluetoothTransportInstance* transport_;
-diff --git packages/modules/Bluetooth/system/audio_hal_interface/hal_version_manager.cc packages/modules/Bluetooth/system/audio_hal_interface/hal_version_manager.cc
+diff --git a/packages/modules/Bluetooth/system/audio_hal_interface/hal_version_manager.cc b/packages/modules/Bluetooth/system/audio_hal_interface/hal_version_manager.cc
 index a2c192f37d..c3d1cf35c2 100644
---- packages/modules/Bluetooth/system/audio_hal_interface/hal_version_manager.cc
-+++ packages/modules/Bluetooth/system/audio_hal_interface/hal_version_manager.cc
+--- a/packages/modules/Bluetooth/system/audio_hal_interface/hal_version_manager.cc
++++ b/packages/modules/Bluetooth/system/audio_hal_interface/hal_version_manager.cc
 @@ -24,6 +24,7 @@
  #include <memory>
  
