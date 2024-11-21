@@ -127,11 +127,11 @@ git clone https://gitlab.com/manjulahemamali/a05m kernel/samsung/a05m
 source build/envsetup.sh
 lunch afterlife_a05m-userdebug
 lunch afterlife_a05m-ap2a-userdebug
-
-
+make bacon
+goafterlife a05m
 goafterlife_a05m-userdebug
 
-goafterlife a05m
 
-make bacon
+
+
 
