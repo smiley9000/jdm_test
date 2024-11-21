@@ -127,7 +127,10 @@ git clone https://github.com/smiley9000/android_frameworks_opt_telephony -b line
 
 #start build
 source build/envsetup.sh
-lunch goafterlife_a05m-userdebuglunch 
+lunch goafterlife_a05m-userdebug
+lunch goafterlife_a05m-ap2a-userdebug
+
+
 goafterlife_a05m-userdebug
 
 goafterlife a05m
