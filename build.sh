@@ -1,19 +1,4 @@
 #!/bin/bash
-rm -rf .repo/local_manifests/
-
-# repo init rom
-repo init --depth=1 -u https://github.com/AfterlifeOS/android_manifest.git -b 14 --git-lfs
-
-echo "--------------------------------------"
-echo "Repo init success"
-echo "--------------------------------------"
-
-# build
-/opt/crave/resync.sh
-echo "--------------------------------------"
-echo "Sync success"
-echo "--------------------------------------"
-#selinux patch
 
 echo "------------------------------------------------"
 echo " We dont need selinux from Ram boost,iso,udf,aux "
@@ -129,8 +114,6 @@ lunch afterlife_a05m-userdebug
 lunch afterlife_a05m-ap2a-userdebug
 make bacon
 goafterlife a05m
-goafterlife_a05m-userdebug
-
 
 
 
