@@ -135,3 +135,5 @@ goafterlife_a05m-userdebug
 
 goafterlife a05m
 
+make bacon
+
