@@ -113,7 +113,6 @@ git apply sms.patch
 #remove trees
 rm -rf device/samsung/a05m
 rm -rf vendor/samsung/a05m
-rm -rf frameworks/opt/telephony
 
 #clone
 git clone https://github.com/smiley9000/android_device_samsung_a05m -b aft device/samsung/a05m
@@ -123,7 +122,6 @@ git clone https://github.com/Roynas-Android-Playground/hardware_samsung-extra_in
 git clone https://github.com/LineageOS/android_device_mediatek_sepolicy_vndr device/mediatek/sepolicy_vndr
 git clone https://github.com/crdroidandroid/android_prebuilts_clang_host_linux-x86_clang-6443078 prebuilts/clang/host/linux-x86/clang-r383902
 git clone https://gitlab.com/manjulahemamali/a05m kernel/samsung/a05m
-git clone https://github.com/smiley9000/android_frameworks_opt_telephony -b lineage-20.0 frameworks/opt/telephony
 
 #start build
 source build/envsetup.sh
