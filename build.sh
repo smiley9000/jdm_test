@@ -113,7 +113,7 @@ source build/envsetup.sh
 lunch afterlife_a05m-userdebug
 lunch afterlife_a05m-ap2a-userdebug
 make bacon
-
+goafterlife a05m
 
 
 
