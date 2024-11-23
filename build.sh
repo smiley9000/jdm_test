@@ -1,5 +1,5 @@
 #!/bin/bash
-
+rm -rf /tmp/src/android/out/target/product/a05m/vendor/build.prop 
 echo "------------------------------------------------"
 echo " We dont need selinux from Ram boost,iso,udf,aux "
 echo "------------------------------------------------"
