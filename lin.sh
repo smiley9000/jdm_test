@@ -71,6 +71,7 @@ wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/frame-1.patch
 wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/frame-2.patch
 wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/bt.patch
 wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/sms.patch
+wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/line.patch
 
 echo "------------------------------------------------"
 echo " Patching sysbta"
@@ -93,6 +94,7 @@ echo "------------------------------------------------"
 echo "SYSBTA Patching Done"
 echo "------------------------------------------------"
 git apply sms.patch
+git apply line.patch
 
 #remove trees
 rm -rf device/samsung/a05m
