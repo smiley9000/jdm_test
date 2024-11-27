@@ -1,5 +1,18 @@
 #!/bin/bash
-rm -rf /tmp/src/android/out/target/product/a05m/vendor/build.prop 
+rm -rf .repo/local_manifests/
+
+# repo init rom
+repo init -u https://github.com/alphadroid-project/manifest -b alpha-14 --git-lfs
+
+echo "--------------------------------------"
+echo "Repo init success"
+echo "--------------------------------------"
+
+# build
+/opt/crave/resync.sh
+echo "--------------------------------------"
+echo "Sync success"
+echo "--------------------------------------"
 echo "------------------------------------------------"
 echo " We dont need selinux from Ram boost,iso,udf,aux "
 echo "------------------------------------------------"
@@ -100,7 +113,7 @@ rm -rf device/samsung/a05m
 rm -rf vendor/samsung/a05m
 
 #clone
-git clone https://github.com/smiley9000/android_device_samsung_a05m -b aft device/samsung/a05m
+git clone https://github.com/smiley9000/android_device_samsung_a05m -b device/samsung/a05m
 git clone https://github.com/smiley9000/vendor_samsung_a05m vendor/samsung/a05m
 git clone https://github.com/smiley9000/hm vendor/lineage-priv/keys
 git clone https://github.com/Roynas-Android-Playground/hardware_samsung-extra_interfaces -b lineage-21 hardware/samsung_ext
@@ -113,7 +126,6 @@ source build/envsetup.sh
 lunch afterlife_a05m-userdebug
 lunch afterlife_a05m-ap2a-userdebug
 make bacon
-goafterlife a05m
 
 
 
