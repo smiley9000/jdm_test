@@ -1,21 +1,6 @@
 #!/bin/bash
 
-rm -rf .repo/local_manifests/
-
-# repo init rom
-repo init -u https://github.com/The-Pixel-Project/manifest -b fourteen-qpr3 -g default,-mips,-darwin,-notdefault --git-lfs
-
-echo "--------------------------------------"
-echo "Repo init success"
-echo "--------------------------------------"
-
-# build
-/opt/crave/resync.sh
-echo "--------------------------------------"
-echo "Sync success"
-echo "--------------------------------------"
-
-#selinux patch
+rm -rf hardware/google/pixel-sepolicy/googlebattery
 
 echo "------------------------------------------------"
 echo " We dont need selinux from Ram boost,iso,udf,aux "
