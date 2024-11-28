@@ -123,8 +123,8 @@ git clone https://gitlab.com/manjulahemamali/a05m kernel/samsung/a05m
 
 #start build
 source build/envsetup.sh
-lunch afterlife_a05m-userdebug
-lunch afterlife_a05m-ap2a-userdebug
+lunch lineage_a05m-userdebug
+lunch lineage_a05m-ap2a-userdebug
 make bacon
 
 
