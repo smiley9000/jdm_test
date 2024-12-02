@@ -2,7 +2,7 @@
 rm -rf .repo/local_manifests/
 
 # repo init rom
-repo init -u https://github.com/ProjectMatrixx/android.git -b 14.0 --git-lfs
+repo init --no-repo-verify --git-lfs -u https://github.com/ProjectInfinity-X/manifest -b 15 -g default,-mips,-darwin,-notdefault
 
 echo "--------------------------------------"
 echo "Repo init success"
@@ -81,10 +81,10 @@ echo "------------------------------------------------"
 
 #sysbta patch
 
-wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/frame-1.patch 
-wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/frame-2.patch
-wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/bt.patch
-wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/sms.patch
+wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/frame-1-15.patch 
+wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/frame-2-15.patch
+wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/bt-15.patch
+wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/sms-15.patch
 
 echo "------------------------------------------------"
 echo " Patching sysbta"
@@ -94,19 +94,19 @@ echo "------------------------------------------------"
 echo " Bluetooth Module"
 echo "------------------------------------------------"
 
-git apply bt.patch
+git apply bt-15.patch
 echo "------------------------------------------------"
 echo " Frameworks AV 1"
 echo "------------------------------------------------"
-git apply frame-1.patch
+git apply frame-1-15.patch
 echo "------------------------------------------------"
 echo " Frameworks AV 2"
 echo "------------------------------------------------"
-git apply frame-2.patch
+git apply frame-2-15.patch
 echo "------------------------------------------------"
 echo "SYSBTA Patching Done"
 echo "------------------------------------------------"
-git apply sms.patch
+git apply sms-15.patch
 
 #remove trees
 rm -rf device/samsung/a05m
@@ -123,10 +123,11 @@ git clone https://gitlab.com/manjulahemamali/a05m kernel/samsung/a05m
 
 #start build
 source build/envsetup.sh
-lunch lineage_a05m-userdebug
-lunch lineage_a05m-ap2a-userdebug
-make bacon
-brunch a05m
+lunch infinity_a05m-userdebug
+lunch infinity_a05m-ap2a-userdebug
+lunch infinity_a05m-ap3a-userdebug
+mka bacon
+
 
 
 
