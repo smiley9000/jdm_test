@@ -124,7 +124,7 @@ lunch infinity_a05m-userdebug
 lunch infinity_a05m-ap2a-userdebug
 lunch infinity_a05m-ap3a-userdebug
 mka bacon
-
+df -h
 
 
 
