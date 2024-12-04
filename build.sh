@@ -1,5 +1,5 @@
 #!/bin/bash
-
+rm -rf .repo
 # repo init rom
 
 echo "--------------------------------------"
