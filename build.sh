@@ -1,15 +1,22 @@
 #!/bin/bash
-rm -rf .repo
+
+rm -rf .repo/local_manifests/
+
 # repo init rom
+repo init -u https://git.libremobileos.com/LMODroid/manifest.git -b fourteen --git-lfs
 
 echo "--------------------------------------"
 echo "Repo init success"
 echo "--------------------------------------"
 
 # build
+/opt/crave/resync.sh
 echo "--------------------------------------"
 echo "Sync success"
 echo "--------------------------------------"
+
+#selinux patch
+
 echo "------------------------------------------------"
 echo " We dont need selinux from Ram boost,iso,udf,aux "
 echo "------------------------------------------------"
@@ -78,10 +85,11 @@ echo "------------------------------------------------"
 
 #sysbta patch
 
-wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/frame-1-15.patch 
-wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/frame-2-15.patch
-wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/bt-15.patch
-wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/sms-15.patch
+wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/frame-1.patch 
+wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/frame-2.patch
+wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/bt.patch
+wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/sms.patch
+
 
 echo "------------------------------------------------"
 echo " Patching sysbta"
@@ -91,26 +99,26 @@ echo "------------------------------------------------"
 echo " Bluetooth Module"
 echo "------------------------------------------------"
 
-git apply bt-15.patch
+git apply bt.patch
 echo "------------------------------------------------"
 echo " Frameworks AV 1"
 echo "------------------------------------------------"
-git apply frame-1-15.patch
+git apply frame-1.patch
 echo "------------------------------------------------"
 echo " Frameworks AV 2"
 echo "------------------------------------------------"
-git apply frame-2-15.patch
+git apply frame-2.patch
 echo "------------------------------------------------"
 echo "SYSBTA Patching Done"
 echo "------------------------------------------------"
-git apply sms-15.patch
+git apply sms.patch
 
 #remove trees
 rm -rf device/samsung/a05m
 rm -rf vendor/samsung/a05m
 
 #clone
-git clone https://github.com/smiley9000/android_device_samsung_a05m -b mx device/samsung/a05m
+git clone https://github.com/smiley9000/android_device_samsung_a05m -b lmo device/samsung/a05m
 git clone https://github.com/smiley9000/vendor_samsung_a05m vendor/samsung/a05m
 git clone https://github.com/smiley9000/hm vendor/lineage-priv/keys
 git clone https://github.com/Roynas-Android-Playground/hardware_samsung-extra_interfaces -b lineage-21 hardware/samsung_ext
@@ -118,13 +126,14 @@ git clone https://github.com/LineageOS/android_device_mediatek_sepolicy_vndr dev
 git clone https://github.com/crdroidandroid/android_prebuilts_clang_host_linux-x86_clang-6443078 prebuilts/clang/host/linux-x86/clang-r383902
 git clone https://gitlab.com/manjulahemamali/a05m kernel/samsung/a05m
 
+#convert to unix
+dos2unix device/samsung/a05m/sepolicy/private/lpm.te
+
 #start build
 source build/envsetup.sh
-lunch infinity_a05m-userdebug
-lunch infinity_a05m-ap2a-userdebug
-lunch infinity_a05m-ap3a-userdebug
-mka bacon
-df -h
+lunch lineage_a05m-userdebug
+lunch lineage_a05m-ap2a-userdebug
+make bacon -j$(nproc --all)
 
 
 
