@@ -3,7 +3,7 @@
 rm -rf .repo/local_manifests/
 
 # repo init rom
-repo init -u https://git.libremobileos.com/LMODroid/manifest.git -b fourteen --git-lfs
+repo init -u https://github.com/bananadroid/android_manifest.git -b 14 --git-lfs
 
 echo "--------------------------------------"
 echo "Repo init success"
@@ -118,7 +118,7 @@ rm -rf device/samsung/a05m
 rm -rf vendor/samsung/a05m
 
 #clone
-git clone https://github.com/smiley9000/android_device_samsung_a05m -b lmo device/samsung/a05m
+git clone https://github.com/smiley9000/android_device_samsung_a05m -b bana device/samsung/a05m
 git clone https://github.com/smiley9000/vendor_samsung_a05m vendor/samsung/a05m
 git clone https://github.com/smiley9000/hm vendor/lineage-priv/keys
 git clone https://github.com/Roynas-Android-Playground/hardware_samsung-extra_interfaces -b lineage-21 hardware/samsung_ext
