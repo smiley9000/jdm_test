@@ -1,16 +1,6 @@
 #!/bin/bash
 
-rm -rf .repo/local_manifests/
 
-# repo init rom
-repo init -u https://github.com/bananadroid/android_manifest.git -b 14 --git-lfs
-
-echo "--------------------------------------"
-echo "Repo init success"
-echo "--------------------------------------"
-
-# build
-/opt/crave/resync.sh
 echo "--------------------------------------"
 echo "Sync success"
 echo "--------------------------------------"
@@ -118,7 +108,7 @@ rm -rf device/samsung/a05m
 rm -rf vendor/samsung/a05m
 
 #clone
-git clone https://github.com/smiley9000/android_device_samsung_a05m -b bana device/samsung/a05m
+git clone https://github.com/smiley9000/android_device_samsung_a05m -b vbmeta device/samsung/a05m
 git clone https://github.com/smiley9000/vendor_samsung_a05m vendor/samsung/a05m
 git clone https://github.com/smiley9000/hm vendor/lineage-priv/keys
 git clone https://github.com/Roynas-Android-Playground/hardware_samsung-extra_interfaces -b lineage-21 hardware/samsung_ext
@@ -131,9 +121,9 @@ dos2unix device/samsung/a05m/sepolicy/private/lpm.te
 
 #start build
 source build/envsetup.sh
-lunch banana_a05m-userdebug
-lunch banana_a05m-ap2a-userdebug
+lunch lineage_a05m-userdebug
+lunch lineage_a05m-ap2a-userdebug
+lunch lineage_a05m-ap3a-userdebug
 make bacon -j$(nproc --all)
-m banana
 
 
