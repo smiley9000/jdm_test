@@ -1,6 +1,6 @@
 #!/bin/bash
 
-
+repo init -u https://github.com/crdroidandroid/android.git -b 15.0 --git-lfs
 
 echo "--------------------------------------"
 echo "Repo init success"
