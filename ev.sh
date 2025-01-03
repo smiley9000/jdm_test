@@ -1,6 +1,7 @@
 #!/bin/bash
 
-repo init -u https://github.com/crdroidandroid/android.git -b 15.0 --git-lfs
+repo init -u https://github.com/BlissRoms/stable_releases.git -b refs/tags/v18.1-stable-voyager --git-lfs
+
 
 echo "--------------------------------------"
 echo "Repo init success"
@@ -117,7 +118,7 @@ rm -rf device/samsung/a05m
 rm -rf vendor/samsung/a05m
 
 #clone
-git clone https://github.com/smiley9000/android_device_samsung_a05m -b lineage-22 device/samsung/a05m
+git clone https://github.com/smiley9000/android_device_samsung_a05m -b bliss device/samsung/a05m
 git clone https://github.com/smiley9000/vendor_samsung_a05m vendor/samsung/a05m
 git clone https://github.com/smiley9000/hm vendor/lineage-priv/keys
 git clone https://github.com/Roynas-Android-Playground/hardware_samsung-extra_interfaces -b lineage-21 hardware/samsung_ext
@@ -129,13 +130,8 @@ git clone https://gitlab.com/manjulahemamali/a05m kernel/samsung/a05m
 dos2unix device/samsung/a05m/sepolicy/private/lpm.te
 
 #start build
-source build/envsetup.sh
-lunch lineage_a05m-userdebug
-lunch lineage_a05m-ap4a-userdebug
-lunch lineage_a05m-ap1a-userdebug
-lunch lineage_a05m-ap2a-userdebug
-lunch lineage_a05m-ap3a-userdebug
-make bacon -j$(nproc --all)
+ . build/envsetup.sh
+ blissify -g a05m
 
 
 
