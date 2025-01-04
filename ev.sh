@@ -1,7 +1,6 @@
 #!/bin/bash
 
-repo init -u https://github.com/BlissRoms/stable_releases.git -b refs/tags/v18.1-stable-voyager --git-lfs
-
+repo init -u https://github.com/Evolution-X/manifest -b vic --git-lfs
 
 echo "--------------------------------------"
 echo "Repo init success"
@@ -119,7 +118,7 @@ rm -rf device/samsung/a05m
 rm -rf vendor/samsung/a05m
 
 #clone
-git clone https://github.com/smiley9000/android_device_samsung_a05m -b bliss device/samsung/a05m
+git clone https://github.com/smiley9000/android_device_samsung_a05m -b evo-10.1 device/samsung/a05m
 git clone https://github.com/smiley9000/vendor_samsung_a05m vendor/samsung/a05m
 git clone https://github.com/smiley9000/hm vendor/lineage-priv/keys
 git clone https://github.com/Roynas-Android-Playground/hardware_samsung-extra_interfaces -b lineage-21 hardware/samsung_ext
@@ -132,7 +131,9 @@ dos2unix device/samsung/a05m/sepolicy/private/lpm.te
 
 #start build
  . build/envsetup.sh
- blissify -g a05m
+lunch lineage_a05m-ap4a-userdebug
+m evolution
+
 
 
 
