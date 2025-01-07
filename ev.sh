@@ -131,7 +131,14 @@ dos2unix device/samsung/a05m/sepolicy/private/lpm.te
 
 #start build
  . build/envsetup.sh
-brunch a05m
+source build/envsetup.sh
+lunch lineage_a05m-userdebug
+lunch lineage_a05m-ap2a-userdebug
+lunch lineage_a05m-ap3a-userdebug
+lunch lineage_a05m-ap4a-userdebug
+lunch lineage_a05m-ap1a-userdebug
+make bacon -j$(nproc --all)
+riseup a05m userdebug
 
 
 
