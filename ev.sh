@@ -1,9 +1,11 @@
 #!/bin/bash
 
+repo init -u https://github.com/RisingTechOSS/android -b fifteen --git-lfs
 
 echo "--------------------------------------"
 echo "Repo init success"
 echo "--------------------------------------"
+/opt/crave/resync.sh
 
 # build
 
