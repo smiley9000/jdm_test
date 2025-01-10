@@ -4,14 +4,14 @@
 echo "--------------------------------------"
 echo "Repo init success"
 echo "--------------------------------------"
-
+repo init -u https://github.com/Evolution-X/manifest -b vic --git-lfs
 
 # build
 
 echo "--------------------------------------"
 echo "Sync success"
 echo "--------------------------------------"
-
+/opt/crave/resync.sh
 #selinux patch
 
 echo "------------------------------------------------"
@@ -84,7 +84,7 @@ echo "------------------------------------------------"
 
 wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/frame-1-15.patch 
 wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/frame-2-15.patch
-wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/bt-15.patch
+wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/bt-15-qpr1.patch
 wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/sms-15.patch
 wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/proc.patch
 
@@ -96,8 +96,7 @@ echo "------------------------------------------------"
 echo "------------------------------------------------"
 echo " Bluetooth Module"
 echo "------------------------------------------------"
-
-git apply bt-15.patch
+git apply bt-15-qpr1.patch
 echo "------------------------------------------------"
 echo " Frameworks AV 1"
 echo "------------------------------------------------"
@@ -118,7 +117,7 @@ rm -rf vendor/samsung/a05m
 
 
 #clone
-git clone https://github.com/smiley9000/android_device_samsung_a05m -b 6.1 device/samsung/a05m
+git clone https://github.com/smiley9000/android_device_samsung_a05m -b evo-10.1 device/samsung/a05m
 git clone https://github.com/smiley9000/vendor_samsung_a05m vendor/samsung/a05m
 git clone https://github.com/smiley9000/hm vendor/lineage-priv/keys
 git clone https://github.com/Roynas-Android-Playground/hardware_samsung-extra_interfaces -b lineage-21 hardware/samsung_ext
