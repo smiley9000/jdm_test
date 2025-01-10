@@ -4,7 +4,7 @@
 echo "--------------------------------------"
 echo "Repo init success"
 echo "--------------------------------------"
-repo init -u https://github.com/Evolution-X/manifest -b vic --git-lfs
+repo init -u https://github.com/PixelOS-AOSP/manifest.git -b fifteen --git-lfs
 
 # build
 
@@ -85,16 +85,17 @@ echo "------------------------------------------------"
 wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/frame-1-15.patch 
 wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/frame-2-15.patch
 wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/bt-15-qpr1.patch
+wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/bt-15.patch
 wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/sms-15.patch
 wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/proc.patch
 
 
 echo "------------------------------------------------"
-echo " Patching sysbta"
-echo "------------------------------------------------"
-
-echo "------------------------------------------------"
 echo " Bluetooth Module"
+echo "------------------------------------------------"
+git apply bt-15.patch
+echo "------------------------------------------------"
+echo " Bluetooth Module QPR1 " 
 echo "------------------------------------------------"
 git apply bt-15-qpr1.patch
 echo "------------------------------------------------"
@@ -106,9 +107,12 @@ echo " Frameworks AV 2"
 echo "------------------------------------------------"
 git apply frame-2-15.patch
 echo "------------------------------------------------"
-echo "SYSBTA Patching Done"
+echo " SMSC "
 echo "------------------------------------------------"
 git apply sms-15.patch
+echo "------------------------------------------------"
+echo " Proc "
+echo "------------------------------------------------"
 git apply proc.patch
 
 #remove trees
@@ -117,7 +121,7 @@ rm -rf vendor/samsung/a05m
 
 
 #clone
-git clone https://github.com/smiley9000/android_device_samsung_a05m -b evo-10.1 device/samsung/a05m
+git clone https://github.com/smiley9000/android_device_samsung_a05m -b pos device/samsung/a05m
 git clone https://github.com/smiley9000/vendor_samsung_a05m vendor/samsung/a05m
 git clone https://github.com/smiley9000/hm vendor/lineage-priv/keys
 git clone https://github.com/Roynas-Android-Playground/hardware_samsung-extra_interfaces -b lineage-21 hardware/samsung_ext
@@ -125,20 +129,18 @@ git clone https://github.com/LineageOS/android_device_mediatek_sepolicy_vndr dev
 git clone https://github.com/crdroidandroid/android_prebuilts_clang_host_linux-x86_clang-6443078 prebuilts/clang/host/linux-x86/clang-r383902
 git clone https://gitlab.com/manjulahemamali/a05m kernel/samsung/a05m
 
-#convert to unix
-dos2unix device/samsung/a05m/sepolicy/private/lpm.te
 
 #start build
  . build/envsetup.sh
 source build/envsetup.sh
 make clean
-lunch lineage_a05m-userdebug
-lunch lineage_a05m-ap2a-userdebug
-lunch lineage_a05m-ap3a-userdebug
-lunch lineage_a05m-ap4a-userdebug
-lunch lineage_a05m-ap1a-userdebug
-make bacon -j$(nproc --all)
-riseup a05m userdebug
+lunch aosp_a05m-ap4a-userdebug
+lunch aosp_a05m-userdebug
+lunch aosp_a05m-ap2a-userdebug
+lunch aosp_a05m-ap3a-userdebug
+lunch aosp_a05m-ap4a-userdebug
+lunch aosp_a05m-ap1a-userdebug
+mka bacon -j$(nproc --all)
 
 
 
