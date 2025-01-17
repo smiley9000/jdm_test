@@ -4,14 +4,14 @@
 echo "--------------------------------------"
 echo "Repo init success"
 echo "--------------------------------------"
-repo init -u https://github.com/RisingTechOSS/android -b fifteen --git-lfs
+#repo init -u https://github.com/RisingTechOSS/android -b fifteen --git-lfs
 
 # build
 
 echo "--------------------------------------"
 echo "Sync success"
 echo "--------------------------------------"
-/opt/crave/resync.sh
+#/opt/crave/resync.sh
 #selinux patch
 
 echo "------------------------------------------------"
@@ -133,7 +133,6 @@ git clone https://gitlab.com/manjulahemamali/a05m kernel/samsung/a05m
 #start build
  . build/envsetup.sh
 source build/envsetup.sh
-make clean
 lunch lineage_a05m-ap4a-userdebug
 lunch lineage_a05m-userdebug
 lunch lineage_a05m-ap2a-userdebug
@@ -141,7 +140,6 @@ lunch lineage_a05m-ap3a-userdebug
 lunch lineage_a05m-ap4a-userdebug
 lunch lineage_a05m-ap1a-userdebug
 mka bacon -j$(nproc --all)
-riseup a05m userdebug
 
 
 
