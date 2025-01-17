@@ -4,14 +4,14 @@
 echo "--------------------------------------"
 echo "Repo init success"
 echo "--------------------------------------"
-#repo init -u https://github.com/RisingTechOSS/android -b fifteen --git-lfs
+repo init -u https://github.com/Evolution-X/manifest -b vic --git-lfs
 
 # build
 
 echo "--------------------------------------"
 echo "Sync success"
 echo "--------------------------------------"
-#/opt/crave/resync.sh
+/opt/crave/resync.sh
 #selinux patch
 
 echo "------------------------------------------------"
@@ -121,7 +121,7 @@ rm -rf vendor/samsung/a05m
 
 
 #clone
-git clone https://github.com/smiley9000/android_device_samsung_a05m -b r-6.2 device/samsung/a05m
+git clone https://github.com/smiley9000/android_device_samsung_a05m -b 10.1 device/samsung/a05m
 git clone https://github.com/smiley9000/vendor_samsung_a05m vendor/samsung/a05m
 git clone https://github.com/smiley9000/hm vendor/lineage-priv/keys
 git clone https://github.com/Roynas-Android-Playground/hardware_samsung-extra_interfaces -b lineage-21 hardware/samsung_ext
@@ -139,7 +139,7 @@ lunch lineage_a05m-ap2a-userdebug
 lunch lineage_a05m-ap3a-userdebug
 lunch lineage_a05m-ap4a-userdebug
 lunch lineage_a05m-ap1a-userdebug
-mka bacon -j$(nproc --all)
+m evolution
 
 
 
