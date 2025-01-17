@@ -4,14 +4,14 @@
 echo "--------------------------------------"
 echo "Repo init success"
 echo "--------------------------------------"
-repo init -u https://github.com/Evolution-X/manifest -b vic --git-lfs
+#repo init -u https://github.com/Evolution-X/manifest -b vic --git-lfs
 
 # build
 
 echo "--------------------------------------"
 echo "Sync success"
 echo "--------------------------------------"
-/opt/crave/resync.sh
+#/opt/crave/resync.sh
 #selinux patch
 
 echo "------------------------------------------------"
