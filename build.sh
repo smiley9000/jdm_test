@@ -1,10 +1,17 @@
 #!/bin/bash
+repo init -u https://github.com/halcyonproject/manifest -b 15
 
+echo "--------------------------------------"
+echo "Repo init success"
+echo "--------------------------------------"
+repo init -u https://github.com/crdroidandroid/android.git -b 15.0 --git-lfs
+
+# build
 
 echo "--------------------------------------"
 echo "Sync success"
 echo "--------------------------------------"
-
+/opt/crave/resync.sh
 #selinux patch
 
 echo "------------------------------------------------"
@@ -75,40 +82,46 @@ echo "------------------------------------------------"
 
 #sysbta patch
 
-wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/frame-1.patch 
-wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/frame-2.patch
-wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/bt.patch
-wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/sms.patch
+wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/frame-1-15.patch 
+wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/frame-2-15.patch
+wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/bt-15-qpr1.patch
+wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/bt-15.patch
+wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/sms-15.patch
+wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/proc.patch
 
-
-echo "------------------------------------------------"
-echo " Patching sysbta"
-echo "------------------------------------------------"
 
 echo "------------------------------------------------"
 echo " Bluetooth Module"
 echo "------------------------------------------------"
-
-git apply bt.patch
+git apply bt-15.patch
+echo "------------------------------------------------"
+echo " Bluetooth Module QPR1 " 
+echo "------------------------------------------------"
+git apply bt-15-qpr1.patch
 echo "------------------------------------------------"
 echo " Frameworks AV 1"
 echo "------------------------------------------------"
-git apply frame-1.patch
+git apply frame-1-15.patch
 echo "------------------------------------------------"
 echo " Frameworks AV 2"
 echo "------------------------------------------------"
-git apply frame-2.patch
+git apply frame-2-15.patch
 echo "------------------------------------------------"
-echo "SYSBTA Patching Done"
+echo " SMSC "
 echo "------------------------------------------------"
-git apply sms.patch
+git apply sms-15.patch
+echo "------------------------------------------------"
+echo " Proc "
+echo "------------------------------------------------"
+git apply proc.patch
 
 #remove trees
 rm -rf device/samsung/a05m
 rm -rf vendor/samsung/a05m
 
+
 #clone
-git clone https://github.com/smiley9000/android_device_samsung_a05m -b vbmeta device/samsung/a05m
+git clone https://github.com/smiley9000/android_device_samsung_a05m -b hq device/samsung/a05m
 git clone https://github.com/smiley9000/vendor_samsung_a05m vendor/samsung/a05m
 git clone https://github.com/smiley9000/hm vendor/lineage-priv/keys
 git clone https://github.com/Roynas-Android-Playground/hardware_samsung-extra_interfaces -b lineage-21 hardware/samsung_ext
@@ -116,14 +129,18 @@ git clone https://github.com/LineageOS/android_device_mediatek_sepolicy_vndr dev
 git clone https://github.com/crdroidandroid/android_prebuilts_clang_host_linux-x86_clang-6443078 prebuilts/clang/host/linux-x86/clang-r383902
 git clone https://gitlab.com/manjulahemamali/a05m kernel/samsung/a05m
 
-#convert to unix
-dos2unix device/samsung/a05m/sepolicy/private/lpm.te
 
 #start build
+ . build/envsetup.sh
 source build/envsetup.sh
-lunch lineage_a05m-userdebug
-lunch lineage_a05m-ap2a-userdebug
-lunch lineage_a05m-ap3a-userdebug
-make bacon -j$(nproc --all)
+lunch halcyon_a05m-ap4a-userdebug
+lunch halcyon_a05m-userdebug
+lunch halcyon_a05m-ap2a-userdebug
+lunch halcyon_a05m-ap3a-userdebug
+lunch halcyon_a05m-ap4a-userdebug
+lunch halcyon_a05m-ap1a-userdebug
+make carthage -j$(nproc --all)
+
+
 
 
