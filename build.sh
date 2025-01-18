@@ -1,10 +1,10 @@
 #!/bin/bash
-repo init -u https://github.com/halcyonproject/manifest -b 15
+
 
 echo "--------------------------------------"
 echo "Repo init success"
 echo "--------------------------------------"
-repo init -u https://github.com/crdroidandroid/android.git -b 15.0 --git-lfs
+repo init -u https://github.com/halcyonproject/manifest -b 15.0
 
 # build
 
