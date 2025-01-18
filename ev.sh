@@ -121,7 +121,7 @@ rm -rf vendor/samsung/a05m
 
 
 #clone
-git clone https://github.com/smiley9000/android_device_samsung_a05m -b lineage-22 device/samsung/a05m
+git clone https://github.com/smiley9000/android_device_samsung_a05m -b cr-11 device/samsung/a05m
 git clone https://github.com/smiley9000/vendor_samsung_a05m vendor/samsung/a05m
 git clone https://github.com/smiley9000/hm vendor/lineage-priv/keys
 git clone https://github.com/Roynas-Android-Playground/hardware_samsung-extra_interfaces -b lineage-21 hardware/samsung_ext
