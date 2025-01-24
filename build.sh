@@ -4,14 +4,14 @@
 echo "--------------------------------------"
 echo "Repo init success"
 echo "--------------------------------------"
-repo init -u https://github.com/halcyonproject/manifest -b 15.0
+
 
 # build
 
 echo "--------------------------------------"
 echo "Sync success"
 echo "--------------------------------------"
-/opt/crave/resync.sh
+
 #selinux patch
 
 echo "------------------------------------------------"
@@ -121,7 +121,8 @@ rm -rf vendor/samsung/a05m
 
 
 #clone
-git clone https://github.com/smiley9000/android_device_samsung_a05m -b hq device/samsung/a05m
+git clone https://github.com/smiley9000/android_device_samsung_a06 -b pos device/samsung/a06
+git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_mt6768-jdm device/samsung/mt6768-jdm
 git clone https://github.com/smiley9000/vendor_samsung_a05m vendor/samsung/a05m
 git clone https://github.com/smiley9000/hm vendor/lineage-priv/keys
 git clone https://github.com/Roynas-Android-Playground/hardware_samsung-extra_interfaces -b lineage-21 hardware/samsung_ext
