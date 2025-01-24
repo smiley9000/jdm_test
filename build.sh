@@ -134,13 +134,12 @@ git clone https://gitlab.com/manjulahemamali/a05m kernel/samsung/a05m
 #start build
  . build/envsetup.sh
 source build/envsetup.sh
-lunch halcyon_a05m-ap4a-userdebug
-lunch halcyon_a05m-userdebug
-lunch halcyon_a05m-ap2a-userdebug
-lunch halcyon_a05m-ap3a-userdebug
-lunch halcyon_a05m-ap4a-userdebug
-lunch halcyon_a05m-ap1a-userdebug
-make carthage -j$(nproc --all)
+lunch aosp_a06-ap4a-userdebug
+lunch aosp_a06-userdebug
+lunch aosp_a06-ap2a-userdebug
+lunch aosp_a06-ap3a-userdebug
+lunch aosp_a06-ap1a-userdebug
+mka bacon -j$(nproc --all)
 
 
 
