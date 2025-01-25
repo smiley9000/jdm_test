@@ -116,7 +116,8 @@ echo "------------------------------------------------"
 git apply proc.patch
 
 #remove trees
-rm -rf device/samsung/a05m
+rm -rf device/samsung/a06
+rm -rf device/samsung/mt6768-jdm
 rm -rf vendor/samsung/a05m
 
 
