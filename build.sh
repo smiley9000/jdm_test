@@ -118,13 +118,16 @@ git apply proc.patch
 #remove trees
 rm -rf device/samsung/a06
 rm -rf device/samsung/mt6768-jdm
-rm -rf vendor/samsung/a05m
-
+rm -rf device/samsung/a05m
+rm -rf vendor/samsung/wing-camera 
+rm -rf vendor/samsung/lpm 
 
 #clone
-git clone https://github.com/smiley9000/android_device_samsung_a06 -b pos device/samsung/a06
+git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_a05 device/samsung/a05m
+git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_a06 device/samsung/a06
 git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_mt6768-jdm device/samsung/mt6768-jdm
-git clone https://github.com/smiley9000/vendor_samsung_a05m vendor/samsung/a05m
+git clone https://github.com/Samsung-Galaxy-G85-JDM/vendor_samsung_lpm vendor/samsung/lpm
+git clone https://github.com/Samsung-Galaxy-G85-JDM/android_vendor_samsung_wing-camera vendor/samsung/wing-camera 
 git clone https://github.com/smiley9000/hm vendor/lineage-priv/keys
 git clone https://github.com/Roynas-Android-Playground/hardware_samsung-extra_interfaces -b lineage-21 hardware/samsung_ext
 git clone https://github.com/LineageOS/android_device_mediatek_sepolicy_vndr device/mediatek/sepolicy_vndr
@@ -135,12 +138,21 @@ git clone https://gitlab.com/manjulahemamali/a05m kernel/samsung/a05m
 #start build
  . build/envsetup.sh
 source build/envsetup.sh
-lunch aosp_a06-ap4a-userdebug
-lunch aosp_a06-userdebug
-lunch aosp_a06-ap2a-userdebug
-lunch aosp_a06-ap3a-userdebug
-lunch aosp_a06-ap1a-userdebug
+lunch lineage_a05-ap4a-userdebug
+lunch lineage_a05-userdebug
+lunch lineage_a05-ap2a-userdebug
+lunch lineage_a05-ap3a-userdebug
+lunch lineage_a05-ap1a-userdebug
 mka bacon -j$(nproc --all)
+
+lunch lineage_a06-ap4a-userdebug
+lunch lineage_a06-userdebug
+lunch lineage_a06-ap2a-userdebug
+lunch lineage_a06-ap3a-userdebug
+lunch lineage_a06-ap1a-userdebug
+mka bacon -j$(nproc --all)
+
+
 
 
 
