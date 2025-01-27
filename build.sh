@@ -145,12 +145,12 @@ lunch lineage_a05m-ap3a-userdebug
 lunch lineage_a05m-ap1a-userdebug
 mka bacon -j$(nproc --all)
 
-#lunch lineage_a06-ap4a-userdebug
-#lunch lineage_a06-userdebug
-#lunch lineage_a06-ap2a-userdebug
-#lunch lineage_a06-ap3a-userdebug
-#lunch lineage_a06-ap1a-userdebug
-#mka bacon -j$(nproc --all)
+lunch lineage_a06-ap4a-userdebug
+lunch lineage_a06-userdebug
+lunch lineage_a06-ap2a-userdebug
+lunch lineage_a06-ap3a-userdebug
+lunch lineage_a06-ap1a-userdebug
+mka bacon -j$(nproc --all)
 
 
 
