@@ -138,19 +138,19 @@ git clone https://gitlab.com/manjulahemamali/a05m kernel/samsung/a05m
 #start build
  . build/envsetup.sh
 source build/envsetup.sh
-lunch lineage_a05-ap4a-userdebug
-lunch lineage_a05-userdebug
-lunch lineage_a05-ap2a-userdebug
-lunch lineage_a05-ap3a-userdebug
-lunch lineage_a05-ap1a-userdebug
+lunch lineage_a05m-ap4a-userdebug
+lunch lineage_a05m-userdebug
+lunch lineage_a05m-ap2a-userdebug
+lunch lineage_a05m-ap3a-userdebug
+lunch lineage_a05m-ap1a-userdebug
 mka bacon -j$(nproc --all)
 
-lunch lineage_a06-ap4a-userdebug
-lunch lineage_a06-userdebug
-lunch lineage_a06-ap2a-userdebug
-lunch lineage_a06-ap3a-userdebug
-lunch lineage_a06-ap1a-userdebug
-mka bacon -j$(nproc --all)
+#lunch lineage_a06-ap4a-userdebug
+#lunch lineage_a06-userdebug
+#lunch lineage_a06-ap2a-userdebug
+#lunch lineage_a06-ap3a-userdebug
+#lunch lineage_a06-ap1a-userdebug
+#mka bacon -j$(nproc --all)
 
 
 
