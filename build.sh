@@ -123,7 +123,7 @@ rm -rf vendor/samsung/wing-camera
 rm -rf vendor/samsung/lpm 
 
 #clone
-https://github.com/smiley9000/a05m -b ris device/samsung/a05m
+git clone https://github.com/smiley9000/a05m -b ris device/samsung/a05m
 git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_mt6768-jdm -b aosp-15 device/samsung/mt6768-jdm
 git clone https://github.com/Samsung-Galaxy-G85-JDM/vendor_samsung_lpm vendor/samsung/lpm
 git clone https://github.com/Samsung-Galaxy-G85-JDM/android_vendor_samsung_wing-camera vendor/samsung/wing-camera 
