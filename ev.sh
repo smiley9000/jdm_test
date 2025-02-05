@@ -4,14 +4,14 @@
 echo "--------------------------------------"
 echo "Repo init success"
 echo "--------------------------------------"
-repo init -u https://github.com/crdroidandroid/android.git -b 15.0 --git-lfs
+#repo init -u https://github.com/crdroidandroid/android.git -b 15.0 --git-lfs
 
 # build
 
 echo "--------------------------------------"
 echo "Sync success"
 echo "--------------------------------------"
-/opt/crave/resync.sh
+#/opt/crave/resync.sh
 #selinux patch
 
 echo "------------------------------------------------"
@@ -116,29 +116,31 @@ echo "------------------------------------------------"
 git apply proc.patch
 
 #remove trees
-rm -rf device/samsung/a05m
-rm -rf vendor/samsung/a05m
-
+rm -rf device/samsung/a04e
+rm -rf device/samsung/mt6765-jdm
+rm -rf vendor/samsung/lpm
+rm -rf vendor/samsung/hq-camera
+rm -rf kernel/samsung/a04e
 
 #clone
-git clone https://github.com/smiley9000/android_device_samsung_a05m -b cr-11 device/samsung/a05m
-git clone https://github.com/smiley9000/vendor_samsung_a05m vendor/samsung/a05m
+git clone https://github.com/smiley9000/android_device_samsung_a04e -b aosp device/samsung/a04e
+git clone https://github.com/smiley9000/android_device_samsung_mt6765-jdm -b aosp device/samsung/mt6765-jdm
+git clone https://github.com/smiley9000/vendor_samsung_a04e_lpm vendor/samsung/lpm
+git clone https://github.com/smiley9000/vendor_samsung_hq-camera vendor/samsung/hq-camera
+git clone https://github.com/physwizz/a042-T-kernels kernel/samsung/a04e
 git clone https://github.com/smiley9000/hm vendor/lineage-priv/keys
-git clone https://github.com/Roynas-Android-Playground/hardware_samsung-extra_interfaces -b lineage-21 hardware/samsung_ext
-git clone https://github.com/LineageOS/android_device_mediatek_sepolicy_vndr device/mediatek/sepolicy_vndr
 git clone https://github.com/crdroidandroid/android_prebuilts_clang_host_linux-x86_clang-6443078 prebuilts/clang/host/linux-x86/clang-r383902
-git clone https://gitlab.com/manjulahemamali/a05m kernel/samsung/a05m
 
 
 #start build
  . build/envsetup.sh
 source build/envsetup.sh
-lunch lineage_a05m-ap4a-userdebug
-lunch lineage_a05m-userdebug
-lunch lineage_a05m-ap2a-userdebug
-lunch lineage_a05m-ap3a-userdebug
-lunch lineage_a05m-ap4a-userdebug
-lunch lineage_a05m-ap1a-userdebug
+lunch aosp_a04e-ap4a-userdebug
+lunch aosp_a04e-userdebug
+lunch aosp_a04e-ap2a-userdebug
+lunch aosp_a04e-ap3a-userdebug
+lunch aosp_a04e-ap4a-userdebug
+lunch aosp_a04e-ap1a-userdebug
 make bacon -j$(nproc --all)
 
 
