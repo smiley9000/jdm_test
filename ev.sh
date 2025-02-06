@@ -116,15 +116,15 @@ echo "------------------------------------------------"
 git apply proc.patch
 
 #remove trees
-rm -rf device/samsung/a04e
-rm -rf device/samsung/a05m
-rm -rf device/samsung/a06
-rm -rf device/samsung/mt6765-jdm
-rm -rf device/samsung/mt6768-jdm
-rm -rf vendor/samsung/lpm-p35
-rm -rf vendor/samsung/lpm-g85
-rm -rf vendor/samsung/hq-camera
-rm -rf kernel/samsung/a04e
+#rm -rf device/samsung/a04e
+#rm -rf device/samsung/a05m
+#rm -rf device/samsung/a06
+#rm -rf device/samsung/mt6765-jdm
+#rm -rf device/samsung/mt6768-jdm
+#rm -rf vendor/samsung/lpm-p35
+#rm -rf vendor/samsung/lpm-g85
+##rm -rf vendor/samsung/hq-camera
+#rm -rf kernel/samsung/a04e
 rm -rf kernel/samsung/a05m
 
 #a05
@@ -149,7 +149,7 @@ git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_mt676
 git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_mt6768-jdm -b None_Lineage device/samsung/mt6768-jdm
 
 #kernel
-git clone https://github.com/physwizz/a042-T-kernels kernel/samsung/a04e
+#git clone https://github.com/physwizz/a042-T-kernels kernel/samsung/a04e
 git clone https://gitlab.com/manjulahemamali/a05m kernel/samsung/a05m
 
 
