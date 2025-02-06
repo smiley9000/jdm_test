@@ -165,13 +165,15 @@ lunch lineage_a05m-ap4a-userdebug
 lunch lineage_a05m-userdebug
 make bacon -j$(nproc --all)
 
+lunch lineage_a06-ap4a-userdebug
+lunch lineage_a06-userdebug
+make bacon -j$(nproc --all)
+
 lunch lineage_a04e-ap4a-userdebug
 lunch lineage_a04e-userdebug
 make bacon -j$(nproc --all)
 
-lunch lineage_a06-ap4a-userdebug
-lunch lineage_a06-userdebug
-make bacon -j$(nproc --all)
+
 
 
 
