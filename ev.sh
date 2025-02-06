@@ -124,7 +124,7 @@ git apply proc.patch
 #rm -rf vendor/samsung/lpm-p35
 #rm -rf vendor/samsung/lpm-g85
 ##rm -rf vendor/samsung/hq-camera
-#rm -rf kernel/samsung/a04e
+rm -rf kernel/samsung/a04e
 rm -rf kernel/samsung/a05m
 
 #a05
