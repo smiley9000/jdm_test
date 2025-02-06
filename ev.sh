@@ -4,14 +4,14 @@
 echo "--------------------------------------"
 echo "Repo init success"
 echo "--------------------------------------"
-#repo init -u https://github.com/crdroidandroid/android.git -b 15.0 --git-lfs
+repo sync -c --no-clone-bundle --optimized-fetch --prune --force-sync -j$(nproc --all)
 
 # build
 
 echo "--------------------------------------"
 echo "Sync success"
 echo "--------------------------------------"
-#/opt/crave/resync.sh
+/opt/crave/resync.sh
 #selinux patch
 
 echo "------------------------------------------------"
