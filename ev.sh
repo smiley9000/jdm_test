@@ -4,7 +4,7 @@
 echo "--------------------------------------"
 echo "Repo init success"
 echo "--------------------------------------"
-repo sync -c --no-clone-bundle --optimized-fetch --prune --force-sync -j$(nproc --all)
+repo init -u https://github.com/ProjectMatrixx/android.git -b 15.0 --git-lfs
 
 # build
 
