@@ -1,7 +1,7 @@
 #!/bin/bash
 
 rm -rf .repo/local_manifests/
-repo init -u https://github.com/yaap/manifest.git -b fifteen --git-lfs
+repo init --no-repo-verify --git-lfs -u https://github.com/ProjectInfinity-X/manifest -b 15 -g default,-mips,-darwin,-notdefault
 
 echo "--------------------------------------"
 echo "Repo init success"
@@ -148,8 +148,8 @@ git clone https://github.com/Samsung-Galaxy-G85-JDM/vendor_samsung_lpm-p35 vendo
 git clone https://github.com/Samsung-Galaxy-G85-JDM/vendor_samsung_lpm-g85 vendor/samsung/lpm-g85
 
 #Common Tree
-git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_mt6765-jdm -b Non_Lineage device/samsung/mt6765-jdm
-git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_mt6768-jdm -b None_Lineage device/samsung/mt6768-jdm
+git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_mt6765-jdm -b test device/samsung/mt6765-jdm
+git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_mt6768-jdm -b test device/samsung/mt6768-jdm
 
 #kernel
 #git clone https://github.com/physwizz/a042-T-kernels kernel/samsung/a04e
@@ -164,17 +164,16 @@ git clone https://github.com/smiley9000/hm vendor/lineage-priv/keys
 
 #start build
 . build/envsetup.sh
-lunch yaap_a05m-ap4a-userdebug
-lunch yaap_a05m-userdebug
-m yaap -j$(nproc --all)
+#lunch infinity_a05m-userdebug
+mka bacon -j$(nproc --all)
 
-lunch yaap_a06-ap4a-userdebug
-lunch yaap_a06-userdebug
-m yaap -j$(nproc --all)
+#lunch yaap_a06-ap4a-userdebug
+lunch infinity_a06-userdebug
+mka bacon -j$(nproc --all)
 
-lunch yaap_a04e-ap4a-userdebug
-lunch yaap_a04e-userdebug
-m yaap -j$(nproc --all)
+#lunch yaap_a04e-ap4a-userdebug
+lunch infinity_a04e-userdebug
+mka bacon -j$(nproc --all)
 
 
 
