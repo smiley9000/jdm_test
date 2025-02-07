@@ -4,14 +4,14 @@
 echo "--------------------------------------"
 echo "Repo init success"
 echo "--------------------------------------"
-#repo init -u https://github.com/ProjectMatrixx/android.git -b 15.0 --git-lfs
+repo init -u https://github.com/yaap/manifest.git -b fifteen --git-lfs
 
 # build
 
 echo "--------------------------------------"
 echo "Sync success"
 echo "--------------------------------------"
-#/opt/crave/resync.sh
+/opt/crave/resync.sh
 #selinux patch
 
 echo "------------------------------------------------"
@@ -162,17 +162,17 @@ git clone https://github.com/smiley9000/hm vendor/lineage-priv/keys
 
 #start build
 . build/envsetup.sh
-lunch lineage_a05m-ap4a-userdebug
-lunch lineage_a05m-userdebug
-make bacon -j$(nproc --all)
+lunch yaap_a05m-ap4a-userdebug
+lunch yaap_a05m-userdebug
+m yaap -j$(nproc --all)
 
-#lunch lineage_a06-ap4a-userdebug
-#lunch lineage_a06-userdebug
-#make bacon -j$(nproc --all)
+lunch yaap_a06-ap4a-userdebug
+lunch yaap_a06-userdebug
+m yaap -j$(nproc --all)
 
-#lunch lineage_a04e-ap4a-userdebug
-#lunch lineage_a04e-userdebug
-#make bacon -j$(nproc --all)
+lunch yaap_a04e-ap4a-userdebug
+lunch yaap_a04e-userdebug
+m yaap -j$(nproc --all)
 
 
 
