@@ -1,17 +1,19 @@
 #!/bin/bash
 
+rm -rf .repo/local_manifests/
+repo init -u https://github.com/yaap/manifest.git -b fifteen --git-lfs
 
 echo "--------------------------------------"
 echo "Repo init success"
 echo "--------------------------------------"
-repo init -u https://github.com/yaap/manifest.git -b fifteen --git-lfs
+
 
 # build
-
+/opt/crave/resync.sh
 echo "--------------------------------------"
 echo "Sync success"
 echo "--------------------------------------"
-/opt/crave/resync.sh
+
 #selinux patch
 
 echo "------------------------------------------------"
