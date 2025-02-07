@@ -4,14 +4,14 @@
 echo "--------------------------------------"
 echo "Repo init success"
 echo "--------------------------------------"
-repo init -u https://github.com/ProjectMatrixx/android.git -b 15.0 --git-lfs
+#repo init -u https://github.com/ProjectMatrixx/android.git -b 15.0 --git-lfs
 
 # build
 
 echo "--------------------------------------"
 echo "Sync success"
 echo "--------------------------------------"
-/opt/crave/resync.sh
+#/opt/crave/resync.sh
 #selinux patch
 
 echo "------------------------------------------------"
@@ -166,13 +166,13 @@ lunch lineage_a05m-ap4a-userdebug
 lunch lineage_a05m-userdebug
 make bacon -j$(nproc --all)
 
-lunch lineage_a06-ap4a-userdebug
-lunch lineage_a06-userdebug
-make bacon -j$(nproc --all)
+#lunch lineage_a06-ap4a-userdebug
+#lunch lineage_a06-userdebug
+#make bacon -j$(nproc --all)
 
-lunch lineage_a04e-ap4a-userdebug
-lunch lineage_a04e-userdebug
-make bacon -j$(nproc --all)
+#lunch lineage_a04e-ap4a-userdebug
+#lunch lineage_a04e-userdebug
+#make bacon -j$(nproc --all)
 
 
 
