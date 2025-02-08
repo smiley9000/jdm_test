@@ -1,7 +1,7 @@
 #!/bin/bash
 
-rm -rf .repo/local_manifests/
-repo init --no-repo-verify --git-lfs -u https://github.com/ProjectInfinity-X/manifest -b 15 -g default,-mips,-darwin,-notdefault
+#rm -rf .repo/local_manifests/
+#repo init --no-repo-verify --git-lfs -u https://github.com/ProjectInfinity-X/manifest -b 15 -g default,-mips,-darwin,-notdefault
 
 echo "--------------------------------------"
 echo "Repo init success"
@@ -9,7 +9,8 @@ echo "--------------------------------------"
 
 
 # build
-/opt/crave/resync.sh
+#/opt/crave/resync.sh
+
 echo "--------------------------------------"
 echo "Sync success"
 echo "--------------------------------------"
