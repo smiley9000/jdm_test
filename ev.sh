@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #rm -rf .repo/local_manifests/
-#repo init --no-repo-verify --git-lfs -u https://github.com/ProjectInfinity-X/manifest -b 15 -g default,-mips,-darwin,-notdefault
+repo init -u https://github.com/Evolution-X/manifest -b vic --git-lfs
 
 echo "--------------------------------------"
 echo "Repo init success"
@@ -9,7 +9,7 @@ echo "--------------------------------------"
 
 
 # build
-#/opt/crave/resync.sh
+/opt/crave/resync.sh
 
 echo "--------------------------------------"
 echo "Sync success"
@@ -165,14 +165,17 @@ git clone https://github.com/smiley9000/hm vendor/lineage-priv/keys
 
 #start build
 . build/envsetup.sh
-lunch infinity_a05m-userdebug
-mka bacon -j$(nproc --all)
+lunch lineage_a05m-ap4a-userdebug
+m evolution
+#mka bacon -j$(nproc --all)
 
-#lunch yaap_a06-ap4a-userdebug
+lunch lineage_a06-ap4a-userdebug
+m evolution
 #lunch infinity_a06-userdebug
 #mka bacon -j$(nproc --all)
 
-#lunch yaap_a04e-ap4a-userdebug
+lunch lineage_a04e-ap4a-userdebug
+m evolution
 #lunch infinity_a04e-userdebug
 #mka bacon -j$(nproc --all)
 
