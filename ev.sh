@@ -164,16 +164,16 @@ git clone https://github.com/smiley9000/hm vendor/lineage-priv/keys
 
 #start build
 . build/envsetup.sh
-#lunch infinity_a05m-userdebug
+lunch infinity_a05m-userdebug
 mka bacon -j$(nproc --all)
 
 #lunch yaap_a06-ap4a-userdebug
-lunch infinity_a06-userdebug
-mka bacon -j$(nproc --all)
+#lunch infinity_a06-userdebug
+#mka bacon -j$(nproc --all)
 
 #lunch yaap_a04e-ap4a-userdebug
-lunch infinity_a04e-userdebug
-mka bacon -j$(nproc --all)
+#lunch infinity_a04e-userdebug
+#mka bacon -j$(nproc --all)
 
 
 
