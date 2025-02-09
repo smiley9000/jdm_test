@@ -169,16 +169,19 @@ lunch lineage_a05m-ap4a-userdebug
 m evolution
 #mka bacon -j$(nproc --all)
 
-lunch lineage_a06-ap4a-userdebug
-m evolution
+#lunch lineage_a06-ap4a-userdebug
+#m evolution
 #lunch infinity_a06-userdebug
 #mka bacon -j$(nproc --all)
 
-lunch lineage_a04e-ap4a-userdebug
-m evolution
+#lunch lineage_a04e-ap4a-userdebug
+#m evolution
 #lunch infinity_a04e-userdebug
 #mka bacon -j$(nproc --all)
 
+. build/envsetup.sh
+lunch lineage_a05m-ap4a-userdebug
+m evolution
 
 
 
