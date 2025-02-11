@@ -172,7 +172,7 @@ git clone https://github.com/smiley9000/hm vendor/lineage-priv/keys
 . build/envsetup.sh
 lunch lineage_a03s-ap4a-userdebug
 #m evolution
-#mka bacon -j$(nproc --all)
+mka bacon -j$(nproc --all)
 
 #lunch lineage_a06-ap4a-userdebug
 #m evolution
