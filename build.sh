@@ -207,6 +207,24 @@ lunch lineage_a03s-ap3a-userdebug
 mka bacon -j$(nproc --all)
 
 
+# Check if there are any .zip files in the specified directory
+if ls out/target/product/a05m/*.zip 1> /dev/null 2>&1; then
+    echo "ook" 
+else
+    echo "rebuild with fix"
+    rm -rf vendor/samsung/wing-camera
+    git clone https://github.com/Samsung-Galaxy-G85-JDM/android_vendor_samsung_wing-camera -b no-chk vendor/samsung/wing-camera
+    lunch lineage_a05m-ap4a-userdebug
+    lunch lineage_a05m-ap2a-userdebug
+    lunch lineage_a05m-ap1a-userdebug
+    lunch lineage_a05m-userdebug
+    lunch lineage_a05m-ap3a-userdebug
+
+    #m evolution
+    mka bacon -j$(nproc --all)
+fi
+
+
 
 
 
