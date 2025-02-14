@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #rm -rf .repo/local_manifests/
-#repo init -u https://github.com/Evolution-X/manifest -b vic --git-lfs
+repo init --no-repo-verify --git-lfs -u https://github.com/ProjectInfinity-X/manifest -b 15 -g default,-mips,-darwin,-notdefault
 
 echo "--------------------------------------"
 echo "Repo init success"
@@ -9,7 +9,7 @@ echo "--------------------------------------"
 
 
 # build
-#/opt/crave/resync.sh
+/opt/crave/resync.sh
 
 echo "--------------------------------------"
 echo "Sync success"
@@ -141,7 +141,7 @@ git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_a06 d
 git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_a04e device/samsung/a04e
 
 #a04e
-git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_a03s device/samsung/a03s
+git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_a03s -b test device/samsung/a03s
 
 #Camera Tree
 git clone https://github.com/Samsung-Galaxy-G85-JDM/vendor_samsung_hq-camera vendor/samsung/hq-camera
@@ -152,7 +152,7 @@ git clone https://github.com/Samsung-Galaxy-G85-JDM/vendor_samsung_lpm-p35 vendo
 git clone https://github.com/Samsung-Galaxy-G85-JDM/vendor_samsung_lpm-g85 vendor/samsung/lpm-g85
 
 #Common Tree
-git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_mt6765-jdm device/samsung/mt6765-jdm
+git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_mt6765-jdm -b test device/samsung/mt6765-jdm
 git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_mt6768-jdm device/samsung/mt6768-jdm
 
 #kernel
@@ -170,7 +170,8 @@ git clone https://github.com/smiley9000/hm vendor/lineage-priv/keys
 
 #start build
 . build/envsetup.sh
-lunch lineage_a03s-ap4a-userdebug
+#lunch lineage_a03s-ap4a-userdebug
+lunch infinity_a03s-$userdebug
 #m evolution
 mka bacon -j$(nproc --all)
 
