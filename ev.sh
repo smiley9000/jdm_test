@@ -120,6 +120,7 @@ git apply proc.patch
 
 #remove trees
 rm -rf device/samsung/a04e
+rm -rf device/samsung/a04
 rm -rf device/samsung/a05m
 rm -rf device/samsung/a06
 rm -rf device/samsung/mt6765-jdm
@@ -131,6 +132,7 @@ rm -rf vendor/samsung/wing-camera
 rm -rf vendor/samsung/wing-camera-n26
 rm -rf kernel/samsung/a04e
 rm -rf kernel/samsung/a05m
+rm -rf kernel/samsung/a04
 
 #a05
 git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_a05m device/samsung/a05m
@@ -140,7 +142,7 @@ git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_a06 d
 
 #a04e
 git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_a04e device/samsung/a04e
-git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_a04 device/samsung/a04e
+git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_a04 device/samsung/a04
 
 #a04e
 git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_a03s device/samsung/a03s
