@@ -115,7 +115,9 @@ echo "------------------------------------------------"
 git apply proc.patch
 
 #remove trees
+rm -rf device/samsung/a03s
 rm -rf device/samsung/a04e
+rm -rf device/samsung/a04
 rm -rf device/samsung/a05m
 rm -rf device/samsung/a06
 rm -rf device/samsung/mt6765-jdm
@@ -125,8 +127,10 @@ rm -rf vendor/samsung/lpm-g85
 rm -rf vendor/samsung/hq-camera
 rm -rf vendor/samsung/wing-camera
 rm -rf vendor/samsung/wing-camera-n26
+rm -rf kernel/samsung/a03s
 rm -rf kernel/samsung/a04e
 rm -rf kernel/samsung/a05m
+rm -rf kernel/samsung/a06
 
 #a05
 git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_a05m device/samsung/a05m
@@ -136,7 +140,7 @@ git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_a06 d
 
 #a04e
 git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_a04e device/samsung/a04e
-git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_a04 device/samsung/a04e
+git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_a04 device/samsung/a04
 
 #a04e
 git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_a03s device/samsung/a03s
@@ -167,26 +171,28 @@ git clone https://github.com/crdroidandroid/android_prebuilts_clang_host_linux-x
 git clone https://github.com/smiley9000/hm vendor/lineage-priv/keys
 
 
-#start build a05m
+# Common
 . build/envsetup.sh
-lunch lineage_a05m-ap4a-userdebug
-lunch lineage_a05m-ap2a-userdebug
-lunch lineage_a05m-ap1a-userdebug
-lunch lineage_a05m-userdebug
-lunch lineage_a05m-ap3a-userdebug
+
+#start build a05m
+#lunch lineage_a05m-ap4a-userdebug
+#lunch lineage_a05m-ap2a-userdebug
+#lunch lineage_a05m-ap1a-userdebug
+#lunch lineage_a05m-userdebug
+#lunch lineage_a05m-ap3a-userdebug
 
 #m evolution
-mka bacon -j$(nproc --all)
+#mka bacon -j$(nproc --all)
 
 #start build a06
-lunch lineage_a06-ap4a-userdebug
-lunch lineage_a06-ap2a-userdebug
-lunch lineage_a06-ap1a-userdebug
-lunch lineage_a06-userdebug
-lunch lineage_a06-ap3a-userdebug
+#lunch lineage_a06-ap4a-userdebug
+#lunch lineage_a06-ap2a-userdebug
+#lunch lineage_a06-ap1a-userdebug
+#lunch lineage_a06-userdebug
+#lunch lineage_a06-ap3a-userdebug
 
 #m evolution
-mka bacon -j$(nproc --all)
+#mka bacon -j$(nproc --all)
 
 #start build a04e
 #lunch lineage_a04e-ap4a-userdebug
