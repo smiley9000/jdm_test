@@ -183,6 +183,7 @@ git clone https://github.com/smiley9000/hm vendor/lineage-priv/keys
 #mka bacon -j$(nproc --all)
 
 #start build a06
+#. build/envsetup.sh
 #lunch lineage_a06-ap4a-userdebug
 #lunch lineage_a06-ap2a-userdebug
 #lunch lineage_a06-ap1a-userdebug
@@ -193,6 +194,7 @@ git clone https://github.com/smiley9000/hm vendor/lineage-priv/keys
 #mka bacon -j$(nproc --all)
 
 #start build a04e
+#. build/envsetup.sh
 #lunch lineage_a04e-ap4a-userdebug
 #lunch lineage_a04e-ap2a-userdebug
 #lunch lineage_a04e-ap1a-userdebug
@@ -202,6 +204,7 @@ git clone https://github.com/smiley9000/hm vendor/lineage-priv/keys
 #mka bacon -j$(nproc --all)
 
 #start build a04
+. build/envsetup.sh
 lunch lineage_a04-ap4a-userdebug
 lunch lineage_a04-ap2a-userdebug
 lunch lineage_a04-ap1a-userdebug
@@ -211,6 +214,7 @@ lunch lineage_a04-ap3a-userdebug
 mka bacon -j$(nproc --all)
 
 #start build a03s
+. build/envsetup.sh
 #lunch lineage_a03s-ap4a-userdebug
 #lunch lineage_a03s-ap2a-userdebug
 #lunch lineage_a03s-ap1a-userdebug
@@ -229,7 +233,7 @@ mka bacon -j$(nproc --all)
 #    rm -rf vendor/samsung/wing-camera
 #    git clone https://github.com/Samsung-Galaxy-G85-JDM/android_vendor_samsung_wing-camera -b no-chk vendor/samsung/wing-camera
 #    lunch lineage_a05m-ap4a-userdebug
-    lunch lineage_a05m-ap2a-userdebug
+#    lunch lineage_a05m-ap2a-userdebug
 #    lunch lineage_a05m-ap1a-userdebug
 #    lunch lineage_a05m-userdebug
 #    lunch lineage_a05m-ap3a-userdebug
