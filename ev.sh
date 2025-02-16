@@ -249,7 +249,7 @@ if ls out/target/product/a05m/*.zip 1> /dev/null 2>&1; then
     echo "ook" 
 else
     echo "rebuild with fix"
-    rm -rf vendor/samsung/wing-camera-26
+    rm -rf vendor/samsung/wing-camera-n26
     git clone https://github.com/Samsung-Galaxy-G85-JDM/android_vendor_samsung_wing-camera-n26 -b no-chk vendor/samsung/wing-camera-n26 
     lunch lineage_a04-ap4a-userdebug
     lunch lineage_a04-ap2a-userdebug
