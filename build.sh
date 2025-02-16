@@ -241,7 +241,7 @@ else
 fi
 
 #a04
-if ls out/target/product/a05m/*.zip 1> /dev/null 2>&1; then
+if ls out/target/product/a04/*.zip 1> /dev/null 2>&1; then
     echo "ook" 
 else
     echo "rebuild with fix"
