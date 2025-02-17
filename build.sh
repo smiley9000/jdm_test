@@ -153,8 +153,8 @@ git clone https://github.com/Samsung-Galaxy-G85-JDM/vendor_samsung_lpm-p35 vendo
 git clone https://github.com/Samsung-Galaxy-G85-JDM/vendor_samsung_lpm-g85 vendor/samsung/lpm-g85
 
 #Common Tree
-git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_mt6765-jdm  device/samsung/mt6765-jdm
-git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_mt6768-jdm  device/samsung/mt6768-jdm
+git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_mt6765-jdm -b test device/samsung/mt6765-jdm
+git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_mt6768-jdm -b test device/samsung/mt6768-jdm
 
 #kernel
 #git clone https://github.com/physwizz/a042-T-kernels kernel/samsung/a04e
