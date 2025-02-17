@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #rm -rf .repo/local_manifests/
-repo init -u https://github.com/crdroidandroid/android.git -b 14.0 --git-lfs
+#repo init -u https://github.com/crdroidandroid/android.git -b 14.0 --git-lfs
 
 echo "--------------------------------------"
 echo "Repo init success"
@@ -180,7 +180,13 @@ lunch lineage_a05m-userdebug
 lunch lineage_a05m-ap3a-userdebug
 
 #m evolution
-mka bacon -j$(nproc --all)
+#mka bacon -j$(nproc --all)
+
+rm -rf .repo
+rm -rf out/target/product/a05/*
+rm -rf out/target/product/a06/*
+rm -rf out/target/product/a03s/*
+rm -rf out/target/product/a04e/*
 
 #start build a06
 lunch lineage_a06-ap4a-userdebug
@@ -190,7 +196,7 @@ lunch lineage_a06-userdebug
 lunch lineage_a06-ap3a-userdebug
 
 #m evolution
-mka bacon -j$(nproc --all)
+#mka bacon -j$(nproc --all)
 
 #start build a04e
 lunch lineage_a04e-ap4a-userdebug
@@ -199,7 +205,7 @@ lunch lineage_a04e-ap1a-userdebug
 lunch lineage_a04e-userdebug
 lunch lineage_a04e-ap3a-userdebug
 
-mka bacon -j$(nproc --all)
+#mka bacon -j$(nproc --all)
 
 #start build a04
 lunch lineage_a04-ap4a-userdebug
@@ -218,7 +224,7 @@ lunch lineage_a03s-userdebug
 lunch lineage_a03s-ap3a-userdebug
 
 #m evolution
-mka bacon -j$(nproc --all)
+#mka bacon -j$(nproc --all)
 
 
 #a05m
@@ -235,7 +241,7 @@ else
     lunch lineage_a05m-ap3a-userdebug
 
     #m evolution
-    mka bacon -j$(nproc --all)
+   # mka bacon -j$(nproc --all)
 fi
 
 #a04
@@ -252,7 +258,7 @@ else
     lunch lineage_a04-ap3a-userdebug
 
     #m evolution
-    mka bacon -j$(nproc --all)
+   # mka bacon -j$(nproc --all)
 fi
 
 
