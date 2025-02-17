@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #rm -rf .repo/local_manifests/
-#repo init -u https://github.com/Evolution-X/manifest -b vic --git-lfs
+repo init -u https://github.com/crdroidandroid/android.git -b 14.0 --git-lfs
 
 echo "--------------------------------------"
 echo "Repo init success"
@@ -9,7 +9,7 @@ echo "--------------------------------------"
 #repo init -u https://github.com/crdroidandroid/android.git -b 14.0 --git-lfs
 
 # build
-#/opt/crave/resync.sh
+/opt/crave/resync.sh
 
 echo "--------------------------------------"
 echo "Sync success"
@@ -87,7 +87,6 @@ echo "------------------------------------------------"
 
 wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/frame-1.patch 
 wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/frame-2.patch
-wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/bt-15-qpr1.patch
 wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/bt.patch
 wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/sms.patch
 wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/proc.patch
@@ -134,15 +133,14 @@ rm -rf kernel/samsung/a06
 
 #a05
 git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_a05m device/samsung/a05m
-
 #a06
 git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_a06 device/samsung/a06
 
 #a04e
 git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_a04e device/samsung/a04e
+#a04
 git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_a04 device/samsung/a04
-
-#a04e
+#a03s
 git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_a03s device/samsung/a03s
 
 #Camera Tree
@@ -165,43 +163,43 @@ git clone https://gitlab.com/manjulahemamali/a05m kernel/samsung/a05m
 #git clone https://github.com/maydoxx1/android_kernel_samsung_a04 kernel/samsung/a04
 
 
-Clang
+#Clang
 git clone https://github.com/crdroidandroid/android_prebuilts_clang_host_linux-x86_clang-6443078 prebuilts/clang/host/linux-x86/clang-r383902
-
+#keys
 git clone https://github.com/smiley9000/hm vendor/lineage-priv/keys
 
 
 # Common
 . build/envsetup.sh
 
-#start build a05m
-#lunch lineage_a05m-ap4a-userdebug
-#lunch lineage_a05m-ap2a-userdebug
-#lunch lineage_a05m-ap1a-userdebug
-#lunch lineage_a05m-userdebug
-#lunch lineage_a05m-ap3a-userdebug
+start build a05m
+lunch lineage_a05m-ap4a-userdebug
+lunch lineage_a05m-ap2a-userdebug
+lunch lineage_a05m-ap1a-userdebug
+lunch lineage_a05m-userdebug
+lunch lineage_a05m-ap3a-userdebug
 
 #m evolution
-#mka bacon -j$(nproc --all)
+mka bacon -j$(nproc --all)
 
 #start build a06
-#lunch lineage_a06-ap4a-userdebug
-#lunch lineage_a06-ap2a-userdebug
-#lunch lineage_a06-ap1a-userdebug
-#lunch lineage_a06-userdebug
-#lunch lineage_a06-ap3a-userdebug
+lunch lineage_a06-ap4a-userdebug
+lunch lineage_a06-ap2a-userdebug
+lunch lineage_a06-ap1a-userdebug
+lunch lineage_a06-userdebug
+lunch lineage_a06-ap3a-userdebug
 
 #m evolution
-#mka bacon -j$(nproc --all)
+mka bacon -j$(nproc --all)
 
 #start build a04e
-#lunch lineage_a04e-ap4a-userdebug
-#lunch lineage_a04e-ap2a-userdebug
-#lunch lineage_a04e-ap1a-userdebug
-#lunch lineage_a04e-userdebug
-#lunch lineage_a04e-ap3a-userdebug
+lunch lineage_a04e-ap4a-userdebug
+lunch lineage_a04e-ap2a-userdebug
+lunch lineage_a04e-ap1a-userdebug
+lunch lineage_a04e-userdebug
+lunch lineage_a04e-ap3a-userdebug
 
-#mka bacon -j$(nproc --all)
+mka bacon -j$(nproc --all)
 
 #start build a04
 lunch lineage_a04-ap4a-userdebug
@@ -213,14 +211,14 @@ lunch lineage_a04-ap3a-userdebug
 mka bacon -j$(nproc --all)
 
 #start build a03s
-#lunch lineage_a03s-ap4a-userdebug
-#lunch lineage_a03s-ap2a-userdebug
-#lunch lineage_a03s-ap1a-userdebug
-#lunch lineage_a03s-userdebug
-#lunch lineage_a03s-ap3a-userdebug
+lunch lineage_a03s-ap4a-userdebug
+lunch lineage_a03s-ap2a-userdebug
+lunch lineage_a03s-ap1a-userdebug
+lunch lineage_a03s-userdebug
+lunch lineage_a03s-ap3a-userdebug
 
 #m evolution
-#mka bacon -j$(nproc --all)
+mka bacon -j$(nproc --all)
 
 
 #a05m
