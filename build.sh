@@ -258,7 +258,7 @@ else
     lunch lineage_a04-ap3a-userdebug
 
     #m evolution
-   # mka bacon -j$(nproc --all)
+    mka bacon -j$(nproc --all)
 fi
 
 
