@@ -161,9 +161,9 @@ git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_mt676
 git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_mt6768-jdm -b test device/samsung/mt6768-jdm
 
 #kernel
-#git clone https://github.com/physwizz/a042-T-kernels kernel/samsung/a04e
+git clone https://github.com/physwizz/a042-T-kernels kernel/samsung/a04e
 #git clone https://github.com/xnnnsets/android_kernel_a037f kernel/samsung/a03s
-git clone https://gitlab.com/manjulahemamali/a05m kernel/samsung/a05m
+#git clone https://gitlab.com/manjulahemamali/a05m kernel/samsung/a05m
 #git clone https://github.com/maydoxx1/android_kernel_samsung_a04 kernel/samsung/a04
 
 
@@ -175,11 +175,11 @@ git clone https://github.com/smiley9000/hm vendor/lineage-priv/keys
 
 #start build a05m
 . build/envsetup.sh
-lunch orion_a05m-ap4a-userdebug
-lunch orion_a05m-ap2a-userdebug
-lunch orion_a05m-ap1a-userdebug
-lunch orion_a05m-userdebug
-make orion -j$(nproc --all)
+#lunch orion_a05m-ap4a-userdebug
+#lunch orion_a05m-ap2a-userdebug
+#lunch orion_a05m-ap1a-userdebug
+#lunch orion_a05m-userdebug
+#make orion -j$(nproc --all)
 #lunch lineage_a05m-ap4a-userdebug
 #lunch lineage_a05m-ap2a-userdebug
 #lunch lineage_a05m-ap1a-userdebug
@@ -191,17 +191,16 @@ make orion -j$(nproc --all)
 
 #start build a06
 #. build/envsetup.sh
-lunch orion_a06-ap4a-userdebug
-lunch orion_a06-ap2a-userdebug
-lunch orion_a06-ap1a-userdebug
-lunch orion_a06-userdebug
-make orion -j$(nproc --all)
+#lunch orion_a06-ap4a-userdebug
+#lunch orion_a06-ap2a-userdebug
+#lunch orion_a06-ap1a-userdebug
+#lunch orion_a06-userdebug
+#make orion -j$(nproc --all)
 #lunch lineage_a06-ap4a-userdebug
 #lunch lineage_a06-ap2a-userdebug
 #lunch lineage_a06-ap1a-userdebug
 #lunch lineage_a06-userdebug
 #lunch lineage_a06-ap3a-userdebug
-rm -rf .repo
 #m evolution
 #mka bacon -j$(nproc --all)
 
@@ -256,14 +255,14 @@ make orion -j$(nproc --all)
 if ls out/target/product/a05m/*.zip 1> /dev/null 2>&1; then
     echo "ook" 
 else
-    echo "rebuild with fix"
-    rm -rf vendor/samsung/wing-camera
-    git clone https://github.com/Samsung-Galaxy-G85-JDM/android_vendor_samsung_wing-camera -b no-chk vendor/samsung/wing-camera
-    lunch orion_a05m-ap4a-userdebug
-    lunch orion_a05m-ap2a-userdebug
-    lunch orion_a05m-ap1a-userdebug
-    lunch orion_a05m-userdebug
-    make orion -j$(nproc --all)
+    #echo "rebuild with fix"
+    #rm -rf vendor/samsung/wing-camera
+    #git clone https://github.com/Samsung-Galaxy-G85-JDM/android_vendor_samsung_wing-camera -b no-chk vendor/samsung/wing-camera
+    #lunch orion_a05m-ap4a-userdebug
+    #lunch orion_a05m-ap2a-userdebug
+    #lunch orion_a05m-ap1a-userdebug
+    #lunch orion_a05m-userdebug
+    #make orion -j$(nproc --all)
 fi
 
 #a04
