@@ -1,8 +1,7 @@
 #!/bin/bash
 
 #rm -rf .repo/local_manifests/
-repo init -u https://github.com/SuperiorOS/manifest.git -b fifteen-los -m stable/latest.xml --git-lfs
-
+repo init -u https://github.com/crdroidandroid/android.git -b 15.0 --git-lfs
 
 echo "--------------------------------------"
 echo "Repo init success"
@@ -136,17 +135,17 @@ rm -rf kernel/samsung/a05m
 rm -rf kernel/samsung/a04
 
 #a05
-git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_a05m -b test device/samsung/a05m
+git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_a05m  device/samsung/a05m
 
 #a06
-git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_a06 -b test device/samsung/a06
+git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_a06 device/samsung/a06
 
 #a04e
-git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_a04e -b test device/samsung/a04e
-git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_a04 -b test device/samsung/a04
+git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_a04e  device/samsung/a04e
+git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_a04 device/samsung/a04
 
 #a04e
-git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_a03s -b test device/samsung/a03s
+git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_a03s device/samsung/a03s
 
 #Camera Tree
 git clone https://github.com/Samsung-Galaxy-G85-JDM/vendor_samsung_hq-camera vendor/samsung/hq-camera
@@ -176,20 +175,14 @@ git clone https://github.com/smiley9000/hm vendor/lineage-priv/keys
 
 #start build a05m
 . build/envsetup.sh
-lunch superior_a05m-ap4a-userdebug
-lunch superior_a05m-ap2a-userdebug
-lunch superior_a05m-ap1a-userdebug
-lunch superior_a05m-userdebug
-m superior
 #make orion -j$(nproc --all)
-#lunch lineage_a05m-ap4a-userdebug
-#lunch lineage_a05m-ap2a-userdebug
-#lunch lineage_a05m-ap1a-userdebug
-#lunch lineage_a05m-userdebug
-#lunch lineage_a05m-ap3a-userdebug
-
+lunch lineage_a05m-ap4a-userdebug
+lunch lineage_a05m-ap2a-userdebug
+lunch lineage_a05m-ap1a-userdebug
+lunch lineage_a05m-userdebug
+lunch lineage_a05m-ap3a-userdebug
 #m evolution
-#mka bacon -j$(nproc --all)
+mka bacon -j$(nproc --all)
 
 #start build a06
 #. build/envsetup.sh
@@ -207,49 +200,34 @@ m superior
 #mka bacon -j$(nproc --all)
 
 #start build a04e
-#. build/envsetup.sh
-lunch superior_a04e-ap4a-userdebug
-lunch superior_a04e-ap2a-userdebug
-lunch superior_a04e-ap1a-userdebug
-lunch superior_a04e-userdebug
-m superior
-#lunch lineage_a04e-ap4a-userdebug
-#lunch lineage_a04e-ap2a-userdebug
-#lunch lineage_a04e-ap1a-userdebug
-#lunch lineage_a04e-userdebug
-#lunch lineage_a04e-ap3a-userdebug
+. build/envsetup.sh
+lunch lineage_a04e-ap4a-userdebug
+lunch lineage_a04e-ap2a-userdebug
+lunch lineage_a04e-ap1a-userdebug
+lunch lineage_a04e-userdebug
+lunch lineage_a04e-ap3a-userdebug
 
-#mka bacon -j$(nproc --all)
+mka bacon -j$(nproc --all)
 
 #start build a04
 . build/envsetup.sh
-lunch superior_a04-ap4a-userdebug
-lunch superior_a04-ap2a-userdebug
-lunch superior_a04-ap1a-userdebug
-lunch superior_a04-userdebug
-m superior
-#lunch lineage_a04-ap4a-userdebug
-#lunch lineage_a04-ap2a-userdebug
-#lunch lineage_a04-ap1a-userdebug
-#lunch lineage_a04-userdebug
-#lunch lineage_a04-ap3a-userdebug
-
-#mka bacon -j$(nproc --all)
+lunch lineage_a04-ap4a-userdebug
+lunch lineage_a04-ap2a-userdebug
+lunch lineage_a04-ap1a-userdebug
+lunch lineage_a04-userdebug
+lunch lineage_a04-ap3a-userdebug
+mka bacon -j$(nproc --all)
 
 #start build a03s
-lunch superior_a03s-ap4a-userdebug
-lunch superior_a03s-ap2a-userdebug
-lunch superior_a03s-ap1a-userdebug
-lunch superior_a03s-userdebug
-m superior
-#lunch lineage_a03s-ap4a-userdebug
-#lunch lineage_a03s-ap2a-userdebug
-#lunch lineage_a03s-ap1a-userdebug
-#lunch lineage_a03s-userdebug
-#lunch lineage_a03s-ap3a-userdebug
+
+lunch lineage_a03s-ap4a-userdebug
+lunch lineage_a03s-ap2a-userdebug
+lunch lineage_a03s-ap1a-userdebug
+lunch lineage_a03s-userdebug
+lunch lineage_a03s-ap3a-userdebug
 
 #m evolution
-#mka bacon -j$(nproc --all)
+mka bacon -j$(nproc --all)
 
 
 #a05m
@@ -259,16 +237,12 @@ else
     echo "rebuild with fix"
     rm -rf vendor/samsung/wing-camera
     git clone https://github.com/Samsung-Galaxy-G85-JDM/android_vendor_samsung_wing-camera -b no-chk vendor/samsung/wing-camera
-    lunch superior_a05m-ap4a-userdebug
-    lunch superior_a05m-ap2a-userdebug
-    lunch superior_a05m-ap1a-userdebug
-    lunch superior_a05m-userdebug
-    m superior
-    #lunch orion_a05m-ap4a-userdebug
-    #lunch orion_a05m-ap2a-userdebug
-    #lunch orion_a05m-ap1a-userdebug
-    #lunch orion_a05m-userdebug
-    #make orion -j$(nproc --all)
+    lunch lineage_a05m-ap4a-userdebug
+    lunch lineage_a05m-ap2a-userdebug
+    lunch lineage_a05m-ap1a-userdebug
+    lunch lineage_a05m-userdebug
+    lunch lineage_a05m-ap3a-userdebug
+    mka bacon -j$(nproc --all)
 fi
 
 #a04
@@ -278,16 +252,12 @@ else
     echo "rebuild with fix"
     rm -rf vendor/samsung/wing-camera-n26
     git clone https://github.com/Samsung-Galaxy-G85-JDM/android_vendor_samsung_wing-camera-n26 -b no-chk vendor/samsung/wing-camera-n26 
-    lunch superior_a04-ap4a-userdebug
-    lunch superior_a04-ap2a-userdebug
-    lunch superior_a04-ap1a-userdebug
-    lunch superior_a04-userdebug
-    m superior
-    #lunch orion_a04-ap4a-userdebug
-    #lunch orion_a04-ap2a-userdebug
-    #lunch orion_a04-ap1a-userdebug
-    #lunch orion_a04-userdebug
-    #make orion -j$(nproc --all)
+    lunch lineage_a04-ap4a-userdebug
+    lunch lineage_a04-ap2a-userdebug
+    lunch lineage_a04-ap1a-userdebug
+    lunch lineage_a04-userdebug
+    lunch lineage_a04-ap3a-userdebug
+    mka bacon -j$(nproc --all)
 fi
 
 
