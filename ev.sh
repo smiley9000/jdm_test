@@ -176,12 +176,11 @@ git clone https://github.com/smiley9000/hm vendor/lineage-priv/keys
 
 #start build a05m
 . build/envsetup.sh
-breakfast a05m
+lunch superior_a05m-ap4a-userdebug
+lunch superior_a05m-ap2a-userdebug
+lunch superior_a05m-ap1a-userdebug
+lunch superior_a05m-userdebug
 m superior
-#lunch orion_a05m-ap4a-userdebug
-#lunch orion_a05m-ap2a-userdebug
-#lunch orion_a05m-ap1a-userdebug
-#lunch orion_a05m-userdebug
 #make orion -j$(nproc --all)
 #lunch lineage_a05m-ap4a-userdebug
 #lunch lineage_a05m-ap2a-userdebug
@@ -209,7 +208,10 @@ m superior
 
 #start build a04e
 #. build/envsetup.sh
-breakfast a04e
+lunch superior_a04e-ap4a-userdebug
+lunch superior_a04e-ap2a-userdebug
+lunch superior_a04e-ap1a-userdebug
+lunch superior_a04e-userdebug
 m superior
 #lunch lineage_a04e-ap4a-userdebug
 #lunch lineage_a04e-ap2a-userdebug
@@ -221,7 +223,10 @@ m superior
 
 #start build a04
 . build/envsetup.sh
-breakfast a04
+lunch superior_a04-ap4a-userdebug
+lunch superior_a04-ap2a-userdebug
+lunch superior_a04-ap1a-userdebug
+lunch superior_a04-userdebug
 m superior
 #lunch lineage_a04-ap4a-userdebug
 #lunch lineage_a04-ap2a-userdebug
@@ -232,7 +237,10 @@ m superior
 #mka bacon -j$(nproc --all)
 
 #start build a03s
-breakfast a03s
+lunch superior_a03s-ap4a-userdebug
+lunch superior_a03s-ap2a-userdebug
+lunch superior_a03s-ap1a-userdebug
+lunch superior_a03s-userdebug
 m superior
 #lunch lineage_a03s-ap4a-userdebug
 #lunch lineage_a03s-ap2a-userdebug
@@ -251,7 +259,10 @@ else
     echo "rebuild with fix"
     rm -rf vendor/samsung/wing-camera
     git clone https://github.com/Samsung-Galaxy-G85-JDM/android_vendor_samsung_wing-camera -b no-chk vendor/samsung/wing-camera
-    breakfast a05m
+    lunch superior_a05m-ap4a-userdebug
+    lunch superior_a05m-ap2a-userdebug
+    lunch superior_a05m-ap1a-userdebug
+    lunch superior_a05m-userdebug
     m superior
     #lunch orion_a05m-ap4a-userdebug
     #lunch orion_a05m-ap2a-userdebug
@@ -267,7 +278,10 @@ else
     echo "rebuild with fix"
     rm -rf vendor/samsung/wing-camera-n26
     git clone https://github.com/Samsung-Galaxy-G85-JDM/android_vendor_samsung_wing-camera-n26 -b no-chk vendor/samsung/wing-camera-n26 
-    breakfast a04
+    lunch superior_a04-ap4a-userdebug
+    lunch superior_a04-ap2a-userdebug
+    lunch superior_a04-ap1a-userdebug
+    lunch superior_a04-userdebug
     m superior
     #lunch orion_a04-ap4a-userdebug
     #lunch orion_a04-ap2a-userdebug
