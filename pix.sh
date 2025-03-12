@@ -258,7 +258,36 @@ else
     mka bacon -j$(nproc --all)
 fi
 
+dirs=(
+    "out/target/product/a05m"
+    "out/target/product/a03s"
+    "out/target/product/a04"
+    "out/target/product/a04e"
+)
 
+found_zip=false
+
+for dir in "${dirs[@]}"; do
+    if ls "$dir"/*.zip &>/dev/null; then
+        found_zip=true
+        break
+    fi
+done
+
+if [ "$found_zip" = true ]; then
+    echo "done"
+    rm -rf .repo
+    . build/envsetup.sh
+    lunch aosp_a06-ap4a-userdebug
+    lunch aosp_a06-ap2a-userdebug
+    lunch aosp_a06-ap1a-userdebug
+    lunch aosp_a06-userdebug
+    lunch aosp_a06-ap3a-userdebug
+    mka bacon -j$(nproc --all)
+    
+else
+    echo "No ZIP files found. .repo will not be removed."
+fi
 
 
 
