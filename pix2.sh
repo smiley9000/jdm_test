@@ -1,6 +1,7 @@
 #!/bin/bash
 
 #rm -rf .repo/local_manifests/
+repo init -u https://github.com/alphadroid-project/manifest -b alpha-15.1 --git-lfs
 
 echo "--------------------------------------"
 echo "Repo init success"
@@ -8,6 +9,7 @@ echo "--------------------------------------"
 
 
 # build
+/opt/crave/resync.sh
 
 echo "--------------------------------------"
 echo "Sync success"
@@ -170,31 +172,62 @@ git clone https://github.com/crdroidandroid/android_prebuilts_clang_host_linux-x
 
 git clone https://github.com/smiley9000/hm vendor/lineage-priv/keys
 
-
-#start build a05m
 . build/envsetup.sh
-#start build a04
-. build/envsetup.sh
-lunch aosp_a04-ap4a-userdebug
-lunch aosp_a04-ap2a-userdebug
-lunch aosp_a04-ap1a-userdebug
-lunch aosp_a04-userdebug
-lunch aosp_a04-ap3a-userdebug
+lunch alpha_a04-ap4a-userdebug
+lunch alpha_a04-ap2a-userdebug
+lunch alpha_a04-ap1a-userdebug
+lunch alpha_a04-userdebug
+lunch alpha_a04-ap3a-userdebug
 mka bacon -j$(nproc --all)
 
 
 #a04
-if ls out/target/product/a05m/*.zip 1> /dev/null 2>&1; then
+if ls out/target/product/a04/*.zip 1> /dev/null 2>&1; then
     echo "ook" 
 else
     echo "rebuild with fix"
     rm -rf vendor/samsung/wing-camera-n26
     git clone https://github.com/Samsung-Galaxy-G85-JDM/android_vendor_samsung_wing-camera-n26 -b no-chk vendor/samsung/wing-camera-n26 
-    lunch aosp_a04-ap4a-userdebug
-    lunch aosp_a04-ap2a-userdebug
-    lunch aosp_a04-ap1a-userdebug
-    lunch aosp_a04-userdebug
-    lunch aosp_a04-ap3a-userdebug
+    lunch alpha_a04-ap4a-userdebug
+    lunch alpha_a04-ap2a-userdebug
+    lunch alpha_a04-ap1a-userdebug
+    lunch alpha_a04-userdebug
+    lunch alpha_a04-ap3a-userdebug
     mka bacon -j$(nproc --all)
 fi
+
+dirs=(
+    "out/target/product/a05m"
+    "out/target/product/a03s"
+    "out/target/product/a04"
+    "out/target/product/a04e"
+)
+
+found_zip=false
+
+for dir in "${dirs[@]}"; do
+    if ls "$dir"/*.zip &>/dev/null; then
+        found_zip=true
+        break
+    fi
+done
+
+if [ "$found_zip" = true ]; then
+    echo "done"
+    #rm -rf .repo
+    #. build/envsetup.sh
+    #lunch aosp_a06-ap4a-userdebug
+    #lunch aosp_a06-ap2a-userdebug
+    #lunch aosp_a06-ap1a-userdebug
+    #lunch aosp_a06-userdebug
+    #lunch aosp_a06-ap3a-userdebug
+    #mka bacon -j$(nproc --all)
+    
+else
+    echo "No ZIP files found. .repo will not be removed."
+fi
+
+
+
+
 
