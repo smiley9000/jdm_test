@@ -1,6 +1,7 @@
 #!/bin/bash
 
 #rm -rf .repo/local_manifests/
+repo init -u https://github.com/alphadroid-project/manifest -b alpha-15.1 --git-lfs
 
 echo "--------------------------------------"
 echo "Repo init success"
@@ -8,6 +9,7 @@ echo "--------------------------------------"
 
 
 # build
+/opt/crave/resync.sh
 
 echo "--------------------------------------"
 echo "Sync success"
@@ -174,11 +176,11 @@ git clone https://github.com/smiley9000/hm vendor/lineage-priv/keys
 #start build a05m
 . build/envsetup.sh
 #make orion -j$(nproc --all)
-lunch aosp_a05m-ap4a-userdebug
-lunch aosp_a05m-ap2a-userdebug
-lunch aosp_a05m-ap1a-userdebug
-lunch aosp_a05m-userdebug
-lunch aosp_a05m-ap3a-userdebug
+lunch alpha_a05m-ap4a-userdebug
+lunch alpha_a05m-ap2a-userdebug
+lunch alpha_a05m-ap1a-userdebug
+lunch alpha_a05m-userdebug
+lunch alpha_a05m-ap3a-userdebug
 #m evolution
 mka bacon -j$(nproc --all)
 
@@ -199,30 +201,30 @@ mka bacon -j$(nproc --all)
 
 #start build a04e
 . build/envsetup.sh
-lunch aosp_a04e-ap4a-userdebug
-lunch aosp_a04e-ap2a-userdebug
-lunch aosp_a04e-ap1a-userdebug
-lunch aosp_a04e-userdebug
-lunch aosp_a04e-ap3a-userdebug
+lunch alpha_a04e-ap4a-userdebug
+lunch alpha_a04e-ap2a-userdebug
+lunch alpha_a04e-ap1a-userdebug
+lunch alpha_a04e-userdebug
+lunch alpha_a04e-ap3a-userdebug
 
 mka bacon -j$(nproc --all)
 
 #start build a04
 . build/envsetup.sh
-lunch aosp_a04-ap4a-userdebug
-lunch aosp_a04-ap2a-userdebug
-lunch aosp_a04-ap1a-userdebug
-lunch aosp_a04-userdebug
-lunch aosp_a04-ap3a-userdebug
+lunch alpha_a04e-ap4a-userdebug
+lunch alpha_a04e-ap2a-userdebug
+lunch alpha_a04e-ap1a-userdebug
+lunch alpha_a04-userdebug
+lunch alpha_a04e-ap3a-userdebug
 mka bacon -j$(nproc --all)
 
 #start build a03s
 
-lunch aosp_a03s-ap4a-userdebug
-lunch aosp_a03s-ap2a-userdebug
-lunch aosp_a03s-ap1a-userdebug
-lunch aosp_a03s-userdebug
-lunch aosp_a03s-ap3a-userdebug
+lunch alpha_a03s-ap4a-userdebug
+lunch alpha_a03s-ap2a-userdebug
+lunch alpha_a03s-ap1a-userdebug
+lunch alpha_a03s-userdebug
+lunch alpha_a03s-ap3a-userdebug
 
 #m evolution
 mka bacon -j$(nproc --all)
@@ -235,11 +237,11 @@ else
     echo "rebuild with fix"
     rm -rf vendor/samsung/wing-camera
     git clone https://github.com/Samsung-Galaxy-G85-JDM/android_vendor_samsung_wing-camera -b no-chk vendor/samsung/wing-camera
-    lunch aosp_a05m-ap4a-userdebug
-    lunch aosp_a05m-ap2a-userdebug
-    lunch aosp_a05m-ap1a-userdebug
-    lunch aosp_a05m-userdebug
-    lunch aosp_a05m-ap3a-userdebug
+    lunch alpha_a05m-ap4a-userdebug
+    lunch alpha_a05m-ap2a-userdebug
+    lunch alpha_a05m-ap1a-userdebug
+    lunch alpha_a05m-userdebug
+    lunch alpha_a05m-ap3a-userdebug
     mka bacon -j$(nproc --all)
 fi
 
@@ -250,11 +252,11 @@ else
     echo "rebuild with fix"
     rm -rf vendor/samsung/wing-camera-n26
     git clone https://github.com/Samsung-Galaxy-G85-JDM/android_vendor_samsung_wing-camera-n26 -b no-chk vendor/samsung/wing-camera-n26 
-    lunch aosp_a04-ap4a-userdebug
-    lunch aosp_a04-ap2a-userdebug
-    lunch aosp_a04-ap1a-userdebug
-    lunch aosp_a04-userdebug
-    lunch aosp_a04-ap3a-userdebug
+    lunch alpha_a04-ap4a-userdebug
+    lunch alpha_a04-ap2a-userdebug
+    lunch alpha_a04-ap1a-userdebug
+    lunch alpha_a04-userdebug
+    lunch alpha_a04-ap3a-userdebug
     mka bacon -j$(nproc --all)
 fi
 
@@ -276,14 +278,14 @@ done
 
 if [ "$found_zip" = true ]; then
     echo "done"
-    rm -rf .repo
-    . build/envsetup.sh
-    lunch aosp_a06-ap4a-userdebug
-    lunch aosp_a06-ap2a-userdebug
-    lunch aosp_a06-ap1a-userdebug
-    lunch aosp_a06-userdebug
-    lunch aosp_a06-ap3a-userdebug
-    mka bacon -j$(nproc --all)
+    #rm -rf .repo
+    #. build/envsetup.sh
+    #lunch aosp_a06-ap4a-userdebug
+    #lunch aosp_a06-ap2a-userdebug
+    #lunch aosp_a06-ap1a-userdebug
+    #lunch aosp_a06-userdebug
+    #lunch aosp_a06-ap3a-userdebug
+    #mka bacon -j$(nproc --all)
     
 else
     echo "No ZIP files found. .repo will not be removed."
