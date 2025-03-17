@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #rm -rf .repo/local_manifests/
-repo init -u https://github.com/alphadroid-project/manifest -b alpha-15.1 --git-lfs
+#repo init -u https://github.com/alphadroid-project/manifest -b alpha-15.1 --git-lfs
 
 echo "--------------------------------------"
 echo "Repo init success"
@@ -9,7 +9,7 @@ echo "--------------------------------------"
 
 
 # build
-/opt/crave/resync.sh
+#/opt/crave/resync.sh
 
 echo "--------------------------------------"
 echo "Sync success"
