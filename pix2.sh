@@ -163,8 +163,8 @@ git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_mt676
 #kernel
 #git clone https://github.com/physwizz/a042-T-kernels kernel/samsung/a04e
 #git clone https://github.com/xnnnsets/android_kernel_a037f kernel/samsung/a03s
-#git clone https://gitlab.com/manjulahemamali/a05m kernel/samsung/a05m
-git clone https://github.com/maydoxx1/android_kernel_samsung_a04 kernel/samsung/a04
+git clone https://gitlab.com/manjulahemamali/a05m kernel/samsung/a05m
+#git clone https://github.com/maydoxx1/android_kernel_samsung_a04 kernel/samsung/a04
 
 
 Clang
@@ -172,14 +172,43 @@ git clone https://github.com/crdroidandroid/android_prebuilts_clang_host_linux-x
 
 git clone https://github.com/smiley9000/hm vendor/lineage-priv/keys
 
-. build/envsetup.sh
-lunch alpha_a04-ap4a-userdebug
-lunch alpha_a04-ap2a-userdebug
-lunch alpha_a04-ap1a-userdebug
-lunch alpha_a04-userdebug
-lunch alpha_a04-ap3a-userdebug
-mka bacon -j$(nproc --all)
 
+#start build a05m
+. build/envsetup.sh
+#make orion -j$(nproc --all)
+lunch derp_a05m-userdebug
+#m evolution
+mka derp
+
+
+#start build a04e
+. build/envsetup.sh
+lunch derp_a04e-userdebug
+#m evolution
+mka derp
+
+#start build a04
+. build/envsetup.sh
+lunch derp_a04-userdebug
+#m evolution
+mka derp
+
+#start build a03s
+lunch derp_a03s-userdebug
+#m evolution
+mka derp
+
+#a05m
+if ls out/target/product/a05m/*.zip 1> /dev/null 2>&1; then
+    echo "ook" 
+else
+    echo "rebuild with fix"
+    rm -rf vendor/samsung/wing-camera
+    git clone https://github.com/Samsung-Galaxy-G85-JDM/android_vendor_samsung_wing-camera -b no-chk vendor/samsung/wing-camera
+    lunch derp_a05m-userdebug
+    #m evolution
+    mka derp
+fi
 
 #a04
 if ls out/target/product/a04/*.zip 1> /dev/null 2>&1; then
@@ -188,12 +217,9 @@ else
     echo "rebuild with fix"
     rm -rf vendor/samsung/wing-camera-n26
     git clone https://github.com/Samsung-Galaxy-G85-JDM/android_vendor_samsung_wing-camera-n26 -b no-chk vendor/samsung/wing-camera-n26 
-    lunch alpha_a04-ap4a-userdebug
-    lunch alpha_a04-ap2a-userdebug
-    lunch alpha_a04-ap1a-userdebug
-    lunch alpha_a04-userdebug
-    lunch alpha_a04-ap3a-userdebug
-    mka bacon -j$(nproc --all)
+    lunch derp_a04-userdebug
+    #m evolution
+    mka derp
 fi
 
 dirs=(
