@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #rm -rf .repo/local_manifests/
-#repo init -u https://github.com/alphadroid-project/manifest -b alpha-15.1 --git-lfs
+repo init -u https://github.com/RisingOS-Revived/android -b fifteen --git-lfs
 
 echo "--------------------------------------"
 echo "Repo init success"
@@ -9,7 +9,7 @@ echo "--------------------------------------"
 
 
 # build
-#/opt/crave/resync.sh
+/opt/crave/resync.sh
 
 echo "--------------------------------------"
 echo "Sync success"
@@ -175,28 +175,23 @@ git clone https://github.com/smiley9000/hm vendor/lineage-priv/keys
 
 #start build a05m
 . build/envsetup.sh
-#make orion -j$(nproc --all)
-lunch derp_a05m-userdebug
-#m evolution
-mka derp
+riseup a05m userdebug
+rise b
 
 
 #start build a04e
 . build/envsetup.sh
-lunch derp_a04e-userdebug
-#m evolution
-mka derp
+riseup a04e userdebug
+rise b
 
 #start build a04
 . build/envsetup.sh
-lunch derp_a04-userdebug
-#m evolution
-mka derp
+riseup a04 userdebug
+rise b
 
 #start build a03s
-lunch derp_a03s-userdebug
-#m evolution
-mka derp
+riseup a03s userdebug
+rise b
 
 #a05m
 if ls out/target/product/a05m/*.zip 1> /dev/null 2>&1; then
@@ -205,9 +200,8 @@ else
     echo "rebuild with fix"
     rm -rf vendor/samsung/wing-camera
     git clone https://github.com/Samsung-Galaxy-G85-JDM/android_vendor_samsung_wing-camera -b no-chk vendor/samsung/wing-camera
-    lunch derp_a05m-userdebug
-    #m evolution
-    mka derp
+    riseup a05 userdebug
+    rise b
 fi
 
 #a04
@@ -217,9 +211,8 @@ else
     echo "rebuild with fix"
     rm -rf vendor/samsung/wing-camera-n26
     git clone https://github.com/Samsung-Galaxy-G85-JDM/android_vendor_samsung_wing-camera-n26 -b no-chk vendor/samsung/wing-camera-n26 
-    lunch derp_a04-userdebug
-    #m evolution
-    mka derp
+    riseup a04 userdebug
+    rise b
 fi
 
 dirs=(
