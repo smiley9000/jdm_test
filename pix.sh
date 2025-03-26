@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #rm -rf .repo/local_manifests/
-repo init -u https://github.com/alphadroid-project/manifest -b alpha-15.1 --git-lfs
+repo init -u https://github.com/LineageOS/android.git -b lineage-22.2 --git-lfs
 
 echo "--------------------------------------"
 echo "Repo init success"
@@ -135,17 +135,17 @@ rm -rf kernel/samsung/a05m
 rm -rf kernel/samsung/a04
 
 #a05
-git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_a05m -b test  device/samsung/a05m
+git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_a05m  device/samsung/a05m
 
 #a06
-git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_a06 -b test device/samsung/a06
+git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_a06 device/samsung/a06
 
 #a04e
-git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_a04e -b test device/samsung/a04e
-git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_a04 -b test device/samsung/a04
+git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_a04e device/samsung/a04e
+git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_a04 device/samsung/a04
 
 #a04e
-git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_a03s -b test device/samsung/a03s
+git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_a03s device/samsung/a03s
 
 #Camera Tree
 git clone https://github.com/Samsung-Galaxy-G85-JDM/vendor_samsung_hq-camera vendor/samsung/hq-camera
@@ -157,8 +157,8 @@ git clone https://github.com/Samsung-Galaxy-G85-JDM/vendor_samsung_lpm-p35 vendo
 git clone https://github.com/Samsung-Galaxy-G85-JDM/vendor_samsung_lpm-g85 vendor/samsung/lpm-g85
 
 #Common Tree
-git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_mt6765-jdm -b test device/samsung/mt6765-jdm
-git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_mt6768-jdm -b test device/samsung/mt6768-jdm
+git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_mt6765-jdm device/samsung/mt6765-jdm
+git clone https://github.com/Samsung-Galaxy-G85-JDM/android_device_samsung_mt6768-jdm device/samsung/mt6768-jdm
 
 #kernel
 #git clone https://github.com/physwizz/a042-T-kernels kernel/samsung/a04e
@@ -176,11 +176,13 @@ git clone https://github.com/smiley9000/hm vendor/lineage-priv/keys
 #start build a05m
 . build/envsetup.sh
 #make orion -j$(nproc --all)
-lunch alpha_a05m-ap4a-userdebug
-lunch alpha_a05m-ap2a-userdebug
-lunch alpha_a05m-ap1a-userdebug
-lunch alpha_a05m-userdebug
-lunch alpha_a05m-ap3a-userdebug
+lunch lineage_a05m-ap4a-userdebug
+lunch lineage_a05m-ap2a-userdebug
+lunch lineage_a05m-ap1a-userdebug
+lunch lineage_a05m-userdebug
+lunch lineage_a05m-ap3a-userdebug
+lunch lineage_a05m-bp3a-userdebug
+lunch lineage_a05m-bp1a-userdebug
 #m evolution
 mka bacon -j$(nproc --all)
 
@@ -201,30 +203,36 @@ mka bacon -j$(nproc --all)
 
 #start build a04e
 . build/envsetup.sh
-lunch alpha_a04e-ap4a-userdebug
-lunch alpha_a04e-ap2a-userdebug
-lunch alpha_a04e-ap1a-userdebug
-lunch alpha_a04e-userdebug
-lunch alpha_a04e-ap3a-userdebug
+lunch lineage_a04e-ap4a-userdebug
+lunch lineage_a04e-ap2a-userdebug
+lunch lineage_a04e-ap1a-userdebug
+lunch lineage_a04e-userdebug
+lunch lineage_a04e-ap3a-userdebug
+lunch lineage_a04e-bp3a-userdebug
+lunch lineage_a04e-bp1a-userdebug
 
 mka bacon -j$(nproc --all)
 
 #start build a04
 . build/envsetup.sh
-lunch alpha_a04e-ap4a-userdebug
-lunch alpha_a04e-ap2a-userdebug
-lunch alpha_a04e-ap1a-userdebug
-lunch alpha_a04-userdebug
-lunch alpha_a04e-ap3a-userdebug
+lunch lineage_a04e-ap4a-userdebug
+lunch lineage_a04e-ap2a-userdebug
+lunch lineage_a04e-ap1a-userdebug
+lunch lineage_a04e-userdebug
+lunch lineage_a04e-ap3a-userdebug
+lunch lineage_a04e-bp3a-userdebug
+lunch lineage_a04e-bp1a-userdebug
 mka bacon -j$(nproc --all)
 
 #start build a03s
 
-lunch alpha_a03s-ap4a-userdebug
-lunch alpha_a03s-ap2a-userdebug
-lunch alpha_a03s-ap1a-userdebug
-lunch alpha_a03s-userdebug
-lunch alpha_a03s-ap3a-userdebug
+lunch lineage_a03s-ap4a-userdebug
+lunch lineage_a03s-ap2a-userdebug
+lunch lineage_a03s-ap1a-userdebug
+lunch lineage_a03s-userdebug
+lunch lineage_a03s-ap3a-userdebug
+lunch lineage_a03s-bp3a-userdebug
+lunch lineage_a03s-bp1a-userdebug
 
 #m evolution
 mka bacon -j$(nproc --all)
@@ -237,11 +245,13 @@ else
     echo "rebuild with fix"
     rm -rf vendor/samsung/wing-camera
     git clone https://github.com/Samsung-Galaxy-G85-JDM/android_vendor_samsung_wing-camera -b no-chk vendor/samsung/wing-camera
-    lunch alpha_a05m-ap4a-userdebug
-    lunch alpha_a05m-ap2a-userdebug
-    lunch alpha_a05m-ap1a-userdebug
-    lunch alpha_a05m-userdebug
-    lunch alpha_a05m-ap3a-userdebug
+    lunch lineage_a05m-ap4a-userdebug
+    lunch lineage_a05m-ap2a-userdebug
+    lunch lineage_a05m-ap1a-userdebug
+    lunch lineage_a05m-userdebug
+    lunch lineage_a05m-ap3a-userdebug
+    lunch lineage_a05m-bp3a-userdebug
+    lunch lineage_a05m-bp1a-userdebug
     mka bacon -j$(nproc --all)
 fi
 
@@ -252,11 +262,13 @@ else
     echo "rebuild with fix"
     rm -rf vendor/samsung/wing-camera-n26
     git clone https://github.com/Samsung-Galaxy-G85-JDM/android_vendor_samsung_wing-camera-n26 -b no-chk vendor/samsung/wing-camera-n26 
-    lunch alpha_a04-ap4a-userdebug
-    lunch alpha_a04-ap2a-userdebug
-    lunch alpha_a04-ap1a-userdebug
-    lunch alpha_a04-userdebug
-    lunch alpha_a04-ap3a-userdebug
+    lunch lineage_a04-ap4a-userdebug
+    lunch lineage_a04-ap2a-userdebug
+    lunch lineage_a04-ap1a-userdebug
+    lunch lineage_a04-userdebug
+    lunch lineage_a04-ap3a-userdebug
+    lunch lineage_a04-bp3a-userdebug
+    lunch lineage_a04-bp1a-userdebug
     mka bacon -j$(nproc --all)
 fi
 
