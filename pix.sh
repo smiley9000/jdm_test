@@ -8,7 +8,6 @@ echo "--------------------------------------"
 
 
 # build
-/opt/crave/resync.sh
 
 echo "--------------------------------------"
 echo "Sync success"
