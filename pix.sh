@@ -183,6 +183,7 @@ lunch lineage_a05m-userdebug
 lunch lineage_a05m-ap3a-userdebug
 lunch lineage_a05m-bp3a-userdebug
 lunch lineage_a05m-bp1a-userdebug
+breakfast a05m userdebug 
 #m evolution
 mka bacon -j$(nproc --all)
 
@@ -210,18 +211,19 @@ lunch lineage_a04e-userdebug
 lunch lineage_a04e-ap3a-userdebug
 lunch lineage_a04e-bp3a-userdebug
 lunch lineage_a04e-bp1a-userdebug
-
+breakfast a04e userdebug 
 mka bacon -j$(nproc --all)
 
 #start build a04
 . build/envsetup.sh
-lunch lineage_a04e-ap4a-userdebug
-lunch lineage_a04e-ap2a-userdebug
-lunch lineage_a04e-ap1a-userdebug
-lunch lineage_a04e-userdebug
-lunch lineage_a04e-ap3a-userdebug
-lunch lineage_a04e-bp3a-userdebug
-lunch lineage_a04e-bp1a-userdebug
+lunch lineage_a04-ap4a-userdebug
+lunch lineage_a04-ap2a-userdebug
+lunch lineage_a04-ap1a-userdebug
+lunch lineage_a04-userdebug
+lunch lineage_a04-ap3a-userdebug
+lunch lineage_a04-bp3a-userdebug
+lunch lineage_a04-bp1a-userdebug
+breakfast a04 userdebug 
 mka bacon -j$(nproc --all)
 
 #start build a03s
@@ -233,7 +235,7 @@ lunch lineage_a03s-userdebug
 lunch lineage_a03s-ap3a-userdebug
 lunch lineage_a03s-bp3a-userdebug
 lunch lineage_a03s-bp1a-userdebug
-
+breakfast a03s userdebug 
 #m evolution
 mka bacon -j$(nproc --all)
 
@@ -252,6 +254,7 @@ else
     lunch lineage_a05m-ap3a-userdebug
     lunch lineage_a05m-bp3a-userdebug
     lunch lineage_a05m-bp1a-userdebug
+    breakfast a05m userdebug 
     mka bacon -j$(nproc --all)
 fi
 
@@ -269,6 +272,7 @@ else
     lunch lineage_a04-ap3a-userdebug
     lunch lineage_a04-bp3a-userdebug
     lunch lineage_a04-bp1a-userdebug
+    breakfast a04 userdebug 
     mka bacon -j$(nproc --all)
 fi
 
@@ -290,14 +294,15 @@ done
 
 if [ "$found_zip" = true ]; then
     echo "done"
-    #rm -rf .repo
-    #. build/envsetup.sh
-    #lunch aosp_a06-ap4a-userdebug
-    #lunch aosp_a06-ap2a-userdebug
-    #lunch aosp_a06-ap1a-userdebug
-    #lunch aosp_a06-userdebug
-    #lunch aosp_a06-ap3a-userdebug
-    #mka bacon -j$(nproc --all)
+    rm -rf .repo
+    . build/envsetup.sh
+    lunch lineage_a06-ap4a-userdebug
+    lunch lineage_a06-ap2a-userdebug
+    lunch lineage_a06-ap1a-userdebug
+    lunch lineage_a06-userdebug
+    lunch lineage_a06-ap3a-userdebug
+    breakfast a06 userdebug 
+    mka bacon -j$(nproc --all)
     
 else
     echo "No ZIP files found. .repo will not be removed."
