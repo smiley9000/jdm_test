@@ -1,17 +1,17 @@
 #!/bin/bash
 
-rm -rf .repo/local_manifests
-rm -rf prebuilts/clang/host/linux-x86
+#rm -rf .repo/local_manifests
+#rm -rf prebuilts/clang/host/linux-x86
 
 # ROM source repo
-repo init -u https://github.com/crdroidandroid/android.git -b 16.0 --git-lfs
+#repo init -u https://github.com/crdroidandroid/android.git -b 16.0 --git-lfs
 echo "--------------------------------------"
 echo "Repo init success"
 echo "--------------------------------------"
 
 
 # Re-sync
-/opt/crave/resync.sh
+#/opt/crave/resync.sh
 echo "--------------------------------------"
 echo " Synced Successfully "
 echo "--------------------------------------"
@@ -42,6 +42,7 @@ echo " Clone MediaTek Dependecies"
 echo "--------------------------------------"
 git clone https://github.com/crdroidandroid/android_device_mediatek_sepolicy_vndr device/mediatek/sepolicy_vndr
 git clone https://github.com/crdroidandroid/android_hardware_mediatek hardware/mediatek 
+git clone https://github.com/techyminati/android_vendor_mediatek_ims vendor/mediatek/ims
 
 git clone https://gitlab.com/17101443/key vendor/lineage-priv/keys
 
