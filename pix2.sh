@@ -55,9 +55,11 @@ echo " Building"
 echo "--------------------------------------"
 
 . build/envsetup.sh
-lunch lineage_X6531-bp1a-userdebug
-lunch lineage_X6531-bp2a-userdebug
-make bacon
+brunch X6531
+
+#lunch lineage_X6531-bp1a-userdebug
+#lunch lineage_X6531-bp2a-userdebug
+#make bacon
 
 
 
