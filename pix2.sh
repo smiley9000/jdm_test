@@ -1,15 +1,21 @@
 #!/bin/bash
 
-#rm -rf .repo/local_manifests/
-repo init -u https://github.com/crdroidandroid/android.git -b 16.0 --git-lfs --no-clone-bundle
+rm -rf .repo/local_manifests
+rm -rf prebuilts/clang/host/linux-x86
 
+# ROM source repo
+repo init -u https://github.com/crdroidandroid/android.git -b 16.0 --git-lfs
 echo "--------------------------------------"
-echo " Repo init success"
+echo "Repo init success"
 echo "--------------------------------------"
 
 
-# build
+# Re-sync
 /opt/crave/resync.sh
+echo "--------------------------------------"
+echo " Synced Successfully "
+echo "--------------------------------------"
+
 
 echo "--------------------------------------"
 echo " Sync success"
