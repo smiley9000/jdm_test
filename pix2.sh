@@ -48,7 +48,8 @@ git clone https://gitlab.com/17101443/key vendor/lineage-priv/keys
 
 wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/NotificationShadeWindowControllerImpl.java
 
-mv frameworks/base/packages/SystemUI/src/com/android/systemui/shade/NotificationShadeWindowControllerImpl.java NotificationShadeWindowControllerImpl.java.bk
+mv frameworks/base/packages/SystemUI/src/com/android/systemui/shade/NotificationShadeWindowControllerImpl.java STK_NotificationShadeWindowControllerImpl.java.bk
+
 cp NotificationShadeWindowControllerImpl.java frameworks/base/packages/SystemUI/src/com/android/systemui/shade/NotificationShadeWindowControllerImpl.java
 
 echo "--------------------------------------"
@@ -56,11 +57,10 @@ echo " Building"
 echo "--------------------------------------"
 
 . build/envsetup.sh
-brunch X6531
-
-#lunch lineage_X6531-bp1a-userdebug
-#lunch lineage_X6531-bp2a-userdebug
-#make bacon
+lunch lineage_X6531-bp1a-userdebug
+lunch lineage_X6531-bp2a-userdebug
+rm -rf out/target/product/X6531/system_ext/priv-app/SystemUI/*
+m SystemUI
 
 
 
