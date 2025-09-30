@@ -4,14 +4,14 @@
 #rm -rf prebuilts/clang/host/linux-x86
 
 # ROM source repo
-#repo init -u https://github.com/crdroidandroid/android.git -b 16.0 --git-lfs
+repo init -u https://github.com/Evolution-X/manifest -b bka --git-lfs
 echo "--------------------------------------"
 echo "Repo init success"
 echo "--------------------------------------"
 
 
 # Re-sync
-#/opt/crave/resync.sh
+/opt/crave/resync.sh
 echo "--------------------------------------"
 echo " Synced Successfully "
 echo "--------------------------------------"
@@ -33,9 +33,9 @@ rm -rf NotificationShadeWindowControllerImpl.java
 echo "--------------------------------------"
 echo " Clone Trees"
 echo "--------------------------------------"
-#git clone https://github.com/smiley9000/android_device_infinix_x6531 -b lineage-23.0 device/infinix/X6531
-#git clone https://github.com/smiley9000/X6531_vndr -b bka-2 vendor/infinix/X6531
-#git clone https://github.com/smiley9000/android_device_infinix_X6531-kernel device/infinix/X6531-kernel
+git clone https://github.com/smiley9000/android_device_infinix_x6531 -b lineage-23.0 device/infinix/X6531
+git clone https://github.com/smiley9000/X6531_vndr -b bka-2 vendor/infinix/X6531
+git clone https://github.com/smiley9000/android_device_infinix_X6531-kernel device/infinix/X6531-kernel
 #
 echo "--------------------------------------"
 echo " Clone MediaTek Dependecies"
@@ -57,10 +57,9 @@ echo " Building"
 echo "--------------------------------------"
 
 . build/envsetup.sh
-lunch lineage_X6531-bp1a-userdebug
 lunch lineage_X6531-bp2a-userdebug
-rm -rf out/target/product/X6531/system_ext/priv-app/SystemUI/*
-m SystemUI
+
+m evolution
 
 
 
