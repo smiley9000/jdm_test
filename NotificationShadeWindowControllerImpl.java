@@ -45,7 +45,6 @@ import android.view.WindowManager.LayoutParams;
 import android.view.WindowManagerGlobal;
 
 import android.content.ContentResolver;
-import android.os.SystemProperties;
 
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.systemui.Dumpable;
@@ -105,11 +104,6 @@ public class NotificationShadeWindowControllerImpl implements NotificationShadeW
 
     private static final String TAG = "NotificationShadeWindowController";
     private static final int MAX_STATE_CHANGES_BUFFER_SIZE = 100;
-
-
-    private float mPrevMinRefreshRate = 60f;
-    private float mPrevMaxRefreshRate = 120f;
-    private float mPrevExRefreshRate = 0f;
 
     private final Context mContext;
     private final WindowRootViewComponent.Factory mWindowRootViewComponentFactory;
@@ -256,101 +250,36 @@ public class NotificationShadeWindowControllerImpl implements NotificationShadeW
     }
 
     @VisibleForTesting
-	void onShadeOrQsExpanded(Boolean isExpanded) {
-		Log.d(TAG, "onShadeOrQsExpanded called: isExpanded=" + isExpanded);
-
-		if (mCurrentState.shadeOrQsExpanded != isExpanded) {
-			mCurrentState.shadeOrQsExpanded = isExpanded;
+    void onShadeOrQsExpanded(Boolean isExpanded) {
+        if (mCurrentState.shadeOrQsExpanded != isExpanded) {
+            mCurrentState.shadeOrQsExpanded = isExpanded;
+            apply(mCurrentState);
 			
-			apply(mCurrentState);
 			ContentResolver cr = mContext.getContentResolver();
-			boolean refreshrateActivated = false;
 
-			// Read qs.limited property as float (decimal supported)
-			float qsLimited = -1f;
-			try {
-				qsLimited = Float.parseFloat(SystemProperties.get("qs.limited", "-1"));
-			} catch (NumberFormatException ignored) {}
-
-			if (qsLimited > 0f && qsLimited <= 120f) {
-				if (isExpanded) {
-					Log.d(TAG, "Shade Expanded, FPS Limit=" + qsLimited);
-	
-					// Save current refresh rates
-					try {
-						mPrevMinRefreshRate = Settings.System.getFloat(cr, "min_refresh_rate", 60f);
-					} catch (Exception e) {
-						mPrevMinRefreshRate = 60f;
-					}
-					try {
-						mPrevMaxRefreshRate = Settings.System.getFloat(cr, "peak_refresh_rate", 120f);
-					} catch (Exception e) {
-						mPrevMaxRefreshRate = 120f;
-					}
-					try {
-						mPrevExRefreshRate = Settings.System.getFloat(cr, "extreme_refresh_rate", 0f);
-					} catch (Exception e) {
-						mPrevExRefreshRate = 0f;
-					}
-
-					Log.d(TAG, "Stored min=" + mPrevMinRefreshRate + ", max=" + mPrevMaxRefreshRate
-							+ ", extreme=" + mPrevExRefreshRate);
-
-					// Persist values across reboots
-					try {
-						Runtime.getRuntime().exec("setprop persist.qs.fps.min " + mPrevMinRefreshRate);
-						Runtime.getRuntime().exec("setprop persist.qs.fps.max " + mPrevMaxRefreshRate);
-						Runtime.getRuntime().exec("setprop persist.fps.ex " + mPrevExRefreshRate);
-						refreshrateActivated = true;
-						Log.d(TAG, "Persisted min=" + mPrevMinRefreshRate
-								+ ", max=" + mPrevMaxRefreshRate
-								+ ", extreme=" + mPrevExRefreshRate);
-					} catch (Exception e) {
-						Log.e(TAG, "Failed to persist min/max/extreme", e);
-					}
-
-					// Apply limited refresh rate (X-1, X)
-					try {
-						float minTarget = Math.max(1f, qsLimited - 1f);
-						float maxTarget = qsLimited;
-
-						Settings.System.putFloat(cr, "extreme_refresh_rate", 0f);
-						Settings.System.putFloat(cr, "min_refresh_rate", minTarget);
-						Settings.System.putFloat(cr, "peak_refresh_rate", maxTarget);
-
-						Log.d(TAG, "Refresh rates locked: min=" + minTarget + "Hz, max=" + maxTarget + "Hz");
-					} catch (Exception e) {
-						Log.e(TAG, "Failed to set refresh rates", e);
-					}
-
-				} else {
-					Log.d(TAG, "Shade Collapsed, restoring rates");
-
-					try {
-						// Read persisted values
-						float persistedMin = Float.parseFloat(SystemProperties.get("persist.qs.fps.min", "60"));
-						float persistedMax = Float.parseFloat(SystemProperties.get("persist.qs.fps.max", "120"));
-						float persistedEx  = Float.parseFloat(SystemProperties.get("persist.fps.ex", "0"));
-
-						// small delay before restoring (to avoid race conditions)
-						try { Thread.sleep(100); } catch (InterruptedException ignored) {}
-
-						Settings.System.putFloat(cr, "min_refresh_rate", persistedMin);
-						Settings.System.putFloat(cr, "peak_refresh_rate", persistedMax);
-						Settings.System.putFloat(cr, "extreme_refresh_rate", persistedEx);
-
-						Log.d(TAG, "Refresh rates restored: min=" + persistedMin
-								+ ", max=" + persistedMax
-								+ ", extreme=" + persistedEx);
-					} catch (Exception e) {
-						Log.e(TAG, "Failed to restore refresh rates", e);
-					}
+			if (isExpanded) {
+				Log.d(TAG, "Shade expand detected");
+				try {
+					// Create/update custom key qs.fps.expanded = 1
+					Settings.System.putInt(cr, "qs.fps.expanded", 1);
+				} catch (Exception e) {
+					Log.e(TAG, "Failed to update settings", e);
 				}
 			} else {
-				Log.d(TAG, "qs.limited not detected or out of range");
+				Log.d(TAG, "Shade collapsed");
+				// Delay update to avoid racing with animations
+				mMainHandler.postDelayed(() -> {
+					try {
+						// Create/update custom key qs.fps.expanded = 0
+						Settings.System.putInt(cr, "qs.fps.expanded", 0);
+					} catch (Exception e) {
+						Log.e(TAG, "Failed to update setting", e);
+					}
+				}, 100);
 			}
-			
-			final IBinder token;
+
+
+            final IBinder token;
             if (com.android.window.flags.Flags.schedulingForNotificationShade()
                     && (token = mWindowRootView.getWindowToken()) != null) {
                 mBackgroundExecutor.execute(() -> {
@@ -362,8 +291,8 @@ public class NotificationShadeWindowControllerImpl implements NotificationShadeW
                     }
                 });
             }
-		}
-	}
+        }
+    }
 
     /**
      * Register a listener to monitor scrims visibility
