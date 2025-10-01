@@ -117,7 +117,6 @@ public class NotificationShadeWindowControllerImpl implements NotificationShadeW
     private final long mLockScreenDisplayTimeout;
     private final float mKeyguardPreferredRefreshRate; // takes precedence over max
     private final float mKeyguardMaxRefreshRate;
-	private final Handler mMainHandler = new Handler(Looper.getMainLooper());
     private final KeyguardViewMediator mKeyguardViewMediator;
     private final KeyguardBypassController mKeyguardBypassController;
     private final Executor mBackgroundExecutor;
@@ -268,15 +267,12 @@ public class NotificationShadeWindowControllerImpl implements NotificationShadeW
 				}
 			} else {
 				Log.d(TAG, "Shade collapsed");
-				// Delay update to avoid racing with animations
-				mMainHandler.postDelayed(() -> {
-					try {
-						// Create/update custom key qs.fps.expanded = 0
-						Settings.System.putInt(cr, "qs.fps.expanded", 0);
-					} catch (Exception e) {
-						Log.e(TAG, "Failed to update setting", e);
-					}
-				}, 100);
+				try {
+					// Create/update custom key qs.fps.expanded = 0
+					Settings.System.putInt(cr, "qs.fps.expanded", 0);
+				} catch (Exception e) {
+					Log.e(TAG, "Failed to update settings", e);
+				}
 			}
 
 
