@@ -4,14 +4,14 @@
 #rm -rf prebuilts/clang/host/linux-x86
 
 # ROM source repo
-repo init -u https://github.com/Evolution-X/manifest -b bka --git-lfs
+#repo init -u https://github.com/Evolution-X/manifest -b bka --git-lfs
 echo "--------------------------------------"
 echo "Repo init success"
 echo "--------------------------------------"
 
 
 # Re-sync
-/opt/crave/resync.sh
+#/opt/crave/resync.sh
 echo "--------------------------------------"
 echo " Synced Successfully "
 echo "--------------------------------------"
@@ -24,9 +24,9 @@ echo "--------------------------------------"
 echo "--------------------------------------"
 echo " Clean Trees"
 echo "--------------------------------------"
-#rm -rf  vendor/infinix/X6531
-#rm -rf  device/infinix/X6531
-#rm -rf device/infinix/X6531-kernel
+rm -rf  vendor/infinix/X6531
+rm -rf  device/infinix/X6531
+rm -rf device/infinix/X6531-kernel
 rm -rf NotificationShadeWindowControllerImpl.java
 
 
