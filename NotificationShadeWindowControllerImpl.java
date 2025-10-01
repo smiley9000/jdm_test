@@ -117,6 +117,7 @@ public class NotificationShadeWindowControllerImpl implements NotificationShadeW
     private final long mLockScreenDisplayTimeout;
     private final float mKeyguardPreferredRefreshRate; // takes precedence over max
     private final float mKeyguardMaxRefreshRate;
+	private final Handler mMainHandler = new Handler(Looper.getMainLooper());
     private final KeyguardViewMediator mKeyguardViewMediator;
     private final KeyguardBypassController mKeyguardBypassController;
     private final Executor mBackgroundExecutor;
