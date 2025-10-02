@@ -55,7 +55,7 @@ echo " Building"
 echo "--------------------------------------"
 
 . build/envsetup.sh
-lunch aosp-bp2a-userdebug
+lunch aosp_X6531-bp2a-userdebug
 
 mka bacon
 
