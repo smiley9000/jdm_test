@@ -68,7 +68,7 @@ echo "--------------------------------------"
 
 . build/envsetup.sh
 export PIXELAGE_BUILD="X6531"
-lunch pixelage_X6531-bp1a-buildtype
+lunch pixelage_X6531-bp1a-userdebug
 mka bacon
 #lunch aosp_X6531-bp2a-userdebug
 #brunch X6531
