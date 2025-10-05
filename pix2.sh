@@ -37,7 +37,7 @@ rm -rf NotificationShadeWindowControllerImpl.java
 echo "--------------------------------------"
 echo " Clone Trees"
 echo "--------------------------------------"
-git clone https://github.com/smiley9000/android_device_infinix_x6531 -b pixel device/infinix/X6531
+git clone https://github.com/smiley9000/android_device_infinix_x6531 -b aosp device/infinix/X6531
 git clone https://github.com/smiley9000/X6531_vndr -b bka-2 vendor/infinix/X6531
 git clone https://github.com/smiley9000/android_device_infinix_X6531-kernel device/infinix/X6531-kernel
 #
