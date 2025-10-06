@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2022 The Android Open Source Project
- * voltage
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -28,11 +28,10 @@ import android.content.res.Configuration;
 import android.database.ContentObserver;
 import android.graphics.Rect;
 import android.graphics.Region;
-import android.os.IBinder;
 import android.os.Handler;
+import android.os.IBinder;
 import android.os.RemoteException;
 import android.os.Trace;
-import android.os.UserHandle;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.Display;
@@ -45,7 +44,6 @@ import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
 import android.view.WindowManagerGlobal;
 
-import android.content.ContentResolver;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.systemui.Dumpable;
 import com.android.systemui.Flags;
@@ -80,6 +78,8 @@ import com.android.systemui.statusbar.policy.KeyguardStateController;
 import com.android.systemui.user.domain.interactor.SelectedUserInteractor;
 
 import dagger.Lazy;
+
+import lineageos.providers.LineageSettings;
 
 import java.io.PrintWriter;
 import java.lang.ref.Reference;
@@ -311,9 +311,9 @@ public class NotificationShadeWindowControllerImpl implements NotificationShadeW
                 Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.ACCELEROMETER_ROTATION, 0) != 0;
         boolean enableLockScreenRotation =
-                Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.LOCKSCREEN_ROTATION,
-                mContext.getResources().getBoolean(com.android.internal.R.bool.
+                LineageSettings.System.getInt(mContext.getContentResolver(),
+                LineageSettings.System.LOCKSCREEN_ROTATION,
+                mContext.getResources().getBoolean(org.lineageos.platform.internal.R.bool.
                         config_lockScreenRotationEnabledByDefault) ? 1 : 0) != 0;
         return mKeyguardStateController.isKeyguardScreenRotationAllowed()
                 && (enableLockScreenRotation && enableAccelerometerRotation);
@@ -1149,7 +1149,7 @@ public class NotificationShadeWindowControllerImpl implements NotificationShadeW
                     Settings.System.getUriFor(Settings.System.ACCELEROMETER_ROTATION),
                     false, this);
             context.getContentResolver().registerContentObserver(
-                    Settings.System.getUriFor(Settings.System.LOCKSCREEN_ROTATION),
+                    LineageSettings.System.getUriFor(LineageSettings.System.LOCKSCREEN_ROTATION),
                     false, this);
         }
 
