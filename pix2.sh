@@ -4,7 +4,7 @@
 #rm -rf prebuilts/clang/host/linux-x86
 
 # ROM source repo
-#repo init -u https://github.com/ProjectPixelage/android_manifest.git -b 15 --git-lfs
+repo init --no-repo-verify --git-lfs -u https://github.com/ProjectInfinity-X/manifest -b 16 -g default,-mips,-darwin,-notdefault
 
 echo "--------------------------------------"
 echo "Repo init success"
@@ -12,7 +12,7 @@ echo "--------------------------------------"
 
 
 # Re-sync
-#/opt/crave/resync.sh
+/opt/crave/resync.sh
 echo "--------------------------------------"
 echo " Synced Successfully "
 echo "--------------------------------------"
