@@ -58,16 +58,16 @@ echo " Clone Keys "
 echo "--------------------------------------"
 git clone https://gitlab.com/17101443/key vendor/lineage-priv/keys
 
-#wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/NotificationShadeWindowControllerImpl.java
-#mv frameworks/base/packages/SystemUI/src/com/android/systemui/shade/NotificationShadeWindowControllerImpl.java STK_NotificationShadeWindowControllerImpl.java.bk
-#cp NotificationShadeWindowControllerImpl.java frameworks/base/packages/SystemUI/src/com/android/systemui/shade/NotificationShadeWindowControllerImpl.java
+wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/NotificationShadeWindowControllerImpl.java
+mv frameworks/base/packages/SystemUI/src/com/android/systemui/shade/NotificationShadeWindowControllerImpl.java STK_NotificationShadeWindowControllerImpl.java.bk
+cp NotificationShadeWindowControllerImpl.java frameworks/base/packages/SystemUI/src/com/android/systemui/shade/NotificationShadeWindowControllerImpl.java
 
 echo "--------------------------------------"
 echo " Building"
 echo "--------------------------------------"
 
 . build/envsetup.sh
-lunch aosp_X6531-bp2a-userdebug
+lunch infinity_X6531-userdebug
 mka bacon
 
 
