@@ -78,6 +78,7 @@ import com.android.systemui.statusbar.policy.KeyguardStateController;
 import com.android.systemui.user.domain.interactor.SelectedUserInteractor;
 
 import dagger.Lazy;
+import android.content.ContentResolver;
 
 import lineageos.providers.LineageSettings;
 
