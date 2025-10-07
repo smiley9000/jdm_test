@@ -17,6 +17,8 @@
 package com.android.systemui.shade;
 
 import static android.view.WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE;
+import static android.view.WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_ALWAYS;
+import static android.view.WindowManager.LayoutParams.PRIVATE_FLAG_OPTIMIZE_MEASURE;
 
 import static com.android.systemui.statusbar.NotificationRemoteInputManager.ENABLE_REMOTE_INPUT;
 import static com.android.systemui.util.kotlin.JavaAdapterKt.collectFlow;
@@ -26,24 +28,27 @@ import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.database.ContentObserver;
+import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.Region;
+import android.os.Binder;
+import android.os.Build;
 import android.os.Handler;
-import android.os.IBinder;
 import android.os.RemoteException;
 import android.os.Trace;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.Display;
+import android.view.Gravity;
 import android.view.IWindow;
 import android.view.IWindowSession;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowInsets;
-import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
 import android.view.WindowManagerGlobal;
 
+import com.android.app.viewcapture.ViewCaptureAwareWindowManager;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.systemui.Dumpable;
 import com.android.systemui.Flags;
@@ -77,10 +82,10 @@ import com.android.systemui.statusbar.policy.ConfigurationController.Configurati
 import com.android.systemui.statusbar.policy.KeyguardStateController;
 import com.android.systemui.user.domain.interactor.SelectedUserInteractor;
 
-import dagger.Lazy;
 import android.content.ContentResolver;
 
-import lineageos.providers.LineageSettings;
+
+import dagger.Lazy;
 
 import java.io.PrintWriter;
 import java.lang.ref.Reference;
@@ -106,17 +111,15 @@ public class NotificationShadeWindowControllerImpl implements NotificationShadeW
 
     private final Context mContext;
     private final WindowRootViewComponent.Factory mWindowRootViewComponentFactory;
-    private final WindowManager mWindowManager;
+    private final ViewCaptureAwareWindowManager mWindowManager;
     private final IActivityManager mActivityManager;
     private final DozeParameters mDozeParameters;
     private final KeyguardStateController mKeyguardStateController;
     private final ShadeWindowLogger mLogger;
-    private final LayoutParams mShadeWindowLayoutParams;
     private final LayoutParams mLpChanged;
     private final long mLockScreenDisplayTimeout;
     private final float mKeyguardPreferredRefreshRate; // takes precedence over max
     private final float mKeyguardMaxRefreshRate;
-    private final float mAODMaxRefreshRate;
     private final KeyguardViewMediator mKeyguardViewMediator;
     private final KeyguardBypassController mKeyguardBypassController;
     private final Executor mBackgroundExecutor;
@@ -151,13 +154,13 @@ public class NotificationShadeWindowControllerImpl implements NotificationShadeW
 
     @Inject
     public NotificationShadeWindowControllerImpl(
-            @ShadeDisplayAware Context context,
+            Context context,
             WindowRootViewComponent.Factory windowRootViewComponentFactory,
-            @ShadeDisplayAware WindowManager windowManager,
+            ViewCaptureAwareWindowManager viewCaptureAwareWindowManager,
             IActivityManager activityManager,
             DozeParameters dozeParameters,
             StatusBarStateController statusBarStateController,
-            @ShadeDisplayAware ConfigurationController configurationController,
+            ConfigurationController configurationController,
             KeyguardViewMediator keyguardViewMediator,
             KeyguardBypassController keyguardBypassController,
             @Main Executor mainExecutor,
@@ -171,16 +174,14 @@ public class NotificationShadeWindowControllerImpl implements NotificationShadeW
             Lazy<SelectedUserInteractor> userInteractor,
             UserTracker userTracker,
             NotificationShadeWindowModel notificationShadeWindowModel,
-            Lazy<CommunalInteractor> communalInteractor,
-            @ShadeDisplayAware LayoutParams shadeWindowLayoutParams) {
+            Lazy<CommunalInteractor> communalInteractor) {
         mContext = context;
         mWindowRootViewComponentFactory = windowRootViewComponentFactory;
-        mWindowManager = windowManager;
+        mWindowManager = viewCaptureAwareWindowManager;
         mActivityManager = activityManager;
         mDozeParameters = dozeParameters;
         mKeyguardStateController = keyguardStateController;
         mLogger = logger;
-        mShadeWindowLayoutParams = shadeWindowLayoutParams;
         mScreenBrightnessDoze = mDozeParameters.getScreenBrightnessDoze();
         mLpChanged = new LayoutParams();
         mKeyguardViewMediator = keyguardViewMediator;
@@ -223,11 +224,6 @@ public class NotificationShadeWindowControllerImpl implements NotificationShadeW
         // know that we're not falsing (because we unlocked.)
         mKeyguardMaxRefreshRate = context.getResources()
                 .getInteger(R.integer.config_keyguardMaxRefreshRate);
-
-        // Same as described above but limited to AOD
-        // Allows using a different rate for each
-        mAODMaxRefreshRate = context.getResources()
-                .getInteger(R.integer.config_aodMaxRefreshRate);
     }
 
     /**
@@ -278,21 +274,7 @@ public class NotificationShadeWindowControllerImpl implements NotificationShadeW
 				} catch (Exception e) {
 					Log.e(TAG, "Failed to update settings", e);
 				}
-			}
-
-
-            final IBinder token;
-            if (com.android.window.flags.Flags.schedulingForNotificationShade()
-                    && (token = mWindowRootView.getWindowToken()) != null) {
-                mBackgroundExecutor.execute(() -> {
-                    try {
-                        WindowManagerGlobal.getWindowManagerService()
-                                .onNotificationShadeExpanded(token, isExpanded);
-                    } catch (RemoteException e) {
-                        Log.e(TAG, "Failed to call onNotificationShadeExpanded", e);
-                    }
-                });
-            }
+			}		
         }
     }
 
@@ -308,16 +290,11 @@ public class NotificationShadeWindowControllerImpl implements NotificationShadeW
     }
 
     private boolean shouldEnableKeyguardScreenRotation() {
-        boolean enableAccelerometerRotation =
-                Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.ACCELEROMETER_ROTATION, 0) != 0;
         boolean enableLockScreenRotation =
-                LineageSettings.System.getInt(mContext.getContentResolver(),
-                LineageSettings.System.LOCKSCREEN_ROTATION,
-                mContext.getResources().getBoolean(org.lineageos.platform.internal.R.bool.
-                        config_lockScreenRotationEnabledByDefault) ? 1 : 0) != 0;
+                Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.LOCKSCREEN_ROTATION, 0) != 0;
         return mKeyguardStateController.isKeyguardScreenRotationAllowed()
-                && (enableLockScreenRotation && enableAccelerometerRotation);
+                && enableLockScreenRotation;
     }
 
     /**
@@ -328,9 +305,33 @@ public class NotificationShadeWindowControllerImpl implements NotificationShadeW
         // Now that the notification shade encompasses the sliding panel and its
         // translucent backdrop, the entire thing is made TRANSLUCENT and is
         // hardware-accelerated.
-        // mLP is assigned here (instead of the constructor) as its null value is also used to check
-        // if the shade window has been attached.
-        mLp = mShadeWindowLayoutParams;
+        mLp = new LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                LayoutParams.TYPE_NOTIFICATION_SHADE,
+                LayoutParams.FLAG_NOT_FOCUSABLE
+                        | LayoutParams.FLAG_TOUCHABLE_WHEN_WAKING
+                        | LayoutParams.FLAG_SPLIT_TOUCH
+                        | LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH
+                        | LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS,
+                PixelFormat.TRANSLUCENT);
+        mLp.token = new Binder();
+        mLp.gravity = Gravity.TOP;
+        mLp.setFitInsetsTypes(0 /* types */);
+        mLp.setTitle("NotificationShade");
+        mLp.packageName = mContext.getPackageName();
+        mLp.layoutInDisplayCutoutMode = LAYOUT_IN_DISPLAY_CUTOUT_MODE_ALWAYS;
+        mLp.privateFlags |= PRIVATE_FLAG_OPTIMIZE_MEASURE;
+
+        if (SceneContainerFlag.isEnabled()) {
+            // This prevents the appearance and disappearance of the software keyboard (also known
+            // as the "IME") from scrolling/panning the window to make room for the keyboard.
+            //
+            // The scene container logic does its own adjustment and animation when the IME appears
+            // or disappears.
+            mLp.softInputMode = LayoutParams.SOFT_INPUT_ADJUST_NOTHING;
+        }
+
         mWindowManager.addView(mWindowRootView, mLp);
 
         // We use BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE here, however, there is special logic in
@@ -417,7 +418,6 @@ public class NotificationShadeWindowControllerImpl implements NotificationShadeW
     private void applyKeyguardFlags(NotificationShadeWindowState state) {
         final boolean keyguardOrAod = state.keyguardShowing
                 || (state.dozing && mDozeParameters.getAlwaysOn());
-        boolean wasKeyguardRateSet = false;
         if ((keyguardOrAod && !state.mediaBackdropShowing && !state.lightRevealScrimOpaque)
                 || mKeyguardViewMediator.isAnimatingBetweenKeyguardAndSurfaceBehind()) {
             // Show the wallpaper if we're on keyguard/AOD and the wallpaper is not occluded by a
@@ -448,7 +448,6 @@ public class NotificationShadeWindowControllerImpl implements NotificationShadeW
                 // Both max and min display refresh rate must be set to take effect:
                 mLpChanged.preferredMaxDisplayRefreshRate = mKeyguardPreferredRefreshRate;
                 mLpChanged.preferredMinDisplayRefreshRate = mKeyguardPreferredRefreshRate;
-                wasKeyguardRateSet = true;
             } else {
                 mLpChanged.preferredMaxDisplayRefreshRate = 0;
                 mLpChanged.preferredMinDisplayRefreshRate = 0;
@@ -461,7 +460,6 @@ public class NotificationShadeWindowControllerImpl implements NotificationShadeW
                     && !state.keyguardFadingAway && !state.keyguardGoingAway;
             if (state.dozing || bypassOnKeyguard) {
                 mLpChanged.preferredMaxDisplayRefreshRate = mKeyguardMaxRefreshRate;
-                wasKeyguardRateSet = true;
             } else {
                 mLpChanged.preferredMaxDisplayRefreshRate = 0;
             }
@@ -469,7 +467,7 @@ public class NotificationShadeWindowControllerImpl implements NotificationShadeW
                     (long) mLpChanged.preferredMaxDisplayRefreshRate);
         }
 
-        if (state.bouncerShowing) {
+        if (state.bouncerShowing && !isDebuggable()) {
             mLpChanged.flags |= LayoutParams.FLAG_SECURE;
         } else {
             mLpChanged.flags &= ~LayoutParams.FLAG_SECURE;
@@ -480,19 +478,10 @@ public class NotificationShadeWindowControllerImpl implements NotificationShadeW
         } else {
             mLpChanged.inputFeatures &= ~LayoutParams.INPUT_FEATURE_SENSITIVE_FOR_PRIVACY;
         }
+    }
 
-        if (mAODMaxRefreshRate > 0) {
-            if (state.dozing) {
-                // limit on AOD & ambient if we have that set
-                // overrides set max keyguard rate
-                mLpChanged.preferredMaxDisplayRefreshRate = mAODMaxRefreshRate;
-            } else if (!wasKeyguardRateSet) {
-                // un-limit when out, but only if max keyguard rate wasn't set
-                mLpChanged.preferredMaxDisplayRefreshRate = 0;
-            }
-            Trace.setCounter("display_max_refresh_rate",
-                        (long) mLpChanged.preferredMaxDisplayRefreshRate);
-        }
+    protected boolean isDebuggable() {
+        return Build.IS_DEBUGGABLE;
     }
 
     private void adjustScreenOrientation(NotificationShadeWindowState state) {
@@ -502,8 +491,6 @@ public class NotificationShadeWindowControllerImpl implements NotificationShadeW
             } else {
                 mLpChanged.screenOrientation = ActivityInfo.SCREEN_ORIENTATION_NOSENSOR;
             }
-        } else if (state.glanceableHubOrientationAware) {
-            mLpChanged.screenOrientation = ActivityInfo.SCREEN_ORIENTATION_USER;
         } else {
             mLpChanged.screenOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED;
         }
@@ -562,18 +549,17 @@ public class NotificationShadeWindowControllerImpl implements NotificationShadeW
     }
 
     private boolean isExpanded(NotificationShadeWindowState state) {
-        boolean visForBlur = !Flags.disableBlurredShadeVisible() && state.backgroundBlurRadius > 0;
         boolean isExpanded = !state.forceWindowCollapsed && (state.isKeyguardShowingAndNotOccluded()
                 || state.panelVisible || state.keyguardFadingAway || state.bouncerShowing
                 || state.headsUpNotificationShowing
                 || state.scrimsVisibility != ScrimController.TRANSPARENT)
-                || visForBlur
+                || state.backgroundBlurRadius > 0
                 || state.launchingActivityFromNotification;
         mLogger.logIsExpanded(isExpanded, state.forceWindowCollapsed,
                 state.isKeyguardShowingAndNotOccluded(), state.panelVisible,
                 state.keyguardFadingAway, state.bouncerShowing, state.headsUpNotificationShowing,
                 state.scrimsVisibility != ScrimController.TRANSPARENT,
-                visForBlur, state.launchingActivityFromNotification);
+                state.backgroundBlurRadius > 0, state.launchingActivityFromNotification);
         return isExpanded;
     }
 
@@ -681,7 +667,6 @@ public class NotificationShadeWindowControllerImpl implements NotificationShadeW
                 state.shadeOrQsExpanded,
                 state.notificationShadeFocusable,
                 state.glanceableHubShowing,
-                state.glanceableHubOrientationAware,
                 state.bouncerShowing,
                 state.keyguardFadingAway,
                 state.keyguardGoingAway,
@@ -814,12 +799,6 @@ public class NotificationShadeWindowControllerImpl implements NotificationShadeW
     @Override
     public void setGlanceableHubShowing(boolean showing) {
         mCurrentState.glanceableHubShowing = showing;
-        apply(mCurrentState);
-    }
-
-    @Override
-    public void setGlanceableHubOrientationAware(boolean isOrientationAware) {
-        mCurrentState.glanceableHubOrientationAware = isOrientationAware;
         apply(mCurrentState);
     }
 
@@ -1051,9 +1030,7 @@ public class NotificationShadeWindowControllerImpl implements NotificationShadeW
         // be dropped, causing the shade expansion to fail silently. Since the shade doesn't open,
         // it doesn't become visible, and the bounds will never update. Therefore, we must detect
         // the incorrect bounds here and force the update so that touches are routed correctly.
-        if (SceneContainerFlag.isEnabled()
-                && mWindowRootView != null
-                && mWindowRootView.getVisibility() == View.INVISIBLE) {
+        if (SceneContainerFlag.isEnabled() && mWindowRootView.getVisibility() == View.INVISIBLE) {
             Rect bounds = newConfig.windowConfiguration.getBounds();
             if (mWindowRootView.getWidth() != bounds.width()) {
                 mLogger.logConfigChangeWidthAdjust(mWindowRootView.getWidth(), bounds.width());
@@ -1147,10 +1124,7 @@ public class NotificationShadeWindowControllerImpl implements NotificationShadeW
 
         public void observe(Context context) {
             context.getContentResolver().registerContentObserver(
-                    Settings.System.getUriFor(Settings.System.ACCELEROMETER_ROTATION),
-                    false, this);
-            context.getContentResolver().registerContentObserver(
-                    LineageSettings.System.getUriFor(LineageSettings.System.LOCKSCREEN_ROTATION),
+                    Settings.System.getUriFor(Settings.System.LOCKSCREEN_ROTATION),
                     false, this);
         }
 
