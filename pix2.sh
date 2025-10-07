@@ -4,7 +4,7 @@
 #rm -rf prebuilts/clang/host/linux-x86
 
 # ROM source repo
-repo init --no-repo-verify --git-lfs -u https://github.com/ProjectInfinity-X/manifest -b 16 -g default,-mips,-darwin,-notdefault
+#repo init --no-repo-verify --git-lfs -u https://github.com/ProjectInfinity-X/manifest -b 16 -g default,-mips,-darwin,-notdefault
 
 echo "--------------------------------------"
 echo "Repo init success"
@@ -12,7 +12,7 @@ echo "--------------------------------------"
 
 
 # Re-sync
-/opt/crave/resync.sh
+#/opt/crave/resync.sh
 echo "--------------------------------------"
 echo " Synced Successfully "
 echo "--------------------------------------"
@@ -31,7 +31,7 @@ rm -rf device/infinix/X6531-kernel
 rm -rf device/mediatek/sepolicy_vndr
 rm -rf hardware/mediatek 
 rm -rf vendor/mediatek/ims
-rm -rf NotificationShadeWindowControllerImpl.java
+#rm -rf NotificationShadeWindowControllerImpl.java
 
 
 echo "--------------------------------------"
@@ -58,16 +58,19 @@ echo " Clone Keys "
 echo "--------------------------------------"
 git clone https://gitlab.com/17101443/key vendor/lineage-priv/keys
 
-wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/NotificationShadeWindowControllerImpl.java
-mv frameworks/base/packages/SystemUI/src/com/android/systemui/shade/NotificationShadeWindowControllerImpl.java STK_NotificationShadeWindowControllerImpl.java.bk
-cp NotificationShadeWindowControllerImpl.java frameworks/base/packages/SystemUI/src/com/android/systemui/shade/NotificationShadeWindowControllerImpl.java
+#wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/NotificationShadeWindowControllerImpl.java
+#mv frameworks/base/packages/SystemUI/src/com/android/systemui/shade/NotificationShadeWindowControllerImpl.java STK_NotificationShadeWindowControllerImpl.java.bk
+#cp NotificationShadeWindowControllerImpl.java frameworks/base/packages/SystemUI/src/com/android/systemui/shade/NotificationShadeWindowControllerImpl.java
 
 echo "--------------------------------------"
 echo " Building"
 echo "--------------------------------------"
 
 . build/envsetup.sh
-lunch infinity_X6531-userdebug
+lunch custom_X6531-userdebug
+lunch lineage_X6531-bp2a-userdebug
+lunch custom_X6531-bp2a-userdebug
+
 mka bacon
 
 
