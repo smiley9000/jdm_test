@@ -4,7 +4,7 @@
 #rm -rf prebuilts/clang/host/linux-x86
 
 # ROM source repo
-repo init -u https://github.com/BlissRoms/stable_releases.git -b refs/tags/v18.7-stable-voyager --git-lfs
+repo init -u https://github.com/The-Clover-Project/manifest.git -b 15-qpr2 --git-lfs
 
 echo "--------------------------------------"
 echo "Repo init success"
@@ -69,7 +69,9 @@ echo "--------------------------------------"
 . build/envsetup.sh
 #lunch bliss_X6531-userdebug
 #lunch bliss_X6531-bp1a-userdebug
-blissify -g X6531
+lunch clover_X6531-bp1a-userdebug
+
+mka clover -j$(nproc --all)
 
 #mka bacon
 
