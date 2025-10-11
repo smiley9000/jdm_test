@@ -68,6 +68,7 @@ echo "--------------------------------------"
 . build/envsetup.sh
 . b*/env*
 
+lunch lineage_X6531-bp2a-userdebug
 #lunch bliss_X6531-userdebug
 #lunch bliss_X6531-bp1a-userdebug
 lunch lineage_X6531-bp2a-userdebug
