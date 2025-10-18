@@ -4,7 +4,7 @@
 #rm -rf prebuilts/clang/host/linux-x86
 
 # ROM source repo
-repo init -u https://github.com/Lunaris-AOSP/android -b 16 --git-lfs
+repo init -u https://github.com/AxionAOSP/android.git -b lineage-23.0 --git-lfs
 echo "--------------------------------------"
 echo "Repo init success"
 echo "--------------------------------------"
@@ -66,18 +66,14 @@ echo " Building"
 echo "--------------------------------------"
 
 . build/envsetup.sh
-. b*/env*
 
-lunch lineage_X6531-bp2a-userdebug
+#lunch lineage_X6531-bp2a-userdebug
 #lunch bliss_X6531-userdebug
 #lunch bliss_X6531-bp1a-userdebug
-lunch lineage_X6531-bp2a-userdebug
-
-lunch lineage_X6531-bp2a-userdebug
 
 
-m lunaris
-
+axion X6531 gms core
+ax -br
 
 #mka bacon
 
