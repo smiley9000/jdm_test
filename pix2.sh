@@ -4,7 +4,8 @@
 #rm -rf prebuilts/clang/host/linux-x86
 
 # ROM source repo
-repo init -u https://github.com/AxionAOSP/android.git -b lineage-23.0 --git-lfs
+repo init -u https://github.com/LineageOS/android.git -b lineage-23.0 --git-lfs
+
 echo "--------------------------------------"
 echo "Repo init success"
 echo "--------------------------------------"
@@ -57,9 +58,9 @@ echo " Clone Keys "
 echo "--------------------------------------"
 git clone https://gitlab.com/17101443/key vendor/lineage-priv/keys
 
-wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/NotificationShadeWindowControllerImpl.java
-mv frameworks/base/packages/SystemUI/src/com/android/systemui/shade/NotificationShadeWindowControllerImpl.java STK_NotificationShadeWindowControllerImpl.java.bk
-cp NotificationShadeWindowControllerImpl.java frameworks/base/packages/SystemUI/src/com/android/systemui/shade/NotificationShadeWindowControllerImpl.java
+#wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/NotificationShadeWindowControllerImpl.java
+#mv frameworks/base/packages/SystemUI/src/com/android/systemui/shade/NotificationShadeWindowControllerImpl.java STK_NotificationShadeWindowControllerImpl.java.bk
+#cp NotificationShadeWindowControllerImpl.java frameworks/base/packages/SystemUI/src/com/android/systemui/shade/NotificationShadeWindowControllerImpl.java
 
 echo "--------------------------------------"
 echo " Building"
@@ -67,15 +68,14 @@ echo "--------------------------------------"
 
 . build/envsetup.sh
 
-#lunch lineage_X6531-bp2a-userdebug
+lunch lineage_X6531-bp2a-userdebug
 #lunch bliss_X6531-userdebug
 #lunch bliss_X6531-bp1a-userdebug
 
 
-axion X6531 gms core
-ax -br
 
-#mka bacon
+make bacon -j$(nproc --all)
+
 
 
 
