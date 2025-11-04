@@ -4,7 +4,7 @@
 #rm -rf prebuilts/clang/host/linux-x86
 
 # ROM source repo
-repo init -u https://github.com/LineageOS/android.git -b lineage-23.0 --git-lfs
+repo init -u https://github.com/crdroidandroid/android.git -b 16.0 --git-lfs --no-clone-bundle
 
 echo "--------------------------------------"
 echo "Repo init success"
@@ -71,8 +71,6 @@ echo "--------------------------------------"
 lunch lineage_X6531-bp2a-userdebug
 #lunch bliss_X6531-userdebug
 #lunch bliss_X6531-bp1a-userdebug
-
-
 
 make bacon -j$(nproc --all)
 
