@@ -4,7 +4,7 @@
 #rm -rf prebuilts/clang/host/linux-x86
 
 # ROM source repo
-repo init -u https://github.com/crdroidandroid/android.git -b 16.0 --git-lfs --no-clone-bundle
+repo init -u https://github.com/yaap/manifest.git -b sixteen --git-lfs
 
 echo "--------------------------------------"
 echo "Repo init success"
@@ -37,7 +37,7 @@ rm -rf NotificationShadeWindowControllerImpl.java
 echo "--------------------------------------"
 echo " Clone Trees"
 echo "--------------------------------------"
-git clone https://github.com/smiley9000/dt_x -b ev device/infinix/X6531
+git clone https://github.com/smiley9000/dt_x -b yaap device/infinix/X6531
 git clone https://github.com/smiley9000/X_vndr -b bka-2 vendor/infinix/X6531
 git clone https://github.com/smiley9000/android_device_infinix_X6531-kernel device/infinix/X6531-kernel
 #
@@ -68,13 +68,16 @@ echo "--------------------------------------"
 
 . build/envsetup.sh
 
-lunch lineage_X6531-bp2a-userdebug
+#lunch lineage_X6531-bp2a-userdebug
 #lunch bliss_X6531-userdebug
 #lunch bliss_X6531-bp1a-userdebug
 
-make bacon -j$(nproc --all)
+#make bacon -j$(nproc --all)
 
 
+source build/envsetup.sh
+lunch yaap_X6531-userdebug 
+m yaap
 
 
 
