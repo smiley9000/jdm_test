@@ -25,21 +25,21 @@ echo "--------------------------------------"
 echo "--------------------------------------"
 echo " Clean Trees"
 echo "--------------------------------------"
-rm -rf vendor/infinix/X6531
-rm -rf device/infinix/X6531
-rm -rf device/infinix/X6531-kernel
-rm -rf device/mediatek/sepolicy_vndr
-rm -rf hardware/mediatek 
-rm -rf vendor/mediatek/ims
+#rm -rf vendor/infinix/X6531
+#rm -rf device/infinix/X6531
+#rm -rf device/infinix/X6531-kernel
+#rm -rf device/mediatek/sepolicy_vndr
+#rm -rf hardware/mediatek 
+#rm -rf vendor/mediatek/ims
 rm -rf NotificationShadeWindowControllerImpl.java
-#rm -rf NotificationShelf.java
+rm -rf NotificationShelf.java
 
 echo "--------------------------------------"
 echo " Clone Trees"
 echo "--------------------------------------"
-git clone https://github.com/smiley9000/dt_x -b av device/infinix/X6531
-git clone https://github.com/smiley9000/X_vndr -b bka-2 vendor/infinix/X6531
-git clone https://github.com/smiley9000/android_device_infinix_X6531-kernel device/infinix/X6531-kernel
+#git clone https://github.com/smiley9000/dt_x -b av device/infinix/X6531
+#git clone https://github.com/smiley9000/X_vndr -b bka-2 vendor/infinix/X6531
+#git clone https://github.com/smiley9000/android_device_infinix_X6531-kernel device/infinix/X6531-kernel
 #
 echo "--------------------------------------"
 echo " Clone MediaTek Dependecies A15 "
@@ -50,9 +50,9 @@ echo "--------------------------------------"
 echo "--------------------------------------"
 echo " Clone MediaTek Dependecies A16 "
 echo "--------------------------------------"
-git clone https://github.com/crdroidandroid/android_device_mediatek_sepolicy_vndr device/mediatek/sepolicy_vndr
-git clone https://github.com/crdroidandroid/android_hardware_mediatek hardware/mediatek 
-git clone https://github.com/techyminati/android_vendor_mediatek_ims vendor/mediatek/ims
+#git clone https://github.com/crdroidandroid/android_device_mediatek_sepolicy_vndr device/mediatek/sepolicy_vndr
+##git clone https://github.com/crdroidandroid/android_hardware_mediatek hardware/mediatek 
+#git clone https://github.com/techyminati/android_vendor_mediatek_ims vendor/mediatek/ims
 echo "--------------------------------------"
 echo " Clone Keys "
 echo "--------------------------------------"
@@ -62,7 +62,7 @@ wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/NotificationShad
 #wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/NotificationShelf.java
 
 mv frameworks/base/packages/SystemUI/src/com/android/systemui/shade/NotificationShadeWindowControllerImpl.java NotificationShadeWindowControllerImpl.java.bk
-cp NotificationShelf.java frameworks/base/packages/SystemUI/src/com/android/systemui/shade/NotificationShadeWindowControllerImpl.java
+cp NotificationShadeWindowControllerImpl.java frameworks/base/packages/SystemUI/src/com/android/systemui/shade/NotificationShadeWindowControllerImpl.java
 
 ##mv frameworks/base/packages/SystemUI/src/com/android/systemui/statusbar/NotificationShelf.java NotificationShelf.java.bk
 #cp NotificationShelf.java frameworks/base/packages/SystemUI/src/com/android/systemui/statusbar/NotificationShelf.java
@@ -84,6 +84,7 @@ lunch lineage_X6531-bp2a-userdebug
 
 
 #make installclean
+#rm -rf out
 
 make bacon -j$(nproc --all)
 #m SystemUI
