@@ -450,48 +450,97 @@ public class NotificationShelf extends ActivatableNotificationView {
      * Update the shelf appearance based on the other notifications around it. This transforms
      * the icons from the notification area into the shelf.
      */
-	public void updateAppearance() {
-		// If the shelf should not be shown, then there is no need to update anything.
-		if (!mShowNotificationShelf) {
-			return;
-		}
-    
-		// Cache values we need
-		float shelfStart = getTranslationY();
-		View lastChild = mAmbientState.getLastVisibleBackgroundChild();
-		int childCount = getHostLayoutChildCount();
-    
-		// ONLY update rounded corners - skip everything else
-		for (int i = 0; i < childCount; i++) {
-			ExpandableView child = getHostLayoutChildAt(i);
-        
-			if (child.getVisibility() == GONE) {
-				continue;
-			}
-        
-			// Only process rounded corners
-			if (child instanceof ActivatableNotificationView anv) {
-				final float viewStart = child.getTranslationY();
-				updateCornerRoundnessOnScroll(anv, viewStart, shelfStart);
-			}
-        
-			// Keep basic shelf visibility logic
-			if (child instanceof ExpandableNotificationRow expandableRow) {
-				expandableRow.setAboveShelf(false);
-				// Clear any color overrides for clean look
-				expandableRow.setOverrideTintColor(NO_COLOR, 0);
-			}
-		}
-    
-		// Basic visibility - keep shelf visible
-		setVisibility(View.VISIBLE);
-		setHideBackground(false);
-    
-		// Minimal icon handling - just reset to clean state
-		mShelfIcons.resetViewStates();
-		setActualWidth(getWidth());
-	}
-    
+    public void updateAppearance() {
+        // If the shelf should not be shown, then there is no need to update anything.
+        if (!mShowNotificationShelf) {
+            return;
+        }
+        mShelfIcons.resetViewStates();
+        float shelfStart = getTranslationY();
+        float numViewsInShelf = 0.0f;
+        View lastChild = mAmbientState.getLastVisibleBackgroundChild();
+        mNotGoneIndex = -1;
+        //  find the first view that doesn't overlap with the shelf
+        int notGoneIndex = 0;
+        int colorOfViewBeforeLast = NO_COLOR;
+        int colorTwoBefore = NO_COLOR;
+        int previousColor = NO_COLOR;
+        float transitionAmount = 0.0f;
+        float currentScrollVelocity = mAmbientState.getCurrentScrollVelocity();
+        boolean scrollingFast = currentScrollVelocity > mScrollFastThreshold
+                || (mAmbientState.isExpansionChanging()
+                && Math.abs(mAmbientState.getExpandingVelocity()) > mScrollFastThreshold);
+        boolean expandingAnimated = mAmbientState.isExpansionChanging()
+                && !mAmbientState.isPanelTracking();
+        int baseZHeight = mAmbientState.getBaseZHeight();
+        int clipTopAmount = 0;
+
+        for (int i = 0; i < getHostLayoutChildCount(); i++) {
+            ExpandableView child = getHostLayoutChildAt(i);
+            if (!child.needsClippingToShelf() || child.getVisibility() == GONE) {
+                continue;
+            }
+            float notificationClipEnd;
+            boolean aboveShelf = ViewState.getFinalTranslationZ(child) > baseZHeight
+                    || child.isPinned();
+            boolean isLastChild = child == lastChild;
+            final float viewStart = child.getTranslationY();
+            final float shelfClipStart = getTranslationY() - mPaddingBetweenElements;
+            final float inShelfAmount = getAmountInShelf(i, child, scrollingFast,
+                    expandingAnimated, isLastChild, shelfClipStart);
+
+            // TODO(b/172289889) scale mPaddingBetweenElements with expansion amount
+            if (aboveShelf) {
+                notificationClipEnd = shelfStart + getIntrinsicHeight();
+            } else {
+                notificationClipEnd = shelfStart - mPaddingBetweenElements;
+            }
+            int clipTop = updateNotificationClipHeight(child, notificationClipEnd, notGoneIndex);
+            clipTopAmount = Math.max(clipTop, clipTopAmount);
+
+            // If the current row is an ExpandableNotificationRow, update its color, roundedness,
+            // and icon state.
+
+            if (child instanceof ActivatableNotificationView anv) {
+                updateCornerRoundnessOnScroll(anv, viewStart, shelfStart);
+            }
+        }
+
+        clipTransientViews();
+
+        setClipTopAmount(clipTopAmount);
+
+        boolean isHidden = getViewState().hidden
+                || clipTopAmount >= getIntrinsicHeight()
+                || !mShowNotificationShelf
+                || numViewsInShelf < 1f;
+
+        final float fractionToShade = Interpolators.STANDARD.getInterpolation(
+                mAmbientState.getFractionToShade());
+
+        if (mAmbientState.isOnKeyguard()) {
+            float numViews = MathUtils.min(numViewsInShelf, mMaxIconsOnLockscreen + 1);
+            float shortestWidth = mShelfIcons.calculateWidthFor(numViews);
+            float actualWidth = MathUtils.lerp(shortestWidth, getWidth(), fractionToShade);
+            setActualWidth(actualWidth);
+        } else {
+            setActualWidth(getWidth());
+        }
+
+        // TODO(b/172289889) transition last icon in shelf to notification icon and vice versa.
+        setVisibility(isHidden ? View.INVISIBLE : View.VISIBLE);
+        mShelfIcons.calculateIconXTranslations();
+        mShelfIcons.applyIconStates();
+
+        boolean hideBackground = isHidden;
+        setHideBackground(hideBackground);
+        if (mNotGoneIndex == -1) {
+            mNotGoneIndex = notGoneIndex;
+        }
+        updateIfNeeded();
+    }
+
+	
     private ExpandableView getHostLayoutChildAt(int index) {
         return (ExpandableView) mHostLayout.getChildAt(index);
     }
