@@ -76,8 +76,7 @@ lunch lineage_X6531-bp2a-userdebug
 #make bacon -j$(nproc --all)
 
 
-source build/envsetup.sh
-lunch yaap_X6531-userdebug 
+
 m SystemUI
 
 
