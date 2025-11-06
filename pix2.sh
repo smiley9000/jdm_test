@@ -83,7 +83,7 @@ lunch lineage_X6531-bp2a-userdebug
 
 
 
-make installclean
+#make installclean
 
 make bacon -j$(nproc --all)
 #m SystemUI
