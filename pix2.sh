@@ -72,7 +72,7 @@ echo " Building"
 echo "--------------------------------------"
 
 . build/envsetup.sh
-
+avium get_gms
 lunch lineage_X6531-bp2a-userdebug
 
 #lunch yaap_X6531-bp2a-userdebug
