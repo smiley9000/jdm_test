@@ -31,7 +31,7 @@ rm -rf device/infinix/X6531-kernel
 rm -rf device/mediatek/sepolicy_vndr
 rm -rf hardware/mediatek 
 rm -rf vendor/mediatek/ims
-#rm -rf NotificationShadeWindowControllerImpl.java
+rm -rf NotificationShadeWindowControllerImpl.java
 #rm -rf NotificationShelf.java
 
 echo "--------------------------------------"
@@ -58,8 +58,12 @@ echo " Clone Keys "
 echo "--------------------------------------"
 git clone https://gitlab.com/17101443/key vendor/lineage-priv/keys
 
-#wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/NotificationShadeWindowControllerImpl.java
+wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/NotificationShadeWindowControllerImpl.java
 #wget https://raw.githubusercontent.com/smiley9000/jdm_test/main/NotificationShelf.java
+
+mv frameworks/base/packages/SystemUI/src/com/android/systemui/shade/NotificationShadeWindowControllerImpl.java NotificationShadeWindowControllerImpl.java.bk
+cp NotificationShelf.java frameworks/base/packages/SystemUI/src/com/android/systemui/shade/NotificationShadeWindowControllerImpl.java
+
 ##mv frameworks/base/packages/SystemUI/src/com/android/systemui/statusbar/NotificationShelf.java NotificationShelf.java.bk
 #cp NotificationShelf.java frameworks/base/packages/SystemUI/src/com/android/systemui/statusbar/NotificationShelf.java
 
