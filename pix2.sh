@@ -71,8 +71,8 @@ echo "--------------------------------------"
 echo " Building"
 echo "--------------------------------------"
 
-#rm -rf vendor/lineage
-#git clone https://github.com/smiley9000/android_vendor_lineage vendor/lineage
+rm -rf build/soong
+git clone https://github.com/smiley9000/android_build_soong build/soong 
 
 . build/envsetup.sh
 #avium remove_gms
@@ -89,7 +89,7 @@ lunch lineage_X6531-bp2a-userdebug
 #make installclean
 #rm -rf out
 
-make bacon -j$(nproc --all)
+make bacon 
 #m SystemUI
 
 
