@@ -40,6 +40,16 @@ echo "--------------------------------------"
 #git clone https://github.com/smiley9000/dt_x -b av device/infinix/X6531
 #git clone https://github.com/smiley9000/X_vndr -b bka-2 vendor/infinix/X6531
 #git clone https://github.com/smiley9000/android_device_infinix_X6531-kernel device/infinix/X6531-kernel
+
+git clone https://github.com/Transsion-Mediatek-G81-Kernel-5-10/android_device_infinix_X6532 -b av device/infinix/X6532
+git clone https://github.com/Transsion-Mediatek-G81-Kernel-5-10/android_vendor_infinix_X6532 -b 16 vendor/infinix/X6532
+git clone https://github.com/Transsion-Mediatek-G81-Kernel-5-10/android_device_infinix_X6532-kernel device/infinix/X6532-kernel
+
+
+git clone https://github.com/Transsion-Mediatek-G81-Kernel-5-10/android_device_tecno_kl5 -b av device/tecno/KL5
+git clone https://github.com/Transsion-Mediatek-G81-Kernel-5-10/android_vendor_tecno_kl5 -b bka-1 vendor/tecno/KL5
+git clone https://github.com/Transsion-Mediatek-G81-Kernel-5-10/android_device_tecno_kl5-kernel device/tecno/KL5-kernel
+
 #
 echo "--------------------------------------"
 echo " Clone MediaTek Dependecies A15 "
@@ -74,14 +84,13 @@ echo "--------------------------------------"
 #rm -rf build/soong
 #git clone https://github.com/smiley9000/android_build_soong build/soong 
 
-rm -rf vendor/lineage
-git clone https://github.com/smiley9000/android_vendor_lineage vendor/lineage
-
 
 . build/envsetup.sh
 #avium remove_gms
-lunch lineage_X6531-bp2a-userdebug
-
+lunch lineage_KL5-bp2a-userdebug
+make
+lunch lineage_X6532-bp2a-userdebug
+make
 #lunch yaap_X6531-bp2a-userdebug
 
 
@@ -93,7 +102,7 @@ lunch lineage_X6531-bp2a-userdebug
 #make installclean
 #rm -rf out
 
-make bacon 
+
 #m SystemUI
 
 
