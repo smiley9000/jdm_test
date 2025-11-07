@@ -4,7 +4,7 @@
 #rm -rf prebuilts/clang/host/linux-x86
 
 # ROM source repo
-repo init -u https://github.com/AviumUI/android_manifests -b avium-16 --git-lfs
+#repo init -u https://github.com/AviumUI/android_manifests -b avium-16 --git-lfs
 
 echo "--------------------------------------"
 echo "Repo init success"
@@ -12,7 +12,7 @@ echo "--------------------------------------"
 
 
 # Re-sync
-/opt/crave/resync.sh
+#/opt/crave/resync.sh
 echo "--------------------------------------"
 echo " Synced Successfully "
 echo "--------------------------------------"
@@ -71,8 +71,12 @@ echo "--------------------------------------"
 echo " Building"
 echo "--------------------------------------"
 
-rm -rf build/soong
-git clone https://github.com/smiley9000/android_build_soong build/soong 
+#rm -rf build/soong
+#git clone https://github.com/smiley9000/android_build_soong build/soong 
+
+rm -rf vendor/lineage
+git clone https://github.com/smiley9000/android_vendor_lineage vendor/lineage
+
 
 . build/envsetup.sh
 #avium remove_gms
