@@ -71,8 +71,11 @@ echo "--------------------------------------"
 echo " Building"
 echo "--------------------------------------"
 
+rm -rf vendor/lineage
+git clone https://github.com/smiley9000/android_vendor_lineage vendor/lineage
+
 . build/envsetup.sh
-avium remove_gms
+#avium remove_gms
 lunch lineage_X6531-bp2a-userdebug
 
 #lunch yaap_X6531-bp2a-userdebug
