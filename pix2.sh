@@ -87,10 +87,10 @@ echo "--------------------------------------"
 
 . build/envsetup.sh
 #avium remove_gms
-#lunch lineage_KL5-bp2a-userdebug
-#make
-lunch lineage_X6532-bp2a-userdebug
+lunch lineage_KL5-bp2a-userdebug
 make
+#lunch lineage_X6532-bp2a-userdebug
+#make
 #lunch yaap_X6531-bp2a-userdebug
 
 
