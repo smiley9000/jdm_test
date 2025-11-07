@@ -26,7 +26,7 @@ echo "--------------------------------------"
 echo " Clean Trees"
 echo "--------------------------------------"
 #rm -rf vendor/infinix/X6531
-#rm -rf device/infinix/X6531
+rm -rf device/infinix/X6531
 #rm -rf device/infinix/X6531-kernel
 #rm -rf device/mediatek/sepolicy_vndr
 #rm -rf hardware/mediatek 
@@ -37,7 +37,7 @@ rm -rf NotificationShelf.java
 echo "--------------------------------------"
 echo " Clone Trees"
 echo "--------------------------------------"
-#git clone https://github.com/smiley9000/dt_x -b av device/infinix/X6531
+git clone https://github.com/smiley9000/dt_x -b av device/infinix/X6531
 #git clone https://github.com/smiley9000/X_vndr -b bka-2 vendor/infinix/X6531
 #git clone https://github.com/smiley9000/android_device_infinix_X6531-kernel device/infinix/X6531-kernel
 #
@@ -71,8 +71,8 @@ echo "--------------------------------------"
 echo " Building"
 echo "--------------------------------------"
 
-rm -rf vendor/lineage
-git clone https://github.com/smiley9000/android_vendor_lineage vendor/lineage
+#rm -rf vendor/lineage
+#git clone https://github.com/smiley9000/android_vendor_lineage vendor/lineage
 
 . build/envsetup.sh
 #avium remove_gms
