@@ -85,7 +85,7 @@ echo " Building"
 echo "--------------------------------------"
 
 
-. build/envsetup.shs
+. build/envsetup.sh
 lunch lineage_X6531-bp3a-userdebug
 m evolution
 
