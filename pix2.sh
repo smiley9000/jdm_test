@@ -4,7 +4,7 @@
 #rm -rf prebuilts/clang/host/linux-x86
 
 # ROM source repo
-repo init -u https://github.com/Evolution-X/manifest -b bq1 --git-lfs
+#repo init -u https://github.com/Evolution-X/manifest -b bq1 --git-lfs
 
 echo "--------------------------------------"
 echo "Repo init success"
@@ -12,7 +12,7 @@ echo "--------------------------------------"
 
 
 # Re-sync
-/opt/crave/resync.sh
+#/opt/crave/resync.sh
 echo "--------------------------------------"
 echo " Synced Successfully "
 echo "--------------------------------------"
@@ -27,7 +27,8 @@ echo " Clean Trees"
 echo "--------------------------------------"
 #rm -rf vendor/infinix/X6531
 #rm -rf device/infinix/X6531
-rm -rf device/infinix/X6531-kernel
+
+#rm -rf device/infinix/X6531-kernel
 rm -rf device/mediatek/sepolicy_vndr
 rm -rf hardware/mediatek 
 rm -rf vendor/mediatek/ims
@@ -42,9 +43,9 @@ echo "--------------------------------------"
 #git clone https://github.com/smiley9000/X_vndr -b bka-2 vendor/infinix/X6531
 #git clone https://github.com/smiley9000/android_device_infinix_X6531-kernel device/infinix/X6531-kernel
 
-git clone https://github.com/Transsion-Mediatek-G81-Kernel-5-10/android_device_infinix_X6532 -b bp3a device/infinix/X6531
-git clone https://github.com/Transsion-Mediatek-G81-Kernel-5-10/android_vendor_infinix_X6532 -b 16 vendor/infinix/X6531
-git clone https://github.com/Transsion-Mediatek-G81-Kernel-5-10/android_device_infinix_X6532-kernel device/infinix/X6531-kernel
+#git clone https://github.com/Transsion-Mediatek-G81-Kernel-5-10/android_device_infinix_X6532 -b bp3a device/infinix/X6531
+#git clone https://github.com/Transsion-Mediatek-G81-Kernel-5-10/android_vendor_infinix_X6532 -b 16 vendor/infinix/X6531
+#git clone https://github.com/Transsion-Mediatek-G81-Kernel-5-10/android_device_infinix_X6532-kernel device/infinix/X6531-kernel
 
 
 #git clone https://github.com/Transsion-Mediatek-G81-Kernel-5-10/android_device_tecno_kl5 -b av device/tecno/KL5
