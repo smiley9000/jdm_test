@@ -25,8 +25,8 @@ echo "--------------------------------------"
 echo "--------------------------------------"
 echo " Clean Trees"
 echo "--------------------------------------"
-rm -rf vendor/infinix/X6531
-rm -rf device/infinix/X6531
+#rm -rf vendor/infinix/X6531
+#rm -rf device/infinix/X6531
 rm -rf device/infinix/X6531-kernel
 rm -rf device/mediatek/sepolicy_vndr
 rm -rf hardware/mediatek 
