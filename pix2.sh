@@ -4,7 +4,7 @@
 #rm -rf prebuilts/clang/host/linux-x86
 
 # ROM source repo
-#repo init -u https://github.com/AviumUI/android_manifests -b avium-16 --git-lfs
+repo init -u https://github.com/Evolution-X/manifest -b bq1 --git-lfs
 
 echo "--------------------------------------"
 echo "Repo init success"
@@ -12,7 +12,7 @@ echo "--------------------------------------"
 
 
 # Re-sync
-#/opt/crave/resync.sh
+/opt/crave/resync.sh
 echo "--------------------------------------"
 echo " Synced Successfully "
 echo "--------------------------------------"
@@ -25,12 +25,13 @@ echo "--------------------------------------"
 echo "--------------------------------------"
 echo " Clean Trees"
 echo "--------------------------------------"
-#rm -rf vendor/infinix/X6531
-#rm -rf device/infinix/X6531
-#rm -rf device/infinix/X6531-kernel
-#rm -rf device/mediatek/sepolicy_vndr
-#rm -rf hardware/mediatek 
-#rm -rf vendor/mediatek/ims
+rm -rf vendor/infinix/X6531
+rm -rf device/infinix/X6531
+rm -rf device/infinix/X6531-kernel
+rm -rf device/mediatek/sepolicy_vndr
+rm -rf hardware/mediatek 
+rm -rf vendor/mediatek/ims
+
 rm -rf NotificationShadeWindowControllerImpl.java
 rm -rf NotificationShelf.java
 
@@ -41,14 +42,14 @@ echo "--------------------------------------"
 #git clone https://github.com/smiley9000/X_vndr -b bka-2 vendor/infinix/X6531
 #git clone https://github.com/smiley9000/android_device_infinix_X6531-kernel device/infinix/X6531-kernel
 
-git clone https://github.com/Transsion-Mediatek-G81-Kernel-5-10/android_device_infinix_X6532 -b av device/infinix/X6532
+git clone https://github.com/Transsion-Mediatek-G81-Kernel-5-10/android_device_infinix_X6532 -b bp3a device/infinix/X6532
 git clone https://github.com/Transsion-Mediatek-G81-Kernel-5-10/android_vendor_infinix_X6532 -b 16 vendor/infinix/X6532
 git clone https://github.com/Transsion-Mediatek-G81-Kernel-5-10/android_device_infinix_X6532-kernel device/infinix/X6532-kernel
 
 
-git clone https://github.com/Transsion-Mediatek-G81-Kernel-5-10/android_device_tecno_kl5 -b av device/tecno/KL5
-git clone https://github.com/Transsion-Mediatek-G81-Kernel-5-10/android_vendor_tecno_kl5 -b bka-1 vendor/tecno/KL5
-git clone https://github.com/Transsion-Mediatek-G81-Kernel-5-10/android_device_tecno_kl5-kernel device/tecno/KL5-kernel
+#git clone https://github.com/Transsion-Mediatek-G81-Kernel-5-10/android_device_tecno_kl5 -b av device/tecno/KL5
+#git clone https://github.com/Transsion-Mediatek-G81-Kernel-5-10/android_vendor_tecno_kl5 -b bka-1 vendor/tecno/KL5
+#git clone https://github.com/Transsion-Mediatek-G81-Kernel-5-10/android_device_tecno_kl5-kernel device/tecno/KL5-kernel
 
 #
 echo "--------------------------------------"
@@ -61,8 +62,10 @@ echo "--------------------------------------"
 echo " Clone MediaTek Dependecies A16 "
 echo "--------------------------------------"
 #git clone https://github.com/crdroidandroid/android_device_mediatek_sepolicy_vndr device/mediatek/sepolicy_vndr
-##git clone https://github.com/crdroidandroid/android_hardware_mediatek hardware/mediatek 
-#git clone https://github.com/techyminati/android_vendor_mediatek_ims vendor/mediatek/ims
+git clone https://github.com/smiley9000/android_device_mediatek_sepolicy_vndr -b 16-qpr1 device/mediatek/sepolicy_vndr
+git clone https://github.com/crdroidandroid/android_hardware_mediatek hardware/mediatek 
+git clone https://github.com/techyminati/android_vendor_mediatek_ims vendor/mediatek/ims
+
 echo "--------------------------------------"
 echo " Clone Keys "
 echo "--------------------------------------"
@@ -81,14 +84,11 @@ echo "--------------------------------------"
 echo " Building"
 echo "--------------------------------------"
 
-#rm -rf build/soong
-#git clone https://github.com/smiley9000/android_build_soong build/soong 
 
+. build/envsetup.shs
+lunch lineage_X6531-bp3a-userdebug
+m evolution
 
-. build/envsetup.sh
-#avium remove_gms
-lunch lineage_KL5-bp2a-userdebug
-make
 #lunch lineage_X6532-bp2a-userdebug
 #make
 #lunch yaap_X6531-bp2a-userdebug
