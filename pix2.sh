@@ -42,9 +42,9 @@ echo "--------------------------------------"
 #git clone https://github.com/smiley9000/X_vndr -b bka-2 vendor/infinix/X6531
 #git clone https://github.com/smiley9000/android_device_infinix_X6531-kernel device/infinix/X6531-kernel
 
-git clone https://github.com/Transsion-Mediatek-G81-Kernel-5-10/android_device_infinix_X6532 -b bp3a device/infinix/X6532
-git clone https://github.com/Transsion-Mediatek-G81-Kernel-5-10/android_vendor_infinix_X6532 -b 16 vendor/infinix/X6532
-git clone https://github.com/Transsion-Mediatek-G81-Kernel-5-10/android_device_infinix_X6532-kernel device/infinix/X6532-kernel
+git clone https://github.com/Transsion-Mediatek-G81-Kernel-5-10/android_device_infinix_X6532 -b bp3a device/infinix/X6531
+git clone https://github.com/Transsion-Mediatek-G81-Kernel-5-10/android_vendor_infinix_X6532 -b 16 vendor/infinix/X6531
+git clone https://github.com/Transsion-Mediatek-G81-Kernel-5-10/android_device_infinix_X6532-kernel device/infinix/X6531-kernel
 
 
 #git clone https://github.com/Transsion-Mediatek-G81-Kernel-5-10/android_device_tecno_kl5 -b av device/tecno/KL5
